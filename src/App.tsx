@@ -5,6 +5,7 @@ import { AdminProvider } from './contexts/AdminContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import ThemeIndicator from './components/ThemeIndicator';
 import HomePage from './pages/HomePage';
 import WhyCazpian from './pages/WhyCazpian';
 import Product from './pages/Product';
@@ -21,7 +22,7 @@ function App() {
     <ThemeProvider>
       <AdminProvider>
         <Router>
-          <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+          <div className="min-h-screen bg-adaptive transition-colors duration-300">
             <Routes>
               {/* Admin Routes */}
               <Route path="/admin" element={<AdminLogin />} />
@@ -51,6 +52,7 @@ function App() {
                     </Routes>
                   </main>
                   <Footer />
+                  <ThemeIndicator />
                 </>
               } />
             </Routes>

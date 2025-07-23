@@ -36,15 +36,15 @@ const WhyCazpian = () => {
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-20">
+      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Why Choose <span className="text-indigo-600">Cazpian</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Built for modern data teams who demand speed, intelligence, and flexibility without compromise.
             </p>
           </div>
@@ -52,7 +52,7 @@ const WhyCazpian = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20">
             {features.map((feature, index) => (
@@ -61,20 +61,20 @@ const WhyCazpian = () => {
                   <div className="mb-6">
                     {feature.icon}
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
                     {feature.title}
                   </h2>
-                  <p className="text-lg text-gray-600 leading-relaxed">
+                  <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
                 <div className="flex-1">
-                  <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 h-80 flex items-center justify-center">
+                  <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-2xl p-8 h-80 flex items-center justify-center">
                     <div className="text-center">
                       <div className="mb-4 opacity-20">
                         {feature.icon}
                       </div>
-                      <p className="text-gray-500 italic">Visual representation</p>
+                      <p className="text-gray-500 dark:text-gray-400 italic">Visual representation</p>
                     </div>
                   </div>
                 </div>
@@ -84,21 +84,139 @@ const WhyCazpian = () => {
         </div>
       </section>
 
+      {/* Comparison Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              How Cazpian Compares
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              See why teams are choosing Cazpian over traditional solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl border border-gray-200 dark:border-gray-600">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Traditional Data Warehouses</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Vendor lock-in</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">High costs</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Complex setup</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Limited flexibility</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl border-2 border-indigo-600 dark:border-indigo-500 relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-medium">Recommended</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Cazpian</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Open standards</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Cost-effective</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Quick deployment</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Maximum flexibility</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white dark:bg-gray-700 p-8 rounded-xl border border-gray-200 dark:border-gray-600">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">DIY Solutions</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">High maintenance</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Complex integration</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Security risks</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300">Limited support</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Proven Results
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300">
+              Real metrics from teams using Cazpian in production
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">10x</div>
+              <div className="text-gray-700 dark:text-gray-300">Faster Queries</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">60%</div>
+              <div className="text-gray-700 dark:text-gray-300">Cost Reduction</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">90%</div>
+              <div className="text-gray-700 dark:text-gray-300">Faster Deployment</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">24/7</div>
+              <div className="text-gray-700 dark:text-gray-300">Uptime</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Experience the Cazpian Difference
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             See how our open, AI-driven platform can transform your data operations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-all duration-200 font-semibold text-lg">
+            <button className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
               Start Free Trial
             </button>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-200 font-semibold text-lg">
-              Book a Demo
+              Schedule Demo
             </button>
           </div>
         </div>

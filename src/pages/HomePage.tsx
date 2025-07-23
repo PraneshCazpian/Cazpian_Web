@@ -120,36 +120,36 @@ const HomePage = () => {
       </section>
 
       {/* Product Showcase */}
-      <section className="py-20 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20">
+      <section className="py-20 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                 Deploy Your Way
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+              <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
                 Whether you need fully managed cloud, self-hosted enterprise, or free community edition - Cazpian adapts to your infrastructure needs.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">Cazpian Cloud</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Fully managed on AWS or Azure</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100">Cazpian Cloud</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Fully managed on AWS or Azure</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">Cazpian Enterprise</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Self-hosted on your infrastructure</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100">Cazpian Enterprise</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Self-hosted on your infrastructure</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">Community Edition</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Free for developers and small teams</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-gray-100">Community Edition</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Free for developers and small teams</p>
                   </div>
                 </div>
               </div>
@@ -162,11 +162,11 @@ const HomePage = () => {
               </Link>
             </div>
             <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl">
-              <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm text-green-400">
-                <div className="mb-2">$ cazpian deploy --cloud aws</div>
-                <div className="text-gray-500 dark:text-gray-400">✓ Provisioning lakehouse...</div>
-                <div className="text-gray-500 dark:text-gray-400">✓ Configuring AI semantic layer...</div>
-                <div className="text-gray-500 dark:text-gray-400">✓ Setting up connectors...</div>
+              <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm">
+                <div className="mb-2 text-green-400">$ cazpian deploy --cloud aws</div>
+                <div className="text-green-400">✓ Provisioning lakehouse...</div>
+                <div className="text-green-400">✓ Configuring AI semantic layer...</div>
+                <div className="text-green-400">✓ Setting up connectors...</div>
                 <div className="text-green-400">✓ Cazpian ready in 3 minutes!</div>
               </div>
             </div>

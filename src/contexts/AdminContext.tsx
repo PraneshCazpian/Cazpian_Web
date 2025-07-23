@@ -79,11 +79,11 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   
   const [siteConfig, setSiteConfig] = useState<SiteConfig>({
     siteName: 'Cazpian',
-    logo: '/public/ChatGPT Image Jul 20, 2025, 02_58_29 PM.png',
-    primaryColor: '#6366F1',
-    secondaryColor: '#06B6D4',
-    accentColor: '#8B5CF6',
-    backgroundColor: '#F6F8FC',
+    logo: '/Logo.png',
+    primaryColor: '#3B82F6', // Blue-600 - matches the lighter blue from logo
+    secondaryColor: '#6366F1', // Indigo-500 - middle transition color
+    accentColor: '#8B5CF6', // Purple-500 - matches the deeper purple from logo
+    backgroundColor: '#F8FAFC', // Slate-50 - lighter, cleaner background
     darkMode: false,
     heroTitle: 'Experience Unmatched Lakehouse Performance with Cazpian AI',
     heroSubtitle: 'An open, intelligent, and lightning-fast data platform built for today\'s most demanding analytics and AI workloads.',
@@ -123,6 +123,46 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         { id: '2-1', title: 'Cazpian Cloud (Managed)', path: '/product#cloud', isVisible: true },
         { id: '2-2', title: 'Cazpian Enterprise (Self-Hosted)', path: '/product#enterprise', isVisible: true },
         { id: '2-3', title: 'Cazpian Community Edition (Free)', path: '/product#community', isVisible: true }
+      ]
+    },
+    {
+      id: '3',
+      title: 'Solutions',
+      path: '/solutions',
+      isVisible: true,
+      submenu: [
+        { id: '3-1', title: 'Analytics Acceleration', path: '/solutions#cloud', isVisible: true },
+        { id: '3-2', title: 'Self-Service BI', path: '/solutions#enterprise', isVisible: true },
+        { id: '3-3', title: 'Data Science & ML', path: '/solutions#community', isVisible: true },
+        { id: '3-3', title: 'Real-Time Operations ', path: '/solutions#community', isVisible: true }
+      ]
+    },
+    {
+      id: '4',
+      title: 'Resources',
+      path: '/resources',
+      isVisible: true,
+      submenu: [
+        { id: '4-1', title: 'Documentation & API', path: '/resources#Documentation', isVisible: true },
+        { id: '4-2', title: 'Tutorials & Quickstarts', path: '/resources#Tutorials', isVisible: true },
+        { id: '4-3', title: 'Blog & Engineering', path: '/resources#Blog', isVisible: true },
+        { id: '4-4', title: 'Webinars & Events', path: '/resources#Webinars', isVisible: true },
+        { id: '4-5', title: 'Release Notes', path: '/resources#Release', isVisible: true },
+        { id: '4-6', title: 'Community Slack', path: '/resources#Community', isVisible: true }
+      ]
+    },
+    {
+      id: '5',
+      title: 'About',
+      path: '/about',
+      isVisible: true,
+      submenu: [
+        { id: '5-1', title: 'Company', path: '/product#cloud', isVisible: true },
+        { id: '5-2', title: 'Team', path: '/product#enterprise', isVisible: true },
+        { id: '5-3', title: 'Careers', path: '/product#community', isVisible: true },
+        { id: '5-4', title: 'Partners', path: '/product#Partners ', isVisible: true },
+        { id: '5-5', title: 'Newsroom', path: '/product#Newsroom', isVisible: true },
+        { id: '5-6', title: 'Contact & Support ', path: '/product#Contact', isVisible: true }
       ]
     }
   ]);
