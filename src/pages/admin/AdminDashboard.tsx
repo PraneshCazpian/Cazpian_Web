@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useAdmin } from '../../contexts/AdminContext';
+import ResourcesEditor from '../../components/ResourcesEditor';
 import { 
   BarChart3, 
   Settings, 
   FileText, 
   Menu as MenuIcon, 
-  Users, 
   Palette,
   Globe,
   LogOut,
-  Home,
   Eye,
   Edit3,
   Plus,
   Trash2,
   Save,
-  X
+  X,
+  BookOpen
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -23,7 +23,6 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [editingConfig, setEditingConfig] = useState(false);
   const [tempConfig, setTempConfig] = useState(siteConfig);
-  const [editingMenuItem, setEditingMenuItem] = useState<string | null>(null);
   const [newMenuItem, setNewMenuItem] = useState({ title: '', path: '', isVisible: true });
 
   const handleSaveConfig = () => {
@@ -46,6 +45,7 @@ const AdminDashboard = () => {
   const tabs = [
     { id: 'overview', label: 'Overview', icon: <BarChart3 className="h-4 w-4" /> },
     { id: 'content', label: 'Content', icon: <FileText className="h-4 w-4" /> },
+    { id: 'resources', label: 'Resources', icon: <BookOpen className="h-4 w-4" /> },
     { id: 'menu', label: 'Navigation', icon: <MenuIcon className="h-4 w-4" /> },
     { id: 'theme', label: 'Theme', icon: <Palette className="h-4 w-4" /> },
     { id: 'settings', label: 'Settings', icon: <Settings className="h-4 w-4" /> },
@@ -186,6 +186,13 @@ const AdminDashboard = () => {
                         >
                           <MenuIcon className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                           <span className="text-gray-900 dark:text-white">Manage Navigation</span>
+                        </button>
+                        <button
+                          onClick={() => setActiveTab('resources')}
+                          className="w-full flex items-center space-x-3 p-3 bg-white dark:bg-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-500 transition-colors"
+                        >
+                          <BookOpen className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                          <span className="text-gray-900 dark:text-white">Edit Resources Page</span>
                         </button>
                       </div>
                     </div>
@@ -554,12 +561,16 @@ const AdminDashboard = () => {
 
                   <div className="mt-8">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Color Presets</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
                       {[
+                        { name: 'Indigo', primary: '#6366F1', secondary: '#06B6D4', accent: '#8B5CF6', bg: '#F0F9FF' },
                         { name: 'Ocean', primary: '#0EA5E9', secondary: '#06B6D4', accent: '#8B5CF6', bg: '#F0F9FF' },
                         { name: 'Sunset', primary: '#F59E0B', secondary: '#EF4444', accent: '#8B5CF6', bg: '#FFFBEB' },
                         { name: 'Forest', primary: '#059669', secondary: '#0D9488', accent: '#7C3AED', bg: '#F0FDF4' },
-                        { name: 'Purple', primary: '#7C3AED', secondary: '#A855F7', accent: '#06B6D4', bg: '#FAF5FF' }
+                        { name: 'Purple', primary: '#7C3AED', secondary: '#A855F7', accent: '#06B6D4', bg: '#FAF5FF' },
+                        { name: 'Rose', primary: '#E11D48', secondary: '#F43F5E', accent: '#8B5CF6', bg: '#FFF1F2' },
+                        { name: 'Emerald', primary: '#10B981', secondary: '#059669', accent: '#6366F1', bg: '#ECFDF5' },
+                        { name: 'Slate', primary: '#475569', secondary: '#64748B', accent: '#8B5CF6', bg: '#F8FAFC' }
                       ].map((preset) => (
                         <button
                           key={preset.name}
@@ -583,6 +594,13 @@ const AdminDashboard = () => {
                       ))}
                     </div>
                   </div>
+                </div>
+              )}
+
+              {/* Resources Tab */}
+              {activeTab === 'resources' && (
+                <div className="p-6">
+                  <ResourcesEditor />
                 </div>
               )}
 

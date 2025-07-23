@@ -6,8 +6,8 @@
 @layer base {
   :root {
     /* Light mode custom properties - Cazpian Brand Colors */
-    --color-primary: 14 165 233; /* #0EA5E9 Sky Blue */
-    --color-primary-hover: 2 132 199; /* Sky Blue 600 */
+    --color-primary: 99 102 241; /* #6366f1 Indigo */
+    --color-primary-hover: 79 70 229; /* Indigo 600 */
     --color-secondary: 6 182 212; /* #06B6D4 Cyan */
     --color-accent: 139 92 246; /* #8B5CF6 Purple */
     --color-background: 240 249 255; /* #F0F9FF Sky Blue 50 */
@@ -17,7 +17,7 @@
     --color-text-secondary: 75 85 99; /* gray-600 */
     --color-text-tertiary: 107 114 128; /* gray-500 */
     --color-border: 226 232 240; /* slate-200 */
-    --color-border-hover: 14 165 233; /* Sky Blue */
+    --color-border-hover: 99 102 241; /* Indigo */
     --color-success: 16 185 129; /* #10B981 Emerald */
     --color-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
     --color-shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -25,8 +25,8 @@
 
   .dark {
     /* Dark mode custom properties - Cazpian Brand Colors */
-    --color-primary: 14 165 233; /* #0EA5E9 Sky Blue */
-    --color-primary-hover: 56 189 248; /* Sky Blue 400 */
+    --color-primary: 99 102 241; /* #6366f1 Indigo */
+    --color-primary-hover: 129 140 248; /* Indigo 400 */
     --color-secondary: 6 182 212; /* #06B6D4 Cyan */
     --color-accent: 139 92 246; /* #8B5CF6 Purple */
     --color-background: 15 23 42; /* #0F172A Slate 900 */
@@ -36,7 +36,7 @@
     --color-text-secondary: 203 213 225; /* slate-300 */
     --color-text-tertiary: 148 163 184; /* slate-400 */
     --color-border: 51 65 85; /* slate-700 */
-    --color-border-hover: 14 165 233; /* Sky Blue */
+    --color-border-hover: 99 102 241; /* Indigo */
     --color-success: 16 185 129; /* #10B981 Emerald */
     --color-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
     --color-shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
@@ -53,6 +53,11 @@
   .focus-visible {
     outline: 2px solid rgb(var(--color-primary));
     outline-offset: 2px;
+  }
+
+  /* Focus ring utility for consistent focus states */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-indigo-400;
   }
 
   /* Custom scrollbar for dark mode */
@@ -114,23 +119,23 @@
 
   /* Enhanced button component */
   .btn-primary {
-    @apply bg-sky-500 dark:bg-sky-500 text-white px-6 py-3 rounded-lg font-semibold;
+    @apply bg-indigo-500 dark:bg-indigo-500 text-white px-6 py-3 rounded-lg font-semibold;
     transition: all 0.2s ease-in-out;
   }
 
   .btn-primary:hover {
-    @apply bg-sky-600 dark:bg-sky-400;
+    @apply bg-indigo-600 dark:bg-indigo-400;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
   }
 
   .btn-secondary {
-    @apply border-2 border-sky-500 dark:border-sky-400 text-sky-500 dark:text-sky-400 px-6 py-3 rounded-lg font-semibold;
+    @apply border-2 border-indigo-500 dark:border-indigo-400 text-indigo-500 dark:text-indigo-400 px-6 py-3 rounded-lg font-semibold;
     transition: all 0.2s ease-in-out;
   }
 
   .btn-secondary:hover {
-    @apply bg-sky-500 dark:bg-sky-400 text-white;
+    @apply bg-indigo-500 dark:bg-indigo-400 text-white;
     transform: translateY(-1px);
   }
 
@@ -138,19 +143,19 @@
   .input-enhanced {
     @apply w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg;
     @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
-    @apply focus:ring-2 focus:ring-sky-500 focus:border-sky-500;
-    @apply dark:focus:ring-sky-400 dark:focus:border-sky-400;
+    @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500;
+    @apply dark:focus:ring-indigo-400 dark:focus:border-indigo-400;
     transition: all 0.2s ease-in-out;
   }
 
   .input-enhanced:focus {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
   }
 
   /* Gradient backgrounds with Cazpian brand colors */
   .gradient-hero {
-    @apply bg-gradient-to-br from-sky-50 via-cyan-50 to-purple-50;
+    @apply bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50;
   }
 
   .dark .gradient-hero {

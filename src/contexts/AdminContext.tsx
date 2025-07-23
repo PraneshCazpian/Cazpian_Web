@@ -46,12 +46,66 @@ interface PageContent {
   lastModified: Date;
 }
 
+interface ResourceItem {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  links: string[];
+}
+
+interface FeaturedContent {
+  id: string;
+  type: string;
+  title: string;
+  description: string;
+  readTime: string;
+  category: string;
+}
+
+interface LearningPath {
+  id: string;
+  title: string;
+  description: string;
+  steps: {
+    id: string;
+    number: number;
+    title: string;
+    status: 'completed' | 'current' | 'upcoming';
+  }[];
+}
+
+interface ResourcesPageContent {
+  heroTitle: string;
+  heroSubtitle: string;
+  featuredContent: FeaturedContent[];
+  resources: ResourceItem[];
+  learningPaths: LearningPath[];
+  communitySection: {
+    title: string;
+    subtitle: string;
+    items: {
+      id: string;
+      title: string;
+      description: string;
+      buttonText: string;
+    }[];
+  };
+  ctaSection: {
+    title: string;
+    subtitle: string;
+    primaryButton: string;
+    secondaryButton: string;
+  };
+}
+
 interface AdminContextType {
   user: AdminUser | null;
   isAuthenticated: boolean;
   siteConfig: SiteConfig;
   menuItems: MenuItem[];
   pageContent: PageContent[];
+  resourcesContent: ResourcesPageContent;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
   updateSiteConfig: (config: Partial<SiteConfig>) => void;
@@ -61,6 +115,16 @@ interface AdminContextType {
   updatePageContent: (id: string, content: Partial<PageContent>) => void;
   addPageContent: (content: Omit<PageContent, 'id' | 'lastModified'>) => void;
   deletePageContent: (id: string) => void;
+  updateResourcesContent: (content: Partial<ResourcesPageContent>) => void;
+  updateResourceItem: (id: string, item: Partial<ResourceItem>) => void;
+  addResourceItem: (item: Omit<ResourceItem, 'id'>) => void;
+  deleteResourceItem: (id: string) => void;
+  updateFeaturedContent: (id: string, content: Partial<FeaturedContent>) => void;
+  addFeaturedContent: (content: Omit<FeaturedContent, 'id'>) => void;
+  deleteFeaturedContent: (id: string) => void;
+  updateLearningPath: (id: string, path: Partial<LearningPath>) => void;
+  addLearningPath: (path: Omit<LearningPath, 'id'>) => void;
+  deleteLearningPath: (id: string) => void;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
@@ -80,10 +144,10 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [siteConfig, setSiteConfig] = useState<SiteConfig>({
     siteName: 'Cazpian',
     logo: '/Logo.png',
-    primaryColor: '#3B82F6', // Blue-600 - matches the lighter blue from logo
-    secondaryColor: '#6366F1', // Indigo-500 - middle transition color
+    primaryColor: '#6366F1', // Indigo-500 - new primary color
+    secondaryColor: '#06B6D4', // Cyan - updated secondary
     accentColor: '#8B5CF6', // Purple-500 - matches the deeper purple from logo
-    backgroundColor: '#F8FAFC', // Slate-50 - lighter, cleaner background
+    backgroundColor: '#F0F9FF', // Sky Blue 50 - updated background
     darkMode: false,
     heroTitle: 'Experience Unmatched Lakehouse Performance with Cazpian AI',
     heroSubtitle: 'An open, intelligent, and lightning-fast data platform built for today\'s most demanding analytics and AI workloads.',
@@ -177,6 +241,133 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   ]);
 
+  const [resourcesContent, setResourcesContent] = useState<ResourcesPageContent>({
+    heroTitle: 'Resources & Learning',
+    heroSubtitle: 'Everything you need to succeed with Cazpian—from quick starts to deep technical guides.',
+    featuredContent: [
+      {
+        id: '1',
+        type: 'Tutorial',
+        title: 'Building Your First Data Pipeline',
+        description: 'Learn how to set up a complete data pipeline from ingestion to analytics in under 30 minutes.',
+        readTime: '15 min read',
+        category: 'Getting Started'
+      },
+      {
+        id: '2',
+        type: 'Blog Post',
+        title: 'Why We Built Cazpian on Open Standards',
+        description: 'The technical and strategic decisions behind our open architecture approach.',
+        readTime: '8 min read',
+        category: 'Engineering'
+      },
+      {
+        id: '3',
+        type: 'Webinar',
+        title: 'AI-Driven Analytics: Beyond Traditional BI',
+        description: 'Discover how AI transforms data exploration and insight generation.',
+        readTime: '45 min watch',
+        category: 'Product Demo'
+      }
+    ],
+    resources: [
+      {
+        id: 'documentation',
+        icon: 'BookOpen',
+        title: 'Documentation & API',
+        description: 'Step-by-step product documentation, sample scripts, and architecture references. Find clear explanations for every API, connector, and capability. From first query to full deployment—we\'ve got you covered. Docs that accelerate, not frustrate.',
+        links: ['API Reference', 'Getting Started', 'Architecture Guide', 'Best Practices']
+      },
+      {
+        id: 'tutorials',
+        icon: 'Play',
+        title: 'Tutorials & Quickstarts',
+        description: 'Launch your first Cazpian workload in minutes. Guided labs, notebooks, and code samples make adoption smooth. From zero to value—quick. Perfect for new teams and seasoned devs alike.',
+        links: ['5-Minute Quickstart', 'Data Pipeline Tutorial', 'ML Workflow Guide', 'Integration Examples']
+      },
+      {
+        id: 'blog',
+        icon: 'FileText',
+        title: 'Blog & Engineering',
+        description: 'Insights from our engineers, customers, and data community. Explore new features, performance strategies, and architecture deep dives. Not just thought leadership—real, applied knowledge. Stay informed, stay sharp.',
+        links: ['Latest Posts', 'Engineering Deep Dives', 'Customer Stories', 'Industry Insights']
+      },
+      {
+        id: 'webinars',
+        icon: 'Calendar',
+        title: 'Webinars & Events',
+        description: 'Join live demos, product deep dives, and AMAs with the Cazpian team. Learn from industry experts and customer success stories. Can\'t attend live? Access our event library on-demand. Data learning, on your schedule.',
+        links: ['Upcoming Events', 'On-Demand Library', 'Product Demos', 'Customer Webinars']
+      },
+      {
+        id: 'release-notes',
+        icon: 'Bell',
+        title: 'Release Notes',
+        description: 'Track what\'s new, what\'s fixed, and what\'s coming next. Our roadmap is public and shaped by user feedback. Stay ahead of the curve with transparent product development. You\'re not just using the product—you help build it.',
+        links: ['Latest Release', 'Roadmap', 'Feature Requests', 'Bug Reports']
+      },
+      {
+        id: 'community',
+        icon: 'MessageCircle',
+        title: 'Community Slack',
+        description: 'Join our open Slack community for support, feedback, and collaboration. Ask questions, share ideas, and connect with engineers directly. Feature requests are welcomed—and often shipped. The best ideas start in conversation.',
+        links: ['Join Slack', 'Community Guidelines', 'Support Channels', 'Feature Discussions']
+      }
+    ],
+    learningPaths: [
+      {
+        id: 'data-engineer',
+        title: 'Data Engineer Path',
+        description: 'Master data pipeline development, optimization, and deployment with Cazpian.',
+        steps: [
+          { id: '1', number: 1, title: 'Data Ingestion Fundamentals', status: 'completed' },
+          { id: '2', number: 2, title: 'Pipeline Orchestration', status: 'current' },
+          { id: '3', number: 3, title: 'Advanced Optimization', status: 'upcoming' }
+        ]
+      },
+      {
+        id: 'data-analyst',
+        title: 'Data Analyst Path',
+        description: 'Learn to explore, analyze, and visualize data with Cazpian\'s intuitive tools.',
+        steps: [
+          { id: '1', number: 1, title: 'Data Exploration Basics', status: 'completed' },
+          { id: '2', number: 2, title: 'SQL & Query Building', status: 'current' },
+          { id: '3', number: 3, title: 'Advanced Analytics', status: 'upcoming' }
+        ]
+      }
+    ],
+    communitySection: {
+      title: 'Join Our Community',
+      subtitle: 'Connect with other users, share knowledge, and get help',
+      items: [
+        {
+          id: 'slack',
+          title: 'Slack Community',
+          description: 'Join 5,000+ members for real-time discussions and support',
+          buttonText: 'Join Slack'
+        },
+        {
+          id: 'github',
+          title: 'GitHub Discussions',
+          description: 'Technical discussions, feature requests, and bug reports',
+          buttonText: 'Visit GitHub'
+        },
+        {
+          id: 'office-hours',
+          title: 'Office Hours',
+          description: 'Weekly Q&A sessions with the Cazpian team',
+          buttonText: 'Register'
+        }
+      ]
+    },
+    ctaSection: {
+      title: 'Ready to Start Learning?',
+      subtitle: 'Choose your learning path and begin your journey with Cazpian today.',
+      primaryButton: 'Start Free Trial',
+      secondaryButton: 'Join Community'
+    }
+  });
+
   useEffect(() => {
     // Check for existing session
     const savedUser = localStorage.getItem('adminUser');
@@ -199,6 +390,11 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const savedPageContent = localStorage.getItem('pageContent');
     if (savedPageContent) {
       setPageContent(JSON.parse(savedPageContent));
+    }
+
+    const savedResourcesContent = localStorage.getItem('resourcesContent');
+    if (savedResourcesContent) {
+      setResourcesContent(JSON.parse(savedResourcesContent));
     }
   }, []);
 
@@ -302,6 +498,76 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     localStorage.setItem('pageContent', JSON.stringify(newPageContent));
   };
 
+  // Resources Content Management Functions
+  const updateResourcesContent = (content: Partial<ResourcesPageContent>) => {
+    const newContent = { ...resourcesContent, ...content };
+    setResourcesContent(newContent);
+    localStorage.setItem('resourcesContent', JSON.stringify(newContent));
+  };
+
+  const updateResourceItem = (id: string, item: Partial<ResourceItem>) => {
+    const newResources = resourcesContent.resources.map(resource =>
+      resource.id === id ? { ...resource, ...item } : resource
+    );
+    updateResourcesContent({ resources: newResources });
+  };
+
+  const addResourceItem = (item: Omit<ResourceItem, 'id'>) => {
+    const newItem: ResourceItem = {
+      ...item,
+      id: Date.now().toString()
+    };
+    const newResources = [...resourcesContent.resources, newItem];
+    updateResourcesContent({ resources: newResources });
+  };
+
+  const deleteResourceItem = (id: string) => {
+    const newResources = resourcesContent.resources.filter(resource => resource.id !== id);
+    updateResourcesContent({ resources: newResources });
+  };
+
+  const updateFeaturedContent = (id: string, content: Partial<FeaturedContent>) => {
+    const newFeaturedContent = resourcesContent.featuredContent.map(featured =>
+      featured.id === id ? { ...featured, ...content } : featured
+    );
+    updateResourcesContent({ featuredContent: newFeaturedContent });
+  };
+
+  const addFeaturedContent = (content: Omit<FeaturedContent, 'id'>) => {
+    const newItem: FeaturedContent = {
+      ...content,
+      id: Date.now().toString()
+    };
+    const newFeaturedContent = [...resourcesContent.featuredContent, newItem];
+    updateResourcesContent({ featuredContent: newFeaturedContent });
+  };
+
+  const deleteFeaturedContent = (id: string) => {
+    const newFeaturedContent = resourcesContent.featuredContent.filter(featured => featured.id !== id);
+    updateResourcesContent({ featuredContent: newFeaturedContent });
+  };
+
+  const updateLearningPath = (id: string, path: Partial<LearningPath>) => {
+    const newLearningPaths = resourcesContent.learningPaths.map(learningPath =>
+      learningPath.id === id ? { ...learningPath, ...path } : learningPath
+    );
+    updateResourcesContent({ learningPaths: newLearningPaths });
+  };
+
+  const addLearningPath = (path: Omit<LearningPath, 'id'>) => {
+    const newItem: LearningPath = {
+      ...path,
+      id: Date.now().toString()
+    };
+    const newLearningPaths = [...resourcesContent.learningPaths, newItem];
+    updateResourcesContent({ learningPaths: newLearningPaths });
+  };
+
+  const deleteLearningPath = (id: string) => {
+    const newLearningPaths = resourcesContent.learningPaths.filter(learningPath => learningPath.id !== id);
+    updateResourcesContent({ learningPaths: newLearningPaths });
+  };
+
   return (
     <AdminContext.Provider
       value={{
@@ -310,6 +576,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         siteConfig,
         menuItems,
         pageContent,
+        resourcesContent,
         login,
         logout,
         updateSiteConfig,
@@ -318,7 +585,17 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         deleteMenuItem,
         updatePageContent,
         addPageContent,
-        deletePageContent
+        deletePageContent,
+        updateResourcesContent,
+        updateResourceItem,
+        addResourceItem,
+        deleteResourceItem,
+        updateFeaturedContent,
+        addFeaturedContent,
+        deleteFeaturedContent,
+        updateLearningPath,
+        addLearningPath,
+        deleteLearningPath
       }}
     >
       {children}
