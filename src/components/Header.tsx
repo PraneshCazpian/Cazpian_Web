@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import CazpianLogo from './CazpianLogo';
 import { useAdmin } from '../contexts/AdminContext';
+import NavigationDropdown from './NavigationDropdown';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,14 @@ const Header = () => {
 
   // Filter visible menu items
   const visibleMenuItems = menuItems.filter(item => item.isVisible);
+
+  const handleDropdownEnter = (itemTitle: string) => {
+    setActiveDropdown(itemTitle);
+  };
+
+  const handleDropdownLeave = () => {
+    setActiveDropdown(null);
+  };
 
   return (
     <header className="sticky top-0 z-50 backdrop-enhanced border-b border-adaptive shadow-sm">
@@ -25,7 +34,7 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-          <Link
+            <Link
               to="/"
               className="text-adaptive-secondary hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 focus-ring"
             >
@@ -35,29 +44,24 @@ const Header = () => {
               <div
                 key={item.title}
                 className="relative"
-                onMouseEnter={() => setActiveDropdown(item.title)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleDropdownEnter(item.title)}
+                onMouseLeave={handleDropdownLeave}
               >
                 <Link
                   to={item.path}
-                  className="flex items-center space-x-1 text-adaptive-secondary hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 focus-ring"
+                  className="flex items-center space-x-1 text-adaptive-secondary hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 focus-ring py-2"
                 >
                   <span>{item.title}</span>
-                  {/* <ChevronDown className="h-4 w-4" /> */}
+                  {item.submenu && item.submenu.length > 0 && (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
                 </Link>
                 
-                {activeDropdown === item.title && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50 backdrop-blur-sm">
-                    {item.submenu?.filter(subItem => subItem.isVisible).map((subItem) => (
-                      <Link
-                        key={subItem.title}
-                        to={subItem.path}
-                        className="block px-4 py-2 text-sm text-adaptive-secondary hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                      >
-                        {subItem.title}
-                      </Link>
-                    ))}
-                  </div>
+                {activeDropdown === item.title && item.submenu && item.submenu.length > 0 && (
+                  <NavigationDropdown 
+                    title={item.title}
+                    items={item.submenu.filter(subItem => subItem.isVisible)}
+                  />
                 )}
               </div>
             ))}
