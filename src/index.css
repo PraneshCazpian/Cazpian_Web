@@ -189,12 +189,12 @@
 
   /* Ensure navigation container doesn't overflow */
   .nav-container {
-    @apply flex items-center space-x-1 overflow-hidden;
+    @apply flex items-center space-x-1 overflow-visible;
   }
 
   @media (max-width: 1024px) {
     .nav-container {
-      @apply space-x-0.5;
+      @apply space-x-0.5 overflow-visible;
     }
   }
 
@@ -411,23 +411,17 @@
     backface-visibility: hidden;
     perspective: 1000px;
     max-width: calc(100vw - 2rem);
-    left: 50%;
-    transform: translateX(-50%) translateZ(0);
   }
 
-  /* Responsive dropdown positioning */
+  /* Responsive dropdown sizing only; let component control X position */
   @media (max-width: 1536px) {
     .dropdown-container {
-      left: 0;
-      transform: translateZ(0);
       max-width: 28rem;
     }
   }
 
   @media (max-width: 1280px) {
     .dropdown-container {
-      left: 0;
-      transform: translateZ(0);
       max-width: 24rem;
     }
   }
@@ -448,9 +442,6 @@
   @media (max-width: 640px) {
     .dropdown-container {
       max-width: calc(100vw - 1rem);
-      left: 0.5rem;
-      right: 0.5rem;
-      transform: translateZ(0);
     }
   }
 
