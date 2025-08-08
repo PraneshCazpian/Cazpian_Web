@@ -173,13 +173,13 @@ const AdminLogin = () => {
               </form>
 
               {/* Demo Credentials */}
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+              {/* <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-700 font-medium mb-2">Demo credentials:</p>
                 <div className="text-sm text-blue-600 space-y-1">
                   <p>Username: <span className="font-mono bg-blue-100 px-2 py-1 rounded">admin</span></p>
                   <p>Password: <span className="font-mono bg-blue-100 px-2 py-1 rounded">admin123</span></p>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
 
