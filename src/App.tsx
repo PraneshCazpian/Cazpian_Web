@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import SupportChat from './components/SupportChat';
+import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load all pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -34,6 +35,7 @@ function App() {
     <ThemeProvider>
       <AdminProvider>
         <Router>
+          <ScrollToTop />
           <div className="min-h-screen bg-adaptive transition-colors duration-300">
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
