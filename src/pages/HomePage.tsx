@@ -156,7 +156,7 @@ const HomePage = () => {
         style={{ scaleX: scrollProgressX }}
       />
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 overflow-hidden pt-20">
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <motion.div style={{ y: blobOneY }} className="absolute top-20 left-10 w-72 h-72 bg-indigo-300 dark:bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
@@ -164,7 +164,7 @@ const HomePage = () => {
           <motion.div style={{ y: blobThreeY }} className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-300 dark:bg-cyan-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <motion.div 
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             initial="hidden"

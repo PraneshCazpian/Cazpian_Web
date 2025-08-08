@@ -156,21 +156,24 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
   };
 
   return (
-    <div className="absolute top-full left-0 mt-2 w-96 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl py-6 z-50 backdrop-blur-sm pointer-events-auto">
+    <div className="absolute top-full left-0 mt-3 w-96 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl border border-gray-200/20 dark:border-gray-700/20 rounded-2xl shadow-2xl py-6 z-50 pointer-events-auto animate-in fade-in slide-in-from-top-2 duration-300">
+      {/* Gradient border effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-indigo-500/10 rounded-2xl"></div>
+      
       {/* Section Header */}
-      <div className="px-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+      <div className="relative px-6 pb-4 border-b border-gray-100/50 dark:border-gray-700/50">
         <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
           {getSectionTitle(title)}
         </h3>
       </div>
       
       {/* Menu Items */}
-      <div className="py-2">
+      <div className="relative py-2">
         {items.map((item) => (
           <Link
             key={item.id}
             to={item.path}
-            className="flex items-start space-x-4 px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 group"
+            className="flex items-start space-x-4 px-6 py-3 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/20 transition-all duration-300 group rounded-lg mx-2"
           >
             <div className="flex-shrink-0 mt-0.5">
               {getIcon(item.title, item.path)}
@@ -188,12 +191,15 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
       </div>
       
       {/* Footer CTA */}
-      <div className="px-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+      <div className="relative px-6 pt-4 border-t border-gray-100/50 dark:border-gray-700/50">
         <Link
           to="/book-meeting"
-          className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors duration-200"
+          className="flex items-center justify-center w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
         >
-          Get Started
+          <span className="flex items-center space-x-2">
+            <Zap className="h-4 w-4" />
+            <span>Get Started</span>
+          </span>
         </Link>
       </div>
     </div>
