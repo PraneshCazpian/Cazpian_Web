@@ -39,7 +39,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li><Link to="/product#cloud" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Cazpian Cloud</Link></li>
               <li><Link to="/product#enterprise" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Cazpian Enterprise</Link></li>
-              <li><Link to="/product#community" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Community Edition</Link></li>
+              <li><Link to="/product#community" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Agent Studio</Link></li>
               <li><Link to="/product#semantic-fabric" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">AI Semantic Fabric</Link></li>
               <li><Link to="/product#hypersql" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">HyperSQL Engine</Link></li>
             </ul>

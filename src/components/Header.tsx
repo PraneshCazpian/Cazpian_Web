@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
@@ -10,16 +10,34 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { siteConfig, menuItems } = useAdmin();
+  const timeoutRef = useRef<number | null>(null);
 
   // Filter visible menu items
   const visibleMenuItems = menuItems.filter(item => item.isVisible);
 
   const handleDropdownEnter = (itemTitle: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setActiveDropdown(itemTitle);
   };
 
   const handleDropdownLeave = () => {
-    setActiveDropdown(null);
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150); // 150ms delay to prevent accidental closing
+  };
+
+  const handleDropdownContentEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  const handleDropdownContentLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
   };
 
   return (
@@ -27,10 +45,10 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 hover-lift">
+          {/* <Link to="/" className="flex items-center space-x-2 hover-lift"> */}
             <CazpianLogo size="md" />
-            <span className="text-xl font-bold text-adaptive">{siteConfig.siteName}</span>
-          </Link>
+            {/* <span className="text-xl font-bold text-adaptive">{siteConfig.siteName}</span> */}
+          {/* </Link> */}
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
@@ -58,10 +76,15 @@ const Header = () => {
                 </Link>
                 
                 {activeDropdown === item.title && item.submenu && item.submenu.length > 0 && (
-                  <NavigationDropdown 
-                    title={item.title}
-                    items={item.submenu.filter(subItem => subItem.isVisible)}
-                  />
+                  <div
+                    onMouseEnter={handleDropdownContentEnter}
+                    onMouseLeave={handleDropdownContentLeave}
+                  >
+                    <NavigationDropdown 
+                      title={item.title}
+                      items={item.submenu.filter(subItem => subItem.isVisible)}
+                    />
+                  </div>
                 )}
               </div>
             ))}

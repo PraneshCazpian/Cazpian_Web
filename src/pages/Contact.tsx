@@ -289,7 +289,7 @@ const Contact = () => {
                 Is there a free trial available?
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Yes, you can start with our Community Edition for free, or try Cazpian Cloud with a 14-day free trial.
+                Yes, you can start with our Agent Studio for free, or try Cazpian Cloud with a 14-day free trial.
               </p>
             </div>
           </div>

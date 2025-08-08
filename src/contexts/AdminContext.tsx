@@ -75,6 +75,18 @@ interface LearningPath {
   }[];
 }
 
+interface TrustedLogo {
+  id: string;
+  name: string;
+  imagePath: string;
+  description: string;
+}
+
+interface TrustedLogosContent {
+  headerText: string;
+  logos: TrustedLogo[];
+}
+
 interface ResourcesPageContent {
   heroTitle: string;
   heroSubtitle: string;
@@ -99,6 +111,41 @@ interface ResourcesPageContent {
   };
 }
 
+interface SolutionItem {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface IndustryItem {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface UseCaseItem {
+  id: string;
+  title: string;
+  description: string;
+  benefits: string[];
+}
+
+interface SolutionsPageContent {
+  heroTitle: string;
+  heroSubtitle: string;
+  solutions: SolutionItem[];
+  industries: IndustryItem[];
+  useCases: UseCaseItem[];
+  ctaSection: {
+    title: string;
+    subtitle: string;
+    primaryButton: string;
+    secondaryButton: string;
+  };
+}
+
 interface AdminContextType {
   user: AdminUser | null;
   isAuthenticated: boolean;
@@ -106,6 +153,8 @@ interface AdminContextType {
   menuItems: MenuItem[];
   pageContent: PageContent[];
   resourcesContent: ResourcesPageContent;
+  solutionsContent: SolutionsPageContent;
+  trustedLogosContent: TrustedLogosContent;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
   updateSiteConfig: (config: Partial<SiteConfig>) => void;
@@ -125,6 +174,20 @@ interface AdminContextType {
   updateLearningPath: (id: string, path: Partial<LearningPath>) => void;
   addLearningPath: (path: Omit<LearningPath, 'id'>) => void;
   deleteLearningPath: (id: string) => void;
+  updateSolutionsContent: (content: Partial<SolutionsPageContent>) => void;
+  updateSolutionItem: (id: string, item: Partial<SolutionItem>) => void;
+  addSolutionItem: (item: Omit<SolutionItem, 'id'>) => void;
+  deleteSolutionItem: (id: string) => void;
+  updateIndustryItem: (id: string, item: Partial<IndustryItem>) => void;
+  addIndustryItem: (item: Omit<IndustryItem, 'id'>) => void;
+  deleteIndustryItem: (id: string) => void;
+  updateUseCaseItem: (id: string, item: Partial<UseCaseItem>) => void;
+  addUseCaseItem: (item: Omit<UseCaseItem, 'id'>) => void;
+  deleteUseCaseItem: (id: string) => void;
+  updateTrustedLogosContent: (content: Partial<TrustedLogosContent>) => void;
+  updateTrustedLogo: (id: string, logo: Partial<TrustedLogo>) => void;
+  addTrustedLogo: (logo: Omit<TrustedLogo, 'id'>) => void;
+  deleteTrustedLogo: (id: string) => void;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
@@ -186,7 +249,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       submenu: [
         { id: '2-1', title: 'Cazpian Cloud (Managed)', path: '/product#cloud', isVisible: true },
         { id: '2-2', title: 'Cazpian Enterprise (Self-Hosted)', path: '/product#enterprise', isVisible: true },
-        { id: '2-3', title: 'Cazpian Community Edition (Free)', path: '/product#community', isVisible: true }
+        { id: '2-3', title: 'Cazpian Agent Studio (Free)', path: '/agent-studio', isVisible: true }
       ]
     },
     {
@@ -368,6 +431,143 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   });
 
+  const [solutionsContent, setSolutionsContent] = useState<SolutionsPageContent>({
+    heroTitle: 'Solutions for Every Use Case',
+    heroSubtitle: 'From analytics acceleration to industry-specific applications, Cazpian powers data-driven success across teams and sectors.',
+    solutions: [
+      {
+        id: 'analytics',
+        icon: 'BarChart3',
+        title: 'Analytics Acceleration',
+        description: 'Turn slow dashboards into instant insights. Cazpian\'s engine reduces query latency while its semantic layer removes complexity. BI teams gain speed without data duplication. Modern analytics, minus the workarounds.'
+      },
+      {
+        id: 'self-service-bi',
+        icon: 'Users',
+        title: 'Self-Service BI',
+        description: 'Empower every stakeholder with governed access to data. Business users get intuitive tools while IT keeps oversight. Semantic models ensure accuracy across teams. Faster decisions, fewer bottlenecks.'
+      },
+      {
+        id: 'data-science',
+        icon: 'Brain',
+        title: 'Data Science & ML',
+        description: 'Prepare, explore, and train ML-ready datasets at scale. Collaborate across teams with versioned data and notebook integration. Cazpian supports the entire ML lifecycle—from experimentation to production. No more silos between science and data.'
+      },
+      {
+        id: 'real-time',
+        icon: 'Zap',
+        title: 'Real-Time Operations',
+        description: 'Stream, detect, and respond—all in real-time. Cazpian handles both streaming and batch workloads in a unified platform. Power anomaly detection, alerts, and live metrics with up-to-date data. Act now, not hours later.'
+      }
+    ],
+    industries: [
+      {
+        id: 'financial',
+        icon: 'Building2',
+        title: 'Financial Services',
+        description: 'Ensure compliance with full auditability and lineage tracking. Analyze real-time transactions for fraud, risk, and exposure. Fine-grained security and high-speed queries support trading, ops, and compliance teams. Secure speed, built for finance.'
+      },
+      {
+        id: 'healthcare',
+        icon: 'Heart',
+        title: 'Healthcare',
+        description: 'Integrate EHR, claims, and IoT data for better patient outcomes. Govern PHI with strict access control and audit logs. Accelerate research and predictive care with secure ML pipelines. Healthcare-ready by design.'
+      },
+      {
+        id: 'manufacturing',
+        icon: 'Factory',
+        title: 'Manufacturing',
+        description: 'Unify machine data, supply chain events, and sensor logs. Predict failures, optimize yield, and minimize downtime. Cazpian enables smarter factories through streaming and batch analytics. Operational intelligence, built in.'
+      },
+      {
+        id: 'retail',
+        icon: 'ShoppingCart',
+        title: 'Retail',
+        description: 'Analyze inventory, POS, and customer behavior in real-time. Enable personalized experiences and demand forecasting from a single platform. Cazpian connects and enriches retail data without siloed systems. Boost margin and customer loyalty together.'
+      },
+      {
+        id: 'public-sector',
+        icon: 'Shield',
+        title: 'Public Sector',
+        description: 'Support transparency, efficiency, and secure data collaboration. Open standards simplify procurement and long-term support. Multi-agency isolation and policy enforcement ensure compliance. Deliver services powered by clean, governed data.'
+      }
+    ],
+    useCases: [
+      {
+        id: 'data-warehouse-modernization',
+        title: 'Data Warehouse Modernization',
+        description: 'Migrate from legacy data warehouses to a modern lakehouse architecture. Reduce costs, improve performance, and unlock new capabilities with open standards.',
+        benefits: ['50% cost reduction', '10x faster queries', 'Zero vendor lock-in']
+      },
+      {
+        id: 'real-time-analytics',
+        title: 'Real-Time Analytics',
+        description: 'Build real-time dashboards and alerts that respond to events as they happen. Stream data from multiple sources and analyze it instantly.',
+        benefits: ['Sub-second latency', 'Unified streaming & batch', 'Automatic scaling']
+      },
+      {
+        id: 'self-service-analytics',
+        title: 'Self-Service Analytics',
+        description: 'Empower business users with governed access to data. Let them explore and analyze without waiting for IT or writing complex SQL.',
+        benefits: ['Natural language queries', 'Role-based access', 'Audit trails']
+      },
+      {
+        id: 'machine-learning-operations',
+        title: 'Machine Learning Operations',
+        description: 'Streamline the entire ML lifecycle from data preparation to model deployment. Collaborate across teams with versioned data and reproducible workflows.',
+        benefits: ['Feature engineering', 'Model versioning', 'Production deployment']
+      }
+    ],
+    ctaSection: {
+      title: 'Ready to Solve Your Data Challenges?',
+      subtitle: 'Join thousands of teams who\'ve already transformed their data operations with Cazpian.',
+      primaryButton: 'Start Free Trial',
+      secondaryButton: 'Schedule Demo'
+    }
+  });
+
+  const [trustedLogosContent, setTrustedLogosContent] = useState<TrustedLogosContent>({
+    headerText: 'Trusted by teams using',
+    logos: [
+      {
+        id: '1',
+        name: 'Apache Iceberg',
+        imagePath: '/apache-iceberg.svg',
+        description: 'Open table format for large datasets'
+      },
+      {
+        id: '2',
+        name: 'Apache Arrow',
+        imagePath: '/apachearrow.svg',
+        description: 'Columnar memory format for analytics'
+      },
+      {
+        id: '3',
+        name: 'Apache Polaris',
+        imagePath: '/polaris.svg',
+        description: 'Data lakehouse query engine'
+      },
+      {
+        id: '4',
+        name: 'Kubernetes',
+        imagePath: '/kubernetes.svg',
+        description: 'Container orchestration platform'
+      },
+      {
+        id: '5',
+        name: 'Microsoft Azure',
+        imagePath: '/azure.svg',
+        description: 'Cloud computing platform'
+      },
+      {
+        id: '6',
+        name: 'AWS',
+        imagePath: '/aws.svg',
+        description: 'Amazon Web Services cloud platform'
+      }
+    ]
+  });
+
   useEffect(() => {
     // Check for existing session
     const savedUser = localStorage.getItem('adminUser');
@@ -395,6 +595,16 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const savedResourcesContent = localStorage.getItem('resourcesContent');
     if (savedResourcesContent) {
       setResourcesContent(JSON.parse(savedResourcesContent));
+    }
+
+    const savedTrustedLogosContent = localStorage.getItem('trustedLogosContent');
+    if (savedTrustedLogosContent) {
+      setTrustedLogosContent(JSON.parse(savedTrustedLogosContent));
+    }
+
+    const savedSolutionsContent = localStorage.getItem('solutionsContent');
+    if (savedSolutionsContent) {
+      setSolutionsContent(JSON.parse(savedSolutionsContent));
     }
   }, []);
 
@@ -568,6 +778,104 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     updateResourcesContent({ learningPaths: newLearningPaths });
   };
 
+  // Trusted Logos Content Management Functions
+  const updateTrustedLogosContent = (content: Partial<TrustedLogosContent>) => {
+    const newContent = { ...trustedLogosContent, ...content };
+    setTrustedLogosContent(newContent);
+    localStorage.setItem('trustedLogosContent', JSON.stringify(newContent));
+  };
+
+  const updateTrustedLogo = (id: string, logo: Partial<TrustedLogo>) => {
+    const newLogos = trustedLogosContent.logos.map(trustedLogo =>
+      trustedLogo.id === id ? { ...trustedLogo, ...logo } : trustedLogo
+    );
+    updateTrustedLogosContent({ logos: newLogos });
+  };
+
+  const addTrustedLogo = (logo: Omit<TrustedLogo, 'id'>) => {
+    const newItem: TrustedLogo = {
+      ...logo,
+      id: Date.now().toString()
+    };
+    const newLogos = [...trustedLogosContent.logos, newItem];
+    updateTrustedLogosContent({ logos: newLogos });
+  };
+
+  const deleteTrustedLogo = (id: string) => {
+    const newLogos = trustedLogosContent.logos.filter(logo => logo.id !== id);
+    updateTrustedLogosContent({ logos: newLogos });
+  };
+
+  // Solutions Content Management Functions
+  const updateSolutionsContent = (content: Partial<SolutionsPageContent>) => {
+    const newContent = { ...solutionsContent, ...content };
+    setSolutionsContent(newContent);
+    localStorage.setItem('solutionsContent', JSON.stringify(newContent));
+  };
+
+  const updateSolutionItem = (id: string, item: Partial<SolutionItem>) => {
+    const newSolutions = solutionsContent.solutions.map(solution =>
+      solution.id === id ? { ...solution, ...item } : solution
+    );
+    updateSolutionsContent({ solutions: newSolutions });
+  };
+
+  const addSolutionItem = (item: Omit<SolutionItem, 'id'>) => {
+    const newItem: SolutionItem = {
+      ...item,
+      id: Date.now().toString()
+    };
+    const newSolutions = [...solutionsContent.solutions, newItem];
+    updateSolutionsContent({ solutions: newSolutions });
+  };
+
+  const deleteSolutionItem = (id: string) => {
+    const newSolutions = solutionsContent.solutions.filter(solution => solution.id !== id);
+    updateSolutionsContent({ solutions: newSolutions });
+  };
+
+  const updateIndustryItem = (id: string, item: Partial<IndustryItem>) => {
+    const newIndustries = solutionsContent.industries.map(industry =>
+      industry.id === id ? { ...industry, ...item } : industry
+    );
+    updateSolutionsContent({ industries: newIndustries });
+  };
+
+  const addIndustryItem = (item: Omit<IndustryItem, 'id'>) => {
+    const newItem: IndustryItem = {
+      ...item,
+      id: Date.now().toString()
+    };
+    const newIndustries = [...solutionsContent.industries, newItem];
+    updateSolutionsContent({ industries: newIndustries });
+  };
+
+  const deleteIndustryItem = (id: string) => {
+    const newIndustries = solutionsContent.industries.filter(industry => industry.id !== id);
+    updateSolutionsContent({ industries: newIndustries });
+  };
+
+  const updateUseCaseItem = (id: string, item: Partial<UseCaseItem>) => {
+    const newUseCases = solutionsContent.useCases.map(useCase =>
+      useCase.id === id ? { ...useCase, ...item } : useCase
+    );
+    updateSolutionsContent({ useCases: newUseCases });
+  };
+
+  const addUseCaseItem = (item: Omit<UseCaseItem, 'id'>) => {
+    const newItem: UseCaseItem = {
+      ...item,
+      id: Date.now().toString()
+    };
+    const newUseCases = [...solutionsContent.useCases, newItem];
+    updateSolutionsContent({ useCases: newUseCases });
+  };
+
+  const deleteUseCaseItem = (id: string) => {
+    const newUseCases = solutionsContent.useCases.filter(useCase => useCase.id !== id);
+    updateSolutionsContent({ useCases: newUseCases });
+  };
+
   return (
     <AdminContext.Provider
       value={{
@@ -577,6 +885,8 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         menuItems,
         pageContent,
         resourcesContent,
+        solutionsContent,
+        trustedLogosContent,
         login,
         logout,
         updateSiteConfig,
@@ -595,7 +905,21 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         deleteFeaturedContent,
         updateLearningPath,
         addLearningPath,
-        deleteLearningPath
+        deleteLearningPath,
+        updateSolutionsContent,
+        updateSolutionItem,
+        addSolutionItem,
+        deleteSolutionItem,
+        updateIndustryItem,
+        addIndustryItem,
+        deleteIndustryItem,
+        updateUseCaseItem,
+        addUseCaseItem,
+        deleteUseCaseItem,
+        updateTrustedLogosContent,
+        updateTrustedLogo,
+        addTrustedLogo,
+        deleteTrustedLogo
       }}
     >
       {children}

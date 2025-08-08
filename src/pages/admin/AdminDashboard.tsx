@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useAdmin } from '../../contexts/AdminContext';
 import ResourcesEditor from '../../components/ResourcesEditor';
+import SolutionsEditor from '../../components/SolutionsEditor';
+import TrustedLogosEditor from '../../components/TrustedLogosEditor';
 import { 
   BarChart3, 
   Settings, 
   FileText, 
   Menu as MenuIcon, 
   Palette,
-  Globe,
   LogOut,
   Eye,
   Edit3,
@@ -23,11 +24,11 @@ import {
   Mail,
   Search,
   Bell,
-  ChevronDown
+  Image
 } from 'lucide-react';
 
 const AdminDashboard = () => {
-  const { user, logout, siteConfig, updateSiteConfig, menuItems, updateMenuItem, addMenuItem, deleteMenuItem } = useAdmin();
+  const { logout, siteConfig, updateSiteConfig, menuItems, updateMenuItem, addMenuItem, deleteMenuItem } = useAdmin();
   const [activeTab, setActiveTab] = useState('overview');
   const [editingConfig, setEditingConfig] = useState(false);
   const [tempConfig, setTempConfig] = useState(siteConfig);
@@ -85,15 +86,6 @@ const AdminDashboard = () => {
     { title: 'Content Management', icon: <Settings className="h-5 w-5" /> },
     { title: 'Contact Forms', icon: <Mail className="h-5 w-5" /> },
     { title: 'Analytics', icon: <Activity className="h-5 w-5" /> }
-  ];
-
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: <BarChart3 className="h-4 w-4" /> },
-    { id: 'content', label: 'Content', icon: <FileText className="h-4 w-4" /> },
-    { id: 'resources', label: 'Resources', icon: <BookOpen className="h-4 w-4" /> },
-    { id: 'menu', label: 'Navigation', icon: <MenuIcon className="h-4 w-4" /> },
-    { id: 'theme', label: 'Theme', icon: <Palette className="h-4 w-4" /> },
-    { id: 'settings', label: 'Settings', icon: <Settings className="h-4 w-4" /> },
   ];
 
   return (
@@ -175,6 +167,32 @@ const AdminDashboard = () => {
                 >
                   <BookOpen className="h-5 w-5" />
                   <span>Resources</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setActiveTab('solutions')}
+                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    activeTab === 'solutions'
+                      ? 'bg-purple-50 text-purple-600 border border-purple-200'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <BarChart3 className="h-5 w-5" />
+                  <span>Solutions</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setActiveTab('trusted-logos')}
+                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    activeTab === 'trusted-logos'
+                      ? 'bg-purple-50 text-purple-600 border border-purple-200'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <Image className="h-5 w-5" />
+                  <span>Trusted Logos</span>
                 </button>
               </li>
               <li>
@@ -736,6 +754,20 @@ const AdminDashboard = () => {
           {activeTab === 'resources' && (
             <div>
               <ResourcesEditor />
+            </div>
+          )}
+
+          {/* Solutions Tab */}
+          {activeTab === 'solutions' && (
+            <div>
+              <SolutionsEditor />
+            </div>
+          )}
+
+          {/* Trusted Logos Tab */}
+          {activeTab === 'trusted-logos' && (
+            <div>
+              <TrustedLogosEditor />
             </div>
           )}
 

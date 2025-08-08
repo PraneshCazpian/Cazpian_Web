@@ -156,7 +156,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
   };
 
   return (
-    <div className="absolute top-full left-0 mt-2 w-96 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl py-6 z-50 backdrop-blur-sm">
+    <div className="absolute top-full left-0 mt-2 w-96 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl py-6 z-50 backdrop-blur-sm pointer-events-auto">
       {/* Section Header */}
       <div className="px-6 pb-4 border-b border-gray-100 dark:border-gray-700">
         <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">

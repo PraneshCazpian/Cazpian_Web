@@ -20,9 +20,9 @@ const Product = () => {
     {
       id: 'community',
       icon: <Users className="h-12 w-12 text-indigo-600" />,
-      title: 'Cazpian Community Edition (Free)',
+      title: 'Cazpian Agent Studio (Free)',
       description: 'Get started for free with local Docker or Kubernetes deployments. Ideal for developers, data teams, and early-stage projects. All the core capabilities of Cazpian, with no cost and no limits to learning. Your sandbox for modern lakehouse experimentation.',
-      features: ['Free forever', 'Docker & Kubernetes', 'Core capabilities', 'Perfect for learning']
+      features: ['Free forever', 'Docker & Kubernetes', 'Core capabilities', 'Perfect for learning', 'Create Precise',' Data-Driven Agents' ]
     }
   ];
 
