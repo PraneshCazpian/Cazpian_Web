@@ -72,8 +72,8 @@ const Header = () => {
           {/* Logo */}
           <CazpianLogo size="md" />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Large Desktop Navigation (1400px+) */}
+          <nav className="hidden 2xl:flex items-center space-x-2 nav-container">
             <Link
               to="/"
               className="relative px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
@@ -85,7 +85,7 @@ const Header = () => {
             {visibleMenuItems.map((item) => (
               <div
                 key={item.title}
-                className="relative nav-item"
+                className="relative nav-item nav-item-responsive"
                 onMouseEnter={() => handleDropdownEnter(item.title)}
                 onMouseLeave={handleDropdownLeave}
               >
@@ -129,12 +129,183 @@ const Header = () => {
             </Link>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* Desktop Navigation (1200px - 1400px) */}
+          <nav className="hidden xl:flex 2xl:hidden items-center space-x-1 nav-container">
+            <Link
+              to="/"
+              className="relative px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
+            >
+              <span className="relative z-10">Home</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+            </Link>
+            
+            {visibleMenuItems.map((item) => (
+              <div
+                key={item.title}
+                className="relative nav-item nav-item-responsive"
+                onMouseEnter={() => handleDropdownEnter(item.title)}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <Link
+                  to={item.path}
+                  className="relative flex items-center space-x-1 px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group hardware-accelerated"
+                >
+                  <span className="relative z-10">{item.title}</span>
+                  {item.submenu && item.submenu.length > 0 && (
+                    <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+                </Link>
+                
+                {activeDropdown === item.title && item.submenu && item.submenu.length > 0 && (
+                  <div
+                    ref={dropdownRef}
+                    onMouseEnter={handleDropdownContentEnter}
+                    onMouseLeave={handleDropdownContentLeave}
+                    className="absolute top-full left-0 mt-2 z-50 dropdown-container"
+                    style={{
+                      transform: 'translateZ(0)', // Force hardware acceleration
+                      willChange: 'opacity, transform' // Optimize for animations
+                    }}
+                  >
+                    <NavigationDropdown 
+                      title={item.title}
+                      items={item.submenu.filter(subItem => subItem.isVisible)}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+            
+            <Link
+              to="/contact"
+              className="relative px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
+            >
+              <span className="relative z-10">Contact Us</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+            </Link>
+          </nav>
+
+          {/* Large Tablet Navigation (1024px - 1200px) */}
+          <nav className="hidden lg:flex xl:hidden items-center space-x-1 nav-container">
+            <Link
+              to="/"
+              className="relative px-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
+            >
+              <span className="relative z-10 text-sm">Home</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+            </Link>
+            
+            {visibleMenuItems.map((item) => (
+              <div
+                key={item.title}
+                className="relative nav-item nav-item-responsive"
+                onMouseEnter={() => handleDropdownEnter(item.title)}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <Link
+                  to={item.path}
+                  className="relative flex items-center space-x-1 px-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group hardware-accelerated"
+                >
+                  <span className="relative z-10 text-sm">{item.title}</span>
+                  {item.submenu && item.submenu.length > 0 && (
+                    <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+                </Link>
+                
+                {activeDropdown === item.title && item.submenu && item.submenu.length > 0 && (
+                  <div
+                    ref={dropdownRef}
+                    onMouseEnter={handleDropdownContentEnter}
+                    onMouseLeave={handleDropdownContentLeave}
+                    className="absolute top-full left-0 mt-2 z-50 dropdown-container"
+                    style={{
+                      transform: 'translateZ(0)', // Force hardware acceleration
+                      willChange: 'opacity, transform' // Optimize for animations
+                    }}
+                  >
+                    <NavigationDropdown 
+                      title={item.title}
+                      items={item.submenu.filter(subItem => subItem.isVisible)}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+            
+            <Link
+              to="/contact"
+              className="relative px-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
+            >
+              <span className="relative z-10 text-sm">Contact</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+            </Link>
+          </nav>
+
+          {/* Small Tablet Navigation (768px - 1024px) */}
+          <nav className="hidden md:flex lg:hidden items-center space-x-1 nav-container">
+            <Link
+              to="/"
+              className="relative px-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
+            >
+              <span className="relative z-10 text-xs">Home</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+            </Link>
+            
+            {visibleMenuItems.map((item) => (
+              <div
+                key={item.title}
+                className="relative nav-item nav-item-responsive"
+                onMouseEnter={() => handleDropdownEnter(item.title)}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <Link
+                  to={item.path}
+                  className="relative flex items-center space-x-1 px-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group hardware-accelerated"
+                >
+                  <span className="relative z-10 text-xs">{item.title}</span>
+                  {item.submenu && item.submenu.length > 0 && (
+                    <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180" />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+                </Link>
+                
+                {activeDropdown === item.title && item.submenu && item.submenu.length > 0 && (
+                  <div
+                    ref={dropdownRef}
+                    onMouseEnter={handleDropdownContentEnter}
+                    onMouseLeave={handleDropdownContentLeave}
+                    className="absolute top-full left-0 mt-2 z-50 dropdown-container"
+                    style={{
+                      transform: 'translateZ(0)', // Force hardware acceleration
+                      willChange: 'opacity, transform' // Optimize for animations
+                    }}
+                  >
+                    <NavigationDropdown 
+                      title={item.title}
+                      items={item.submenu.filter(subItem => subItem.isVisible)}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+            
+            <Link
+              to="/contact"
+              className="relative px-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 group"
+            >
+              <span className="relative z-10 text-xs">Contact</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 rounded-lg transition-all duration-300"></div>
+            </Link>
+          </nav>
+
+          {/* CTA Button and Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-3">
             <ThemeToggle />
             <Link
               to="/book-meeting"
-              className="relative px-6 py-2.5 text-white font-medium rounded-lg transition-all duration-300 hover-lift group overflow-hidden"
+              className="relative px-3 py-2 text-white font-medium rounded-lg transition-all duration-300 hover-lift group overflow-hidden btn-responsive"
               style={{ backgroundColor: siteConfig.primaryColor }}
             >
               <span className="relative z-10">{siteConfig.ctaSecondary}</span>
@@ -145,7 +316,7 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
+            className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -153,7 +324,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl animate-in slide-in-from-top-2 duration-300">
+          <div className="md:hidden py-4 border-t border-gray-200/50 dark:border-gray-700/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl animate-in slide-in-from-top-2 duration-300">
             <div className="space-y-2">
               <Link
                 to="/"
@@ -199,7 +370,7 @@ const Header = () => {
                 <ThemeToggle />
                 <Link
                   to="/book-meeting"
-                  className="px-6 py-2.5 text-white font-medium rounded-lg transition-all duration-300 hover-lift"
+                  className="px-4 py-2.5 text-white font-medium rounded-lg transition-all duration-300 hover-lift btn-responsive"
                   style={{ backgroundColor: siteConfig.primaryColor }}
                   onClick={() => setIsMenuOpen(false)}
                 >

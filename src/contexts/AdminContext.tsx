@@ -212,8 +212,8 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     accentColor: '#8B5CF6', // Purple-500 - matches the deeper purple from logo
     backgroundColor: '#F0F9FF', // Sky Blue 50 - updated background
     darkMode: false,
-    heroTitle: 'Experience Unmatched Lakehouse Performance with Cazpian AI',
-    heroSubtitle: 'An open, intelligent, and lightning-fast data platform built for today\'s most demanding analytics and AI workloads.',
+    heroTitle: 'Transform Data into Decisions Faster with Cazpian AI Lakehouse ',
+    heroSubtitle: 'An enterprise-grade, open data platform engineered for next-gen analytics and AI applications.',
     ctaPrimary: 'Start Free',
     ctaSecondary: 'Book a Demo',
     footerText: '© 2025 Cazpian. All rights reserved.',

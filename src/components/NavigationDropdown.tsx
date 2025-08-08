@@ -163,7 +163,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
 
   return (
     <div 
-      className="w-[28rem] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 py-6 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container"
+      className="w-[24rem] xl:w-[28rem] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 py-6 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container"
       style={{
         transform: 'translateZ(0)', // Force hardware acceleration
         willChange: 'opacity, transform' // Optimize for animations
@@ -175,7 +175,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
       {/* Content */}
       <div className="relative z-10">
         {/* Section Header */}
-        <div className="px-6 pb-4 border-b border-gray-200/50 dark:border-gray-700/50">
+        <div className="px-4 xl:px-6 pb-4 border-b border-gray-200/50 dark:border-gray-700/50">
           <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
             {getSectionTitle(title)}
           </h3>
@@ -187,7 +187,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
             <Link
               key={item.id}
               to={item.path}
-              className="group flex items-start space-x-4 px-6 py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated"
+              className="group flex items-start space-x-3 xl:space-x-4 px-4 xl:px-6 py-3 xl:py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated"
               style={{ 
                 animationDelay: `${index * 30}ms`,
                 transform: 'translateZ(0)' // Force hardware acceleration
@@ -198,7 +198,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
               
               {/* Icon */}
               <div className="flex-shrink-0 mt-0.5 relative z-10">
-                <div className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+                <div className="p-1.5 xl:p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
                   {getIcon(item.title, item.path)}
                 </div>
               </div>
@@ -209,7 +209,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
                     {item.title}
                   </h4>
-                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100" />
+                  <ArrowRight className="h-3 w-3 xl:h-4 xl:w-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100" />
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
                   {getDescription(item.title, item.path)}
@@ -220,10 +220,10 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
         </div>
         
         {/* Footer CTA */}
-        <div className="px-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+        <div className="px-4 xl:px-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
           <Link
             to="/book-meeting"
-            className="group flex items-center justify-center w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hardware-accelerated"
+            className="group flex items-center justify-center w-full px-3 xl:px-4 py-2.5 xl:py-3 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hardware-accelerated"
             style={{ transform: 'translateZ(0)' }} // Force hardware acceleration
           >
             <span className="relative z-10">Get Started</span>
