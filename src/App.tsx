@@ -11,6 +11,8 @@ import SupportChat from './components/SupportChat';
 const HomePage = lazy(() => import('./pages/HomePage'));
 const WhyCazpian = lazy(() => import('./pages/WhyCazpian'));
 const Product = lazy(() => import('./pages/Product'));
+const CazpianCloud = lazy(() => import('./pages/CazpianCloud'));
+const CazpianEnterprise = lazy(() => import('./pages/CazpianEnterprise'));
 const Solutions = lazy(() => import('./pages/Solutions'));
 const Resources = lazy(() => import('./pages/Resources'));
 const About = lazy(() => import('./pages/About'));
@@ -56,6 +58,8 @@ function App() {
                           <Route path="/" element={<HomePage />} />
                           <Route path="/why-cazpian" element={<WhyCazpian />} />
                           <Route path="/product" element={<Product />} />
+                          <Route path="/cazpian-cloud" element={<CazpianCloud />} />
+                          <Route path="/cazpian-enterprise" element={<CazpianEnterprise />} />
                           <Route path="/solutions" element={<Solutions />} />
                           <Route path="/resources" element={<Resources />} />
                           <Route path="/about" element={<About />} />

@@ -26,7 +26,8 @@ import {
   Phone,
   Heart,
   Factory,
-  ShoppingCart
+  ShoppingCart,
+  ArrowRight
 } from 'lucide-react';
 
 interface MenuItem {
@@ -155,46 +156,80 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
     }
   };
 
+  const getSectionColor = () => {
+    // All dropdowns now use the same background color as "Why Cazpian"
+    return 'from-blue-500/10 to-indigo-500/10';
+  };
+
   return (
-    <div className="absolute top-full left-0 mt-2 w-96 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl py-6 z-50 backdrop-blur-sm pointer-events-auto">
-      {/* Section Header */}
-      <div className="px-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-        <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-          {getSectionTitle(title)}
-        </h3>
-      </div>
+    <div 
+      className="w-[28rem] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 py-6 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container"
+      style={{
+        transform: 'translateZ(0)', // Force hardware acceleration
+        willChange: 'opacity, transform' // Optimize for animations
+      }}
+    >
+      {/* Background gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${getSectionColor()} opacity-50`}></div>
       
-      {/* Menu Items */}
-      <div className="py-2">
-        {items.map((item) => (
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Section Header */}
+        <div className="px-6 pb-4 border-b border-gray-200/50 dark:border-gray-700/50">
+          <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+            {getSectionTitle(title)}
+          </h3>
+        </div>
+        
+        {/* Menu Items */}
+        <div className="py-3">
+          {items.map((item, index) => (
+            <Link
+              key={item.id}
+              to={item.path}
+              className="group flex items-start space-x-4 px-6 py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated"
+              style={{ 
+                animationDelay: `${index * 30}ms`,
+                transform: 'translateZ(0)' // Force hardware acceleration
+              }}
+            >
+              {/* Hover background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 transition-all duration-200"></div>
+              
+              {/* Icon */}
+              <div className="flex-shrink-0 mt-0.5 relative z-10">
+                <div className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+                  {getIcon(item.title, item.path)}
+                </div>
+              </div>
+              
+              {/* Content */}
+              <div className="flex-1 min-w-0 relative z-10">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                    {item.title}
+                  </h4>
+                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100" />
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
+                  {getDescription(item.title, item.path)}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+        
+        {/* Footer CTA */}
+        <div className="px-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
           <Link
-            key={item.id}
-            to={item.path}
-            className="flex items-start space-x-4 px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 group"
+            to="/book-meeting"
+            className="group flex items-center justify-center w-full px-4 py-3 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hardware-accelerated"
+            style={{ transform: 'translateZ(0)' }} // Force hardware acceleration
           >
-            <div className="flex-shrink-0 mt-0.5">
-              {getIcon(item.title, item.path)}
-            </div>
-            <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                {item.title}
-              </h4>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
-                {getDescription(item.title, item.path)}
-              </p>
-            </div>
+            <span className="relative z-10">Get Started</span>
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-xl transition-all duration-200"></div>
           </Link>
-        ))}
-      </div>
-      
-      {/* Footer CTA */}
-      <div className="px-6 pt-4 border-t border-gray-100 dark:border-gray-700">
-        <Link
-          to="/book-meeting"
-          className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors duration-200"
-        >
-          Get Started
-        </Link>
+        </div>
       </div>
     </div>
   );

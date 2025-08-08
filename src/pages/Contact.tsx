@@ -54,13 +54,22 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Get in <span className="text-indigo-600">Touch</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Have questions about Cazpian? Want to schedule a demo? We're here to help you succeed with your data initiatives.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Get in <span className="text-indigo-600">Touch</span>
+              </h1>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto lg:mx-0">
+                Have questions about Cazpian? Want to schedule a demo? We're here to help you succeed with your data initiatives.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src="/vector_svg/email-capture-animate.svg" 
+                alt="Contact Us"
+                className="w-full max-w-md h-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -176,6 +185,13 @@ const Contact = () => {
                 <p className="text-gray-600 dark:text-gray-300 mb-8">
                   Our team is here to help you succeed with your data initiatives. Reach out to us through any of the channels below.
                 </p>
+                <div className="flex justify-center mb-8">
+                  <img 
+                    src="/vector_svg/file-searching-animate.svg" 
+                    alt="Contact Support"
+                    className="w-full max-w-xs h-auto"
+                  />
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -218,7 +234,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Support Hours</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">24/7 for Enterprise</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">905 ASTORIA STCEDAR PARK, TX 78613</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Business hours for Community</p>
                   </div>
                 </div>

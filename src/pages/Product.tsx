@@ -8,21 +8,24 @@ const Product = () => {
       icon: <Cloud className="h-12 w-12 text-indigo-600" />,
       title: 'Cazpian Cloud (Managed)',
       description: 'Launch a fully managed lakehouse in minutes on AWS or Azure. We handle scaling, security, and maintenance so your team can focus on data-driven results. Ideal for teams looking for speed, simplicity, and elasticity. Start fast, scale faster—with zero ops overhead.',
-      features: ['Fully managed infrastructure', 'Auto-scaling', 'Built-in security', 'Multi-cloud support']
+      features: ['Fully managed infrastructure', 'Auto-scaling', 'Built-in security', 'Multi-cloud support'],
+      svg: '/vector_svg/business-plan-animate.svg'
     },
     {
       id: 'enterprise',
       icon: <Server className="h-12 w-12 text-indigo-600" />,
       title: 'Cazpian Enterprise (Self-Hosted)',
       description: 'Run Cazpian on your own infrastructure with full control. Deploy on Kubernetes in your cloud, on-prem, or hybrid environment. Customize networking, access controls, and integrations to meet strict compliance needs. You own the deployment—Cazpian powers it.',
-      features: ['Full infrastructure control', 'Kubernetes deployment', 'Custom networking', 'Compliance ready']
+      features: ['Full infrastructure control', 'Kubernetes deployment', 'Custom networking', 'Compliance ready'],
+      svg: '/vector_svg/developer-activity-animate.svg'
     },
     {
       id: 'community',
       icon: <Users className="h-12 w-12 text-indigo-600" />,
       title: 'Cazpian Agent Studio (Free)',
       description: 'Get started for free with local Docker or Kubernetes deployments. Ideal for developers, data teams, and early-stage projects. All the core capabilities of Cazpian, with no cost and no limits to learning. Your sandbox for modern lakehouse experimentation.',
-      features: ['Free forever', 'Docker & Kubernetes', 'Core capabilities', 'Perfect for learning', 'Create Precise',' Data-Driven Agents' ]
+      features: ['Free forever', 'Docker & Kubernetes', 'Core capabilities', 'Perfect for learning', 'Create Precise',' Data-Driven Agents' ],
+      svg: '/vector_svg/programmer-animate.svg'
     }
   ];
 
@@ -31,25 +34,29 @@ const Product = () => {
       id: 'semantic-fabric',
       icon: <Brain className="h-10 w-10 text-indigo-600" />,
       title: 'AI Semantic Fabric',
-      description: 'Map complex schemas to intuitive business terms. Enable users to search, explore, and analyze data without writing SQL. AI-powered context bridges the gap between data engineering and decision-making. Self-service analytics, now truly self-serve.'
+      description: 'Map complex schemas to intuitive business terms. Enable users to search, explore, and analyze data without writing SQL. AI-powered context bridges the gap between data engineering and decision-making. Self-service analytics, now truly self-serve.',
+      svg: '/Vector/data-analysis-not-css.svg'
     },
     {
       id: 'hypersql',
       icon: <Zap className="h-10 w-10 text-indigo-600" />,
       title: 'HyperSQL Engine',
-      description: 'Cazpian\'s high-speed engine delivers fast, reliable analytics on massive datasets. Supports ANSI SQL, vectorized execution, and intelligent caching. Engineered for concurrency, scale, and consistent response times. Just write the query—we handle the rest.'
+      description: 'Cazpian\'s high-speed engine delivers fast, reliable analytics on massive datasets. Supports ANSI SQL, vectorized execution, and intelligent caching. Engineered for concurrency, scale, and consistent response times. Just write the query—we handle the rest.',
+      svg: '/Vector/development.svg'
     },
     {
       id: 'data-catalog',
       icon: <Database className="h-10 w-10 text-indigo-600" />,
       title: 'Unified Data Catalog',
-      description: 'A single source of truth for all your data assets—structured or unstructured. Track lineage, ownership, and metadata across sources. Integrated governance keeps sensitive data safe and discoverable. Search, audit, and manage—all from one pane.'
+      description: 'A single source of truth for all your data assets—structured or unstructured. Track lineage, ownership, and metadata across sources. Integrated governance keeps sensitive data safe and discoverable. Search, audit, and manage—all from one pane.',
+      svg: '/Vector/data-.svg'
     },
     {
       id: 'connector-hub',
       icon: <Link className="h-10 w-10 text-indigo-600" />,
       title: 'Connector Hub',
-      description: 'Seamlessly connect to cloud storage, data lakes, SaaS apps, and on-prem systems. Supports streaming, batch, and CDC pipelines. Built-in connectors reduce time-to-data and eliminate fragile ETL workflows. Wherever your data is, Cazpian brings it in.'
+      description: 'Seamlessly connect to cloud storage, data lakes, SaaS apps, and on-prem systems. Supports streaming, batch, and CDC pipelines. Built-in connectors reduce time-to-data and eliminate fragile ETL workflows. Wherever your data is, Cazpian brings it in.',
+      svg: '/Vector/strategic-consulting-not-css.svg'
     }
   ];
 
@@ -58,13 +65,22 @@ const Product = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Cazpian <span className="text-indigo-600">Product Suite</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Choose the deployment that fits your needs. Same powerful platform, flexible delivery options.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Cazpian <span className="text-indigo-600">Product Suite</span>
+              </h1>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto lg:mx-0">
+                Choose the deployment that fits your needs. Same powerful platform, flexible delivery options.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src="/vector_svg/developer-activity-animate.svg" 
+                alt="Cazpian Product Suite"
+                className="w-full max-w-md h-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -93,6 +109,13 @@ const Product = () => {
                 <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                   {product.description}
                 </p>
+                <div className="mb-6">
+                  <img 
+                    src={product.svg} 
+                    alt={product.title}
+                    className="w-full h-32 object-contain"
+                  />
+                </div>
                 <ul className="space-y-2">
                   {product.features.map((feature, index) => (
                     <li key={index} className="flex items-center space-x-2">
@@ -131,9 +154,16 @@ const Product = () => {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   {capability.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                   {capability.description}
                 </p>
+                <div className="flex justify-center">
+                  <img 
+                    src={capability.svg} 
+                    alt={capability.title}
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
               </div>
             ))}
           </div>

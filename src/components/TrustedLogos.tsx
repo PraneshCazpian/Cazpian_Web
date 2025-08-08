@@ -29,7 +29,7 @@ const TrustedLogos: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+    <section className="py-8 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -39,13 +39,13 @@ const TrustedLogos: React.FC = () => {
           className="text-center"
         >
           <motion.p 
-            className="text-lg text-gray-500 dark:text-gray-400 mb-12 font-medium"
+            className="text-base text-gray-500 dark:text-gray-400 mb-6 font-medium"
             variants={itemVariants}
           >
             {trustedLogosContent.headerText}
           </motion.p>
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 items-center"
             variants={containerVariants}
           >
             {trustedLogosContent.logos.map((logo) => (
@@ -56,17 +56,17 @@ const TrustedLogos: React.FC = () => {
                 className="group"
               >
                 <div 
-                  className="flex flex-col items-center p-6 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700"
+                  className="flex flex-col items-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700"
                   title={logo.description}
                 >
-                  <div className="text-gray-600 dark:text-gray-400 mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-gray-600 dark:text-gray-400 mb-2 group-hover:scale-110 transition-transform duration-300">
                     <img 
                       src={logo.imagePath} 
                       alt={logo.name} 
-                      className="w-12 h-12 object-contain"
+                      className="w-10 h-10 object-contain"
                     />
                   </div>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
+                  <span className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">
                     {logo.name}
                   </span>
                 </div>

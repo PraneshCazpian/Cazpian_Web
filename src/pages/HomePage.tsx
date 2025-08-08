@@ -156,7 +156,7 @@ const HomePage = () => {
         style={{ scaleX: scrollProgressX }}
       />
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-[60vh] bg-gradient-to-br from-indigo-50 via-cyan-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <motion.div style={{ y: blobOneY }} className="absolute top-20 left-10 w-72 h-72 bg-indigo-300 dark:bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
@@ -164,16 +164,16 @@ const HomePage = () => {
           <motion.div style={{ y: blobThreeY }} className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-300 dark:bg-cyan-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-8">
           <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
             {/* SVG Image - Left Side Corner */}
             <motion.div 
-              className="flex justify-start lg:justify-start"
+              className="flex justify-center lg:justify-start order-2 lg:order-1"
               variants={itemVariants}
             >
               <motion.div
@@ -185,8 +185,7 @@ const HomePage = () => {
                 <img 
                   src="/Home-vector.svg" 
                   alt="Cazpian Data Platform Illustration"
-                  className="w-full h-auto max-w-5xl drop-shadow-2xl"
-                  style={{ width: '600px', height: '600px' }}
+                  className="w-full h-auto max-w-sm lg:max-w-md xl:max-w-lg drop-shadow-2xl"
                   loading="eager"
                 />
                 {/* Decorative elements around the SVG */}
@@ -197,24 +196,24 @@ const HomePage = () => {
 
             {/* Text Content - Right Side Corner */}
             <motion.div 
-              className="text-center lg:text-right"
+              className="text-center lg:text-right order-1 lg:order-2"
               variants={containerVariants}
               style={{ y: heroTextY }}
             >
               <motion.h1 
-                className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-3 leading-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
                 variants={itemVariants}
               >
                 {siteConfig.heroTitle}
               </motion.h1>
               <motion.p 
-                className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl lg:max-w-none lg:ml-auto leading-relaxed"
+                className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-4 max-w-2xl lg:max-w-none lg:ml-auto leading-relaxed"
                 variants={itemVariants}
               >
                 {siteConfig.heroSubtitle}
               </motion.p>
               <motion.div 
-                className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-end items-center lg:items-end"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-end items-center lg:items-end"
                 variants={itemVariants}
               >
                 <motion.div
@@ -223,14 +222,14 @@ const HomePage = () => {
                 >
                   <Link
                     to="/book-meeting"
-                    className="inline-flex items-center px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
+                    className="inline-flex items-center px-6 py-3 rounded-xl text-white font-semibold text-base md:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
                     style={{ 
                       background: `linear-gradient(135deg, ${siteConfig.primaryColor}, ${siteConfig.primaryColor}dd)`,
                       boxShadow: `0 10px 30px ${siteConfig.primaryColor}40`
                     }}
                   >
                     {siteConfig.ctaPrimary}
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                   </Link>
                 </motion.div>
                 <motion.div
@@ -239,7 +238,7 @@ const HomePage = () => {
                 >
                   <Link
                     to="/book-meeting"
-                    className="inline-flex items-center px-8 py-4 rounded-xl border-2 font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm bg-white/10 dark:bg-gray-800/10"
+                    className="inline-flex items-center px-6 py-3 rounded-xl border-2 font-semibold text-base md:text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm bg-white/10 dark:bg-gray-800/10"
                     style={{ 
                       borderColor: siteConfig.primaryColor, 
                       color: siteConfig.primaryColor 
@@ -268,7 +267,7 @@ const HomePage = () => {
             className="text-center mb-16"
           >
             <motion.h2 
-              className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+              className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 bg-gradient-to-r from-gray-900 to-indigo-600 dark:from-white dark:to-indigo-400 bg-clip-text text-transparent"
               variants={itemVariants}
             >
               Why Choose Cazpian?
@@ -458,9 +457,17 @@ const HomePage = () => {
 
               {/* Deployment Options */}
               <motion.div className="space-y-6" variants={itemVariants}>
-                <motion.div 
-                  className="group relative p-6 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-xl transition-all duration-300"
+                  <motion.div 
+                  className="group relative p-6 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-xl transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -4, scale: 1.02 }}
+                  onClick={() => window.location.href = '/cazpian-cloud'}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      window.location.href = '/cazpian-cloud';
+                    }
+                  }}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
@@ -482,8 +489,16 @@ const HomePage = () => {
                 </motion.div>
 
                 <motion.div 
-                  className="group relative p-6 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-xl transition-all duration-300"
+                  className="group relative p-6 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-300 dark:hover:border-purple-500 hover:shadow-xl transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -4, scale: 1.02 }}
+                  onClick={() => window.location.href = '/cazpian-enterprise'}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      window.location.href = '/cazpian-enterprise';
+                    }
+                  }}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
@@ -505,8 +520,16 @@ const HomePage = () => {
                 </motion.div>
 
                 <motion.div 
-                  className="group relative p-6 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-green-300 dark:hover:border-green-500 hover:shadow-xl transition-all duration-300"
+                  className="group relative p-6 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:border-green-300 dark:hover:border-green-500 hover:shadow-xl transition-all duration-300 cursor-pointer"
                   whileHover={{ y: -4, scale: 1.02 }}
+                  onClick={() => window.location.href = '/agent-studio'}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      window.location.href = '/agent-studio';
+                    }
+                  }}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">

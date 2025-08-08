@@ -7,31 +7,36 @@ const WhyCazpian = () => {
       id: 'open-data',
       icon: <Globe className="h-12 w-12 text-indigo-600" />,
       title: 'Open Data Architecture',
-      description: 'Cazpian is built on open standards—Apache Iceberg, Arrow, and Polaris—ensuring complete freedom and flexibility. Your data remains portable, queryable, and future-proof, with no vendor lock-in. Whether you\'re migrating or modernizing, our open stack adapts to your evolving architecture. Stay in control without compromise.'
+      description: 'Cazpian is built on open standards—Apache Iceberg, Arrow, and Polaris—ensuring complete freedom and flexibility. Your data remains portable, queryable, and future-proof, with no vendor lock-in. Whether you\'re migrating or modernizing, our open stack adapts to your evolving architecture. Stay in control without compromise.',
+      svg: '/vector_svg/business-plan-animate.svg'
     },
     {
       id: 'ai-performance',
       icon: <Brain className="h-12 w-12 text-indigo-600" />,
       title: 'AI-Driven Performance',
-      description: 'Cazpian infuses AI across the platform—from natural-language search to automatic query optimization. AI copilots help teams uncover insights faster, reduce repetitive work, and boost data literacy. No more combing through complex schemas or hand-tuning queries—AI handles the heavy lifting. Your analysts and engineers get to focus on outcomes, not overhead.'
+      description: 'Cazpian infuses AI across the platform—from natural-language search to automatic query optimization. AI copilots help teams uncover insights faster, reduce repetitive work, and boost data literacy. No more combing through complex schemas or hand-tuning queries—AI handles the heavy lifting. Your analysts and engineers get to focus on outcomes, not overhead.',
+      svg: '/vector_svg/developer-activity-animate.svg'
     },
     {
       id: 'cost-optimization',
       icon: <DollarSign className="h-12 w-12 text-indigo-600" />,
       title: 'Cost Optimization',
-      description: 'Scale compute and storage independently. Use just what you need, when you need it, and cut infrastructure waste. Cazpian optimizes workloads and minimizes cloud spend automatically. Get enterprise-grade performance without the enterprise-grade bill.'
+      description: 'Scale compute and storage independently. Use just what you need, when you need it, and cut infrastructure waste. Cazpian optimizes workloads and minimizes cloud spend automatically. Get enterprise-grade performance without the enterprise-grade bill.',
+      svg: '/vector_svg/business-deal-animate.svg'
     },
     {
       id: 'governance',
       icon: <Shield className="h-12 w-12 text-indigo-600" />,
       title: 'Governance & Security',
-      description: 'Cazpian embeds security and governance at every layer. Define, enforce, and audit policies across catalogs, queries, and access patterns. Support RBAC/ABAC, column-level access, and full lineage without additional tools. Governance isn\'t an add-on—it\'s foundational.'
+      description: 'Cazpian embeds security and governance at every layer. Define, enforce, and audit policies across catalogs, queries, and access patterns. Support RBAC/ABAC, column-level access, and full lineage without additional tools. Governance isn\'t an add-on—it\'s foundational.',
+      svg: '/vector_svg/file-searching-animate.svg'
     },
     {
       id: 'deployment',
       icon: <Layers className="h-12 w-12 text-indigo-600" />,
       title: 'Deployment Flexibility',
-      description: 'Deploy Cazpian your way—fully managed in AWS or Azure, or self-hosted on Kubernetes. Run across cloud, hybrid, or on-prem environments with a consistent experience. Centralized control meets decentralized execution for maximum performance and flexibility. Wherever your data lives, Cazpian runs with it.'
+      description: 'Deploy Cazpian your way—fully managed in AWS or Azure, or self-hosted on Kubernetes. Run across cloud, hybrid, or on-prem environments with a consistent experience. Centralized control meets decentralized execution for maximum performance and flexibility. Wherever your data lives, Cazpian runs with it.',
+      svg: '/vector_svg/low-code-development-animate.svg'
     }
   ];
 
@@ -40,13 +45,22 @@ const WhyCazpian = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Why Choose <span className="text-indigo-600">Cazpian</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Built for modern data teams who demand speed, intelligence, and flexibility without compromise.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                Why Choose <span className="text-indigo-600">Cazpian</span>
+              </h1>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto lg:mx-0">
+                Built for modern data teams who demand speed, intelligence, and flexibility without compromise.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src="/vector_svg/business-plan-animate.svg" 
+                alt="Why Choose Cazpian"
+                className="w-full max-w-md h-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -70,12 +84,11 @@ const WhyCazpian = () => {
                 </div>
                 <div className="flex-1">
                   <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-2xl p-8 h-80 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="mb-4 opacity-20">
-                        {feature.icon}
-                      </div>
-                      <p className="text-gray-500 dark:text-gray-400 italic">Visual representation</p>
-                    </div>
+                    <img 
+                      src={feature.svg} 
+                      alt={feature.title}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                 </div>
               </div>

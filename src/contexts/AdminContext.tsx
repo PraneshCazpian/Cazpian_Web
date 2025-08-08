@@ -247,8 +247,8 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       path: '/product',
       isVisible: true,
       submenu: [
-        { id: '2-1', title: 'Cazpian Cloud (Managed)', path: '/product#cloud', isVisible: true },
-        { id: '2-2', title: 'Cazpian Enterprise (Self-Hosted)', path: '/product#enterprise', isVisible: true },
+        { id: '2-1', title: 'Cazpian Cloud (Managed)', path: '/cazpian-cloud', isVisible: true },
+        { id: '2-2', title: 'Cazpian Enterprise (Self-Hosted)', path: '/cazpian-enterprise', isVisible: true },
         { id: '2-3', title: 'Cazpian Agent Studio (Free)', path: '/agent-studio', isVisible: true }
       ]
     },

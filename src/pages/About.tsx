@@ -7,37 +7,43 @@ const About = () => {
       id: 'company',
       icon: <Building className="h-10 w-10 text-indigo-600" />,
       title: 'Company',
-      description: 'Cazpian is reimagining the data lakehouse for today\'s cloud-native, open-source-first world. We believe in empowering teams to move faster with fewer tools and more intelligence. Our mission is simple: make data processing seamless, open, and affordable. Built by practitioners, for practitioners.'
+      description: 'Cazpian is reimagining the data lakehouse for today\'s cloud-native, open-source-first world. We believe in empowering teams to move faster with fewer tools and more intelligence. Our mission is simple: make data processing seamless, open, and affordable. Built by practitioners, for practitioners.',
+      svg: '/vector_svg/business-plan-animate.svg'
     },
     {
       id: 'team',
       icon: <Users className="h-10 w-10 text-indigo-600" />,
       title: 'Team',
-      description: 'Our team blends deep experience in cloud, OSS, data engineering, and AI. We\'re product-obsessed, customer-driven, and community-rooted. From startup veterans to open-source contributors, we\'re united by one goal: make data usable. Meet the minds behind Cazpian.'
+      description: 'Our team blends deep experience in cloud, OSS, data engineering, and AI. We\'re product-obsessed, customer-driven, and community-rooted. From startup veterans to open-source contributors, we\'re united by one goal: make data usable. Meet the minds behind Cazpian.',
+      svg: '/vector_svg/programmer-animate.svg'
     },
     {
       id: 'careers',
       icon: <Briefcase className="h-10 w-10 text-indigo-600" />,
       title: 'Careers',
-      description: 'Join a high-impact, remote-friendly team building the future of big data. We value autonomy, creativity, and a bias for action. Roles are open across engineering, product, design, and GTM. Help shape a company where every idea counts.'
+      description: 'Join a high-impact, remote-friendly team building the future of big data. We value autonomy, creativity, and a bias for action. Roles are open across engineering, product, design, and GTM. Help shape a company where every idea counts.',
+      svg: '/vector_svg/developer-activity-animate.svg'
     },
     {
       id: 'partners',
       icon: <Handshake className="h-10 w-10 text-indigo-600" />,
       title: 'Partners',
-      description: 'Our partner ecosystem spans cloud providers, consultancies, and ISVs. Deploy faster and smarter with certified integration and support partners. Become a Cazpian partner and grow with our user base. Strong platforms are built on strong ecosystems.'
+      description: 'Our partner ecosystem spans cloud providers, consultancies, and ISVs. Deploy faster and smarter with certified integration and support partners. Become a Cazpian partner and grow with our user base. Strong platforms are built on strong ecosystems.',
+      svg: '/vector_svg/business-deal-animate.svg'
     },
     {
       id: 'newsroom',
       icon: <Newspaper className="h-10 w-10 text-indigo-600" />,
       title: 'Newsroom',
-      description: 'Explore Cazpian\'s latest announcements, awards, and media coverage. From product releases to customer wins, our journey is just getting started. Stay in the loop and see why data leaders are switching to Cazpian.'
+      description: 'Explore Cazpian\'s latest announcements, awards, and media coverage. From product releases to customer wins, our journey is just getting started. Stay in the loop and see why data leaders are switching to Cazpian.',
+      svg: '/Vector/information--.svg'
     },
     {
       id: 'contact-support',
       icon: <Phone className="h-10 w-10 text-indigo-600" />,
       title: 'Contact & Support',
-      description: 'Have a question, idea, or need help? We\'re here for it. Reach out to support, sales, or partnerships. Fast responses, human answers, and deep product knowledge—always. Let\'s connect.'
+      description: 'Have a question, idea, or need help? We\'re here for it. Reach out to support, sales, or partnerships. Fast responses, human answers, and deep product knowledge—always. Let\'s connect.',
+      svg: '/vector_svg/email-capture-animate.svg'
     }
   ];
 
@@ -82,13 +88,22 @@ const About = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              About <span className="text-indigo-600">Cazpian</span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We're building the future of data platforms—open, intelligent, and designed for the modern cloud.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                About <span className="text-indigo-600">Cazpian</span>
+              </h1>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto lg:mx-0">
+                We're building the future of data platforms—open, intelligent, and designed for the modern cloud.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <img 
+                src="/vector_svg/programmer-animate.svg" 
+                alt="Cazpian Team"
+                className="w-full max-w-md h-auto"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -103,7 +118,14 @@ const About = () => {
                   {section.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{section.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{section.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">{section.description}</p>
+                <div className="flex justify-center">
+                  <img 
+                    src={section.svg} 
+                    alt={section.title}
+                    className="w-full h-24 object-contain"
+                  />
+                </div>
               </div>
             ))}
           </div>
