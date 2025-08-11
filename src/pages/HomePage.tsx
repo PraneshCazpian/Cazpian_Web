@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Zap, Shield, Globe, Brain, BarChart3, Users, Database, Lock, Rocket } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useAdmin } from '../contexts/AdminContext';
+import { usePageContent } from '../hooks/usePageContent';
 import TrustedLogos from '../components/TrustedLogos';
 
 const HomePage = () => {
   const { siteConfig } = useAdmin();
+  const { data: homeContent } = usePageContent<Record<string, unknown>>('home');
   const heroRef = useRef<HTMLDivElement | null>(null);
 
   // Global scroll progress bar
@@ -204,13 +206,13 @@ const HomePage = () => {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-3 leading-tight bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
                 variants={itemVariants}
               >
-                {siteConfig.heroTitle}
+                {(homeContent?.['hero.title'] as string) || siteConfig.heroTitle}
               </motion.h1>
               <motion.p 
                 className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-4 max-w-2xl lg:max-w-none lg:ml-auto leading-relaxed"
                 variants={itemVariants}
               >
-                {siteConfig.heroSubtitle}
+                {(homeContent?.['hero.subtitle'] as string) || siteConfig.heroSubtitle}
               </motion.p>
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-end items-center lg:items-end"
@@ -224,11 +226,11 @@ const HomePage = () => {
                     to="/book-meeting"
                     className="inline-flex items-center px-6 py-3 rounded-xl text-white font-semibold text-base md:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
                     style={{ 
-                      background: `linear-gradient(135deg, ${siteConfig.primaryColor}, ${siteConfig.primaryColor}dd)`,
-                      boxShadow: `0 10px 30px ${siteConfig.primaryColor}40`
+                      background: `linear-gradient(135deg, ${(homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor}, ${((homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor)}dd)`,
+                      boxShadow: `0 10px 30px ${((homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor)}40`
                     }}
                   >
-                    {siteConfig.ctaPrimary}
+                    {(homeContent?.['cta.primary'] as string) || siteConfig.ctaPrimary}
                     <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                   </Link>
                 </motion.div>
@@ -240,11 +242,11 @@ const HomePage = () => {
                     to="/book-meeting"
                     className="inline-flex items-center px-6 py-3 rounded-xl border-2 font-semibold text-base md:text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm bg-white/10 dark:bg-gray-800/10"
                     style={{ 
-                      borderColor: siteConfig.primaryColor, 
-                      color: siteConfig.primaryColor 
+                      borderColor: (homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor, 
+                      color: (homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor 
                     }}
                   >
-                    {siteConfig.ctaSecondary}
+                    {(homeContent?.['cta.secondary'] as string) || siteConfig.ctaSecondary}
                   </Link>
                 </motion.div>
               </motion.div>
@@ -701,12 +703,12 @@ const HomePage = () => {
                 <Link
                   to="/book-meeting"
                   className="inline-flex items-center px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
-                  style={{ 
-                    background: `linear-gradient(135deg, ${siteConfig.primaryColor}, ${siteConfig.primaryColor}dd)`,
-                    boxShadow: `0 10px 30px ${siteConfig.primaryColor}40`
+                    style={{ 
+                    background: `linear-gradient(135deg, ${(homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor}, ${((homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor)}dd)`,
+                    boxShadow: `0 10px 30px ${((homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor)}40`
                   }}
                 >
-                  {siteConfig.ctaPrimary}
+                  {(homeContent?.['cta.primary'] as string) || siteConfig.ctaPrimary}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </motion.div>

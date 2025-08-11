@@ -569,12 +569,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   });
 
   useEffect(() => {
-    // Check for existing session
-    const savedUser = localStorage.getItem('adminUser');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-      setIsAuthenticated(true);
-    }
+    // Keep local UI config fallback; auth is handled by Supabase provider
 
     // Load saved configurations
     const savedConfig = localStorage.getItem('siteConfig');
@@ -608,27 +603,15 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
-  const login = async (username: string, password: string): Promise<boolean> => {
-    // Simple authentication - in production, this would be a real API call
-    if (username === 'admin' && password === 'admin123') {
-      const adminUser: AdminUser = {
-        id: '1',
-        username: 'admin',
-        email: 'admin@cazpian.com',
-        role: 'admin'
-      };
-      setUser(adminUser);
-      setIsAuthenticated(true);
-      localStorage.setItem('adminUser', JSON.stringify(adminUser));
-      return true;
-    }
+  const login = async (_username: string, _password: string): Promise<boolean> => {
+    // Deprecated: handled by SupabaseAuthContext; keep signature for compatibility
     return false;
   };
 
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem('adminUser');
+    // SupabaseAuthContext will clear session; keep local reset
   };
 
   const updateSiteConfig = (config: Partial<SiteConfig>) => {

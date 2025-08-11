@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AdminProvider } from './contexts/AdminContext';
+import { SupabaseAuthProvider } from './contexts/SupabaseAuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -33,8 +34,9 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <ThemeProvider>
-      <AdminProvider>
-        <Router>
+      <SupabaseAuthProvider>
+        <AdminProvider>
+          <Router>
           <ScrollToTop />
           <div className="min-h-screen bg-adaptive transition-colors duration-300">
             <Suspense fallback={<LoadingSpinner />}>
@@ -78,8 +80,9 @@ function App() {
               </Routes>
             </Suspense>
           </div>
-        </Router>
-      </AdminProvider>
+          </Router>
+        </AdminProvider>
+      </SupabaseAuthProvider>
     </ThemeProvider>
   );
 }
