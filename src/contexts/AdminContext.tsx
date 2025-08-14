@@ -203,6 +203,8 @@ export const useAdmin = () => {
 export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<AdminUser | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [allPagesContent, setAllPagesContent] = useState<{ [slug: string]: { [key: string]: string } }>({});
+  const [loadingContent, setLoadingContent] = useState(true);
   
   const [siteConfig, setSiteConfig] = useState<SiteConfig>({
     siteName: 'Cazpian',
