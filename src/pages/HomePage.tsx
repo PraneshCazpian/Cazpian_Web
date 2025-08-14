@@ -706,7 +706,7 @@ const HomePage = () => {
                     boxShadow: `0 10px 30px ${siteConfig.primaryColor}40`
                   }}
                 >
-                  {siteConfig.ctaPrimary}
+                  {content.cta_primary || siteConfig.ctaPrimary}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </motion.div>
@@ -718,7 +718,7 @@ const HomePage = () => {
                   to="/book-meeting"
                   className="inline-flex items-center px-8 py-4 rounded-xl border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-300 font-semibold text-lg transform hover:-translate-y-1 hover:shadow-xl"
                 >
-                  {siteConfig.ctaSecondary}
+                  {content.cta_secondary || siteConfig.ctaSecondary}
                 </Link>
               </motion.div>
             </motion.div>

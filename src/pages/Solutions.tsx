@@ -46,17 +46,17 @@ const Solutions = () => {
                 <span className="text-indigo-600 font-semibold">Enterprise Solutions</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                {solutionsContent.heroTitle.split('Use Case').map((part, index) => (
+                {(content.hero_title || solutionsContent.heroTitle).split('Use Case').map((part, index) => (
                   <React.Fragment key={index}>
                     {part.trim()}
-                    {index < solutionsContent.heroTitle.split('Use Case').length - 1 && (
+                    {index < (content.hero_title || solutionsContent.heroTitle).split('Use Case').length - 1 && (
                       <span className="text-indigo-600">Use Case</span>
                     )}
                   </React.Fragment>
                 ))}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl lg:max-w-none mb-8">
-                {solutionsContent.heroSubtitle}
+                {content.hero_subtitle || solutionsContent.heroSubtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">

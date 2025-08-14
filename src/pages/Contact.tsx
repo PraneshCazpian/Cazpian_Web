@@ -201,7 +201,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">hello@cazpian.com</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">{content.contact_email || 'hello@cazpian.com'}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">We'll respond within 24 hours</p>
                   </div>
                 </div>
@@ -212,7 +212,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">+1 (555) 123-4567</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">{content.contact_phone || '+1 (555) 123-4567'}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri, 9AM-6PM PST</p>
                   </div>
                 </div>
@@ -223,7 +223,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Office</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">San Francisco, CA</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">{content.contact_address || 'San Francisco, CA'}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Remote-first company</p>
                   </div>
                 </div>

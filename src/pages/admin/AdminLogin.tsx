@@ -113,17 +113,17 @@ const AdminLogin = () => {
 
                 <div>
                   <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-                    Username
+                    Email
                   </label>
                   <input
                     id="username"
                     name="username"
-                    type="text"
+                    type="email"
                     required
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="w-full px-4 py-3 bg-gray-50 border-0 rounded-lg focus:ring-2 focus:ring-purple-500 focus:bg-white transition-colors"
-                    placeholder="admin"
+                    placeholder="admin@cazpian.com"
                   />
                 </div>
 

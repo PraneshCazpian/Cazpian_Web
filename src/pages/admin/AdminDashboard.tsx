@@ -482,6 +482,31 @@ const AdminDashboard = () => {
             </div>
           )}
 
+          {/* Home Page Tab */}
+          {activeTab === 'home' && (
+            <ContentEditor pageSlug="home" pageName="Home" />
+          )}
+
+          {/* Why Cazpian Page Tab */}
+          {activeTab === 'why-cazpian' && (
+            <ContentEditor pageSlug="why-cazpian" pageName="Why Cazpian" />
+          )}
+
+          {/* Product Page Tab */}
+          {activeTab === 'product' && (
+            <ContentEditor pageSlug="product" pageName="Product" />
+          )}
+
+          {/* About Page Tab (renamed from Content) */}
+          {activeTab === 'content' && (
+            <ContentEditor pageSlug="about" pageName="About" />
+          )}
+
+          {/* Contact Page Tab */}
+          {activeTab === 'contact' && (
+            <ContentEditor pageSlug="contact" pageName="Contact" />
+          )}
+
           {/* Menu Tab */}
           {activeTab === 'menu' && (
             <div>

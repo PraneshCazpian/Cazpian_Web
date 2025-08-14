@@ -68,10 +68,10 @@ const Product = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                Cazpian <span className="text-indigo-600">Product Suite</span>
+                {content.hero_title || 'Cazpian'} <span className="text-indigo-600">Product Suite</span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto lg:mx-0">
-                Choose the deployment that fits your needs. Same powerful platform, flexible delivery options.
+                {content.hero_subtitle || 'Choose the deployment that fits your needs. Same powerful platform, flexible delivery options.'}
               </p>
             </div>
             <div className="flex justify-center lg:justify-end">
