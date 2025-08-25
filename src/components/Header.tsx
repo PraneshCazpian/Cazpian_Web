@@ -4,14 +4,12 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import CazpianLogo from './CazpianLogo';
 import { useAdmin } from '../contexts/AdminContext';
-import { usePageContent } from '../hooks/usePageContent';
 import NavigationDropdown from './NavigationDropdown';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { siteConfig, menuItems } = useAdmin();
-  const { data: homeContent } = usePageContent<any>('home');
   const timeoutRef = useRef<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isHoveringRef = useRef(false);
@@ -308,9 +306,9 @@ const Header = () => {
             <Link
               to="/book-meeting"
               className="relative px-3 py-2 text-white font-medium rounded-lg transition-all duration-300 hover-lift group overflow-hidden btn-responsive"
-              style={{ backgroundColor: (homeContent?.['theme.primaryColor'] as string) || siteConfig.primaryColor }}
+              style={{ backgroundColor: siteConfig.primaryColor }}
             >
-              <span className="relative z-10">{(homeContent?.['cta.secondary'] as string) || siteConfig.ctaSecondary}</span>
+              <span className="relative z-10">{siteConfig.ctaSecondary}</span>
               <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300"></div>
             </Link>
           </div>

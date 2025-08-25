@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AdminProvider } from './contexts/AdminContext';
-import { SupabaseAuthProvider } from './contexts/SupabaseAuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -16,6 +15,9 @@ const Product = lazy(() => import('./pages/Product'));
 const CazpianCloud = lazy(() => import('./pages/CazpianCloud'));
 const CazpianEnterprise = lazy(() => import('./pages/CazpianEnterprise'));
 const Solutions = lazy(() => import('./pages/Solutions'));
+const SolutionsByUseCase = lazy(() => import('./pages/SolutionsByUseCase'));
+const SolutionsByIndustry = lazy(() => import('./pages/SolutionsByIndustry'));
+const SolutionsByUserRole = lazy(() => import('./pages/SolutionsByUserRole'));
 const Resources = lazy(() => import('./pages/Resources'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -34,9 +36,8 @@ const LoadingSpinner = () => (
 function App() {
   return (
     <ThemeProvider>
-      <SupabaseAuthProvider>
-        <AdminProvider>
-          <Router>
+      <AdminProvider>
+        <Router>
           <ScrollToTop />
           <div className="min-h-screen bg-adaptive transition-colors duration-300">
             <Suspense fallback={<LoadingSpinner />}>
@@ -65,6 +66,9 @@ function App() {
                           <Route path="/cazpian-cloud" element={<CazpianCloud />} />
                           <Route path="/cazpian-enterprise" element={<CazpianEnterprise />} />
                           <Route path="/solutions" element={<Solutions />} />
+                          <Route path="/solutions/use-case" element={<SolutionsByUseCase />} />
+                          <Route path="/solutions/industry" element={<SolutionsByIndustry />} />
+                          <Route path="/solutions/user-role" element={<SolutionsByUserRole />} />
                           <Route path="/resources" element={<Resources />} />
                           <Route path="/about" element={<About />} />
                           <Route path="/contact" element={<Contact />} />
@@ -80,9 +84,8 @@ function App() {
               </Routes>
             </Suspense>
           </div>
-          </Router>
-        </AdminProvider>
-      </SupabaseAuthProvider>
+        </Router>
+      </AdminProvider>
     </ThemeProvider>
   );
 }

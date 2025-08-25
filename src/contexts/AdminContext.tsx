@@ -36,6 +36,7 @@ interface MenuItem {
   path: string;
   submenu?: MenuItem[];
   isVisible: boolean;
+  isSectionHeader?: boolean;
 }
 
 interface PageContent {
@@ -261,7 +262,11 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         { id: '3-1', title: 'Analytics Acceleration', path: '/solutions#cloud', isVisible: true },
         { id: '3-2', title: 'Self-Service BI', path: '/solutions#enterprise', isVisible: true },
         { id: '3-3', title: 'Data Science & ML', path: '/solutions#community', isVisible: true },
-        { id: '3-3', title: 'Real-Time Operations ', path: '/solutions#community', isVisible: true }
+        { id: '3-4', title: 'Real-Time Operations', path: '/solutions#community', isVisible: true },
+        { id: '3-5', title: 'Organized for clarity', path: '/solutions#organized', isVisible: true, isSectionHeader: true },
+        { id: '3-6', title: 'By Use Case', path: '/solutions/use-case', isVisible: true },
+        { id: '3-7', title: 'By Industry', path: '/solutions/industry', isVisible: true },
+        { id: '3-8', title: 'By User Role', path: '/solutions/user-role', isVisible: true }
       ]
     },
     {
@@ -569,7 +574,12 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   });
 
   useEffect(() => {
-    // Keep local UI config fallback; auth is handled by Supabase provider
+    // Check for existing session
+    const savedUser = localStorage.getItem('adminUser');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+      setIsAuthenticated(true);
+    }
 
     // Load saved configurations
     const savedConfig = localStorage.getItem('siteConfig');
@@ -603,15 +613,27 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
-  const login = async (_username: string, _password: string): Promise<boolean> => {
-    // Deprecated: handled by SupabaseAuthContext; keep signature for compatibility
+  const login = async (username: string, password: string): Promise<boolean> => {
+    // Simple authentication - in production, this would be a real API call
+    if (username === 'admin' && password === 'admin123') {
+      const adminUser: AdminUser = {
+        id: '1',
+        username: 'admin',
+        email: 'admin@cazpian.com',
+        role: 'admin'
+      };
+      setUser(adminUser);
+      setIsAuthenticated(true);
+      localStorage.setItem('adminUser', JSON.stringify(adminUser));
+      return true;
+    }
     return false;
   };
 
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    // SupabaseAuthContext will clear session; keep local reset
+    localStorage.removeItem('adminUser');
   };
 
   const updateSiteConfig = (config: Partial<SiteConfig>) => {

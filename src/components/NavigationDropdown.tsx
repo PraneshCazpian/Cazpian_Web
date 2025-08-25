@@ -35,6 +35,7 @@ interface MenuItem {
   title: string;
   path: string;
   isVisible: boolean;
+  isSectionHeader?: boolean;
 }
 
 interface NavigationDropdownProps {
@@ -72,6 +73,9 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
     if (path.includes('healthcare')) return <Heart className={iconClass} />;
     if (path.includes('manufacturing')) return <Factory className={iconClass} />;
     if (path.includes('retail')) return <ShoppingCart className={iconClass} />;
+    if (path.includes('use-case')) return <Briefcase className={iconClass} />;
+    if (path.includes('industry')) return <Factory className={iconClass} />;
+    if (path.includes('user-role')) return <Users className={iconClass} />;
     
     // Resources icons
     if (path.includes('Documentation')) return <BookOpen className={iconClass} />;
@@ -119,6 +123,9 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
     if (path.includes('healthcare')) return 'Secure PHI handling with predictive care';
     if (path.includes('manufacturing')) return 'Predict failures and optimize operations';
     if (path.includes('retail')) return 'Real-time inventory and customer insights';
+    if (path.includes('use-case')) return 'Find solutions tailored to your specific business needs';
+    if (path.includes('industry')) return 'Industry-specific solutions and compliance frameworks';
+    if (path.includes('user-role')) return 'Role-based solutions for different team members';
     
     // Resources descriptions
     if (path.includes('Documentation')) return 'Step-by-step guides and API references';
@@ -163,7 +170,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
 
   return (
     <div 
-      className="w-[24rem] xl:w-[28rem] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 py-6 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container"
+      className="w-[40rem] xl:w-[44rem] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 py-6 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container"
       style={{
         transform: 'translateZ(0)', // Force hardware acceleration
         willChange: 'opacity, transform' // Optimize for animations
@@ -181,42 +188,104 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
           </h3>
         </div>
         
-        {/* Menu Items */}
-        <div className="py-3">
-          {items.map((item, index) => (
-            <Link
-              key={item.id}
-              to={item.path}
-              className="group flex items-start space-x-3 xl:space-x-4 px-4 xl:px-6 py-3 xl:py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated"
-              style={{ 
-                animationDelay: `${index * 30}ms`,
-                transform: 'translateZ(0)' // Force hardware acceleration
-              }}
-            >
-              {/* Hover background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 transition-all duration-200"></div>
-              
-              {/* Icon */}
-              <div className="flex-shrink-0 mt-0.5 relative z-10">
-                <div className="p-1.5 xl:p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
-                  {getIcon(item.title, item.path)}
+                {/* Menu Items */}
+        <div className="py-4">
+          <div className="grid grid-cols-2 gap-6">
+            {/* Left Column - Main Solutions */}
+            <div className="space-y-0">
+              {items.filter(item => 
+                !item.isSectionHeader && 
+                item.title !== 'By Use Case' && 
+                item.title !== 'By Industry' && 
+                item.title !== 'By User Role'
+              ).map((item, index) => (
+                <Link
+                  key={item.id}
+                  to={item.path}
+                  className="group flex items-start space-x-4 xl:space-x-5 px-6 xl:px-7 py-4 xl:py-5 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated"
+                  style={{ 
+                    animationDelay: `${index * 30}ms`,
+                    transform: 'translateZ(0)' // Force hardware acceleration
+                  }}
+                >
+                  {/* Hover background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 transition-all duration-200"></div>
+                  
+                  {/* Icon */}
+                  <div className="flex-shrink-0 mt-0.5 relative z-10">
+                    <div className="p-2 xl:p-2.5 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+                      {getIcon(item.title, item.path)}
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 min-w-0 relative z-10">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                        {item.title}
+                      </h4>
+                      <ArrowRight className="h-3 w-3 xl:h-4 xl:w-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100" />
+                    </div>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
+                      {getDescription(item.title, item.path)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Right Column - Organized for Clarity Section */}
+            <div className="border-l border-gray-200/50 dark:border-gray-700/50">
+              {items.filter(item => item.isSectionHeader).map((item, index) => (
+                                 <div
+                   key={item.id}
+                   className="px-6 xl:px-7 py-4 xl:py-5"
+                   style={{ 
+                     animationDelay: `${index * 30}ms`,
+                     transform: 'translateZ(0)' // Force hardware acceleration
+                   }}
+                 >
+                   <h4 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200/50 dark:border-gray-700/50 pb-3 mb-5">
+                     {item.title}
+                   </h4>
+                  
+                  {/* Organized for Clarity Menu Items */}
+                  {items.filter(subItem => 
+                    subItem.title === 'By Use Case' || 
+                    subItem.title === 'By Industry' || 
+                    subItem.title === 'By User Role'
+                  ).map((subItem, subIndex) => (
+                    <Link
+                      key={subItem.id}
+                      to={subItem.path}
+                                             className="group flex items-start space-x-4 xl:space-x-5 py-3 xl:py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden rounded-lg px-4"
+                      style={{ 
+                        animationDelay: `${(index + subIndex + 1) * 30}ms`,
+                        transform: 'translateZ(0)' // Force hardware acceleration
+                      }}
+                    >
+                      {/* Icon */}
+                      <div className="flex-shrink-0 mt-0.5 relative z-10">
+                        <div className="p-2 xl:p-2.5 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+                          {getIcon(subItem.title, subItem.path)}
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="flex-1 min-w-0 relative z-10">
+                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                          {subItem.title}
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
+                          {getDescription(subItem.title, subItem.path)}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
-              </div>
-              
-              {/* Content */}
-              <div className="flex-1 min-w-0 relative z-10">
-                <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                    {item.title}
-                  </h4>
-                  <ArrowRight className="h-3 w-3 xl:h-4 xl:w-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100" />
-                </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
-                  {getDescription(item.title, item.path)}
-                </p>
-              </div>
-            </Link>
-          ))}
+              ))}
+            </div>
+          </div>
         </div>
         
         {/* Footer CTA */}

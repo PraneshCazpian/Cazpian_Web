@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { usePageContent } from '../hooks/usePageContent';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 
 const Contact = () => {
-  const { data } = usePageContent<Record<string, unknown>>('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,10 +24,6 @@ const Contact = () => {
       [e.target.name]: e.target.value
     });
   };
-
-  const contactEmail = data?.['contact.email'] as string | undefined;
-  const contactPhone = data?.['contact.phone'] as string | undefined;
-  const contactAddress = data?.['contact.address'] as string | undefined;
 
   if (isSubmitted) {
     return (
@@ -63,12 +57,10 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                {(data?.['hero.title'] as string) || (
-                  <>Get in <span className="text-indigo-600">Touch</span></>
-                )}
+                Get in <span className="text-indigo-600">Touch</span>
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto lg:mx-0">
-                {(data?.['hero.subtitle'] as string) || "Have questions about Cazpian? Want to schedule a demo? We're here to help you succeed with your data initiatives."}
+                Have questions about Cazpian? Want to schedule a demo? We're here to help you succeed with your data initiatives.
               </p>
             </div>
             <div className="flex justify-center lg:justify-end">
@@ -187,7 +179,9 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Get in touch</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                  Get in touch
+                </h2>
                 <p className="text-gray-600 dark:text-gray-300 mb-8">
                   Our team is here to help you succeed with your data initiatives. Reach out to us through any of the channels below.
                 </p>
@@ -207,7 +201,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Email</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">{contactEmail || 'hello@cazpian.com'}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">hello@cazpian.com</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">We'll respond within 24 hours</p>
                   </div>
                 </div>
@@ -218,7 +212,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">{contactPhone || '+1 (555) 123-4567'}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">+1 (555) 123-4567</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Mon-Fri, 9AM-6PM PST</p>
                   </div>
                 </div>
@@ -229,7 +223,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Office</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-1">{contactAddress || 'San Francisco, CA'}</p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-1">San Francisco, CA</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">Remote-first company</p>
                   </div>
                 </div>

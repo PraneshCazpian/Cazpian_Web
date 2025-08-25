@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSupabaseAuth } from '../../contexts/SupabaseAuthContext';
-import { User, Eye, EyeOff, Shield, Mail, Zap } from 'lucide-react';
+import { useAdmin } from '../../contexts/AdminContext';
+import { Lock, User, Eye, EyeOff, Shield, CheckCircle, Mail, Zap } from 'lucide-react';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('login');
-  const { login } = useSupabaseAuth();
+  const { login } = useAdmin();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,11 +19,11 @@ const AdminLogin = () => {
     setError('');
 
     try {
-      const res = await login(username, password);
-      if (res.ok) {
+      const success = await login(username, password);
+      if (success) {
         navigate('/admin/dashboard');
       } else {
-        setError(res.error || 'Invalid email or password');
+        setError('Invalid username or password');
       }
     } catch {
       setError('Login failed. Please try again.');
