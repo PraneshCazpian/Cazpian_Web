@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { AdminProvider } from './contexts/AdminContext';
@@ -10,6 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Lazy load all pages for code splitting
 const HomePage = lazy(() => import('./pages/HomePage'));
+const HomePageDev = lazy(() => import('./pages/HomePageDev'));
 const WhyCazpian = lazy(() => import('./pages/WhyCazpian'));
 const Product = lazy(() => import('./pages/Product'));
 const CazpianCloud = lazy(() => import('./pages/CazpianCloud'));
@@ -53,7 +54,10 @@ function App() {
                   } 
                 />
                 
-                {/* Public Routes */}
+                {/* HomePageDev - Standalone (no Header/Footer) */}
+                <Route path="/home_dev" element={<HomePageDev />} />
+                
+                {/* Public Routes with Header/Footer */}
                 <Route path="/*" element={
                   <>
                     <Header />
