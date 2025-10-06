@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, Server, Users, Brain, Zap, Database, Link } from 'lucide-react';
+import { Cloud, Server, Users, Brain, Zap, Database, Link, Layers, Search, Shield, Settings, BarChart3, AlertCircle, Clock } from 'lucide-react';
 
 const Product = () => {
   const products = [
@@ -64,7 +64,7 @@ const Product = () => {
     <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -85,9 +85,178 @@ const Product = () => {
         </div>
       </section>
 
+      {/* Metalake Layer Section */}
+      <section className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 dark:from-gray-800 dark:via-indigo-900 dark:to-purple-900">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-2xl mb-6">
+              <Layers className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Metalake layer — one source of truth
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Unified metadata & governance platform that serves as the single source of truth for your entire data ecosystem
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Shield className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Unified metadata & governance
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                One place for orgs, catalogs, roles, and policies; engines read from a single source of truth.
+              </p>
+            </div>
+
+            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Search className="h-6 w-6 text-green-600 dark:text-green-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Discovery & lineage
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Discover data and AI assets with audit-ready lineage and access logs, and tag data assets for faster search.
+              </p>
+            </div>
+
+            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Users className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Multi-tenant boundaries
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Org/workspace isolation with policies applied once and respected everywhere.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Catalogs Unified Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl mb-6">
+              <Database className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Catalogs, unified
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Use any catalog with the Workspace Analytics Engine and run federated queries via Apache Spark.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-blue-900 border border-blue-200 dark:border-blue-700 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center mb-4">
+                <img src="/aws-s3.svg" alt="Storage" className="w-8 h-8 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Storage Catalogs</h3>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Configure S3, MinIO or any S3-compatible object storages, Google Cloud Storage, or Azure Storage as catalogs and query alongside other sources.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-gray-800 dark:to-green-900 border border-green-200 dark:border-green-700 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center mb-4">
+                <img src="/Polaris-p.svg" alt="Fileset" className="w-8 h-8 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Fileset Catalogs</h3>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Apache Gravitino filesets: represent objects as catalogs → namespaces → filesets → files; great for ML/AI data access.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-gray-800 dark:to-purple-900 border border-purple-200 dark:border-purple-700 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center mb-4">
+                <img src="/icberg.svg" alt="Iceberg" className="w-8 h-8 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Iceberg Catalogs</h3>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                All Iceberg types (JDBC/Hive/REST) as external catalogs—or choose Cazpian Managed Polaris with policies, governance, and RBAC.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-800 dark:to-orange-900 border border-orange-200 dark:border-orange-700 rounded-xl p-6 hover:shadow-lg transition-all duration-300 group">
+              <div className="flex items-center mb-4">
+                <Database className="w-8 h-8 text-orange-600 dark:text-orange-400 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Relational Catalogs</h3>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                Connect any JDBC database (Postgres, MySQL, Oracle, and more) and federate via Spark.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Iceberg Performance Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-slate-50 to-blue-50 dark:from-gray-800 dark:via-gray-700 dark:to-blue-900">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 dark:bg-slate-900 rounded-2xl mb-6">
+              <Settings className="h-8 w-8 text-slate-600 dark:text-slate-400" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Iceberg performance & maintenance
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Policy-driven maintenance with reporting to keep queries fast and storage lean.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Settings className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Maintenance policies
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Compaction, snapshot expiration, orphan-file cleanup, and metadata compaction.
+              </p>
+            </div>
+
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <BarChart3 className="h-6 w-6 text-green-600 dark:text-green-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Performance reporting
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Read/write metrics, table & datafile stats, pruning effectiveness, and cost signals.
+              </p>
+            </div>
+
+            <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Clock className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Automation & SLAs
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                Schedules, guardrails, and alerts to keep tables optimized over time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Deployment Options
@@ -135,7 +304,7 @@ const Product = () => {
 
       {/* Capabilities Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Core Capabilities
@@ -172,7 +341,7 @@ const Product = () => {
 
       {/* Pricing Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Simple, Transparent Pricing
@@ -271,7 +440,7 @@ const Product = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Get Started?
           </h2>

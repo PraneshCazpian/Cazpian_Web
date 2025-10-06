@@ -245,7 +245,7 @@ const SolutionsByIndustry: React.FC = () => {
     <div className="bg-white dark:bg-gray-900 min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-16 md:py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-sm font-medium mb-6">
               <Sparkles className="h-4 w-4 mr-2" />
@@ -283,7 +283,7 @@ const SolutionsByIndustry: React.FC = () => {
 
       {/* Industries Grid */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-6">
               <SVGIllustration name="strategic-consulting" width={48} height={48} className="mr-3" />
@@ -382,7 +382,7 @@ const SolutionsByIndustry: React.FC = () => {
           </svg>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="flex justify-center mb-8">
               <div className="relative">
@@ -391,7 +391,7 @@ const SolutionsByIndustry: React.FC = () => {
               </div>
             </div>
             
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="w-full space-y-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Ready to Transform Your
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">

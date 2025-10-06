@@ -35,7 +35,7 @@ const Resources = () => {
           </svg>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <div className="flex items-center justify-center lg:justify-start mb-4">
@@ -85,7 +85,7 @@ const Resources = () => {
 
       {/* Enhanced Featured Content */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
               <SVGIllustration name="data-report" width={48} height={48} className="mr-3" />
@@ -133,7 +133,7 @@ const Resources = () => {
 
       {/* Enhanced Resources Grid */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
               <SVGIllustration name="information" width={48} height={48} className="mr-3" />
@@ -188,7 +188,7 @@ const Resources = () => {
 
       {/* Enhanced Learning Paths */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
               <SVGIllustration name="tab" width={48} height={48} className="mr-3" />
@@ -254,7 +254,7 @@ const Resources = () => {
 
       {/* Enhanced Community Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
               <SVGIllustration name="user-research" width={48} height={48} className="mr-3" />
@@ -301,7 +301,7 @@ const Resources = () => {
           </svg>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative">
           <div className="flex justify-center mb-6">
             <SVGIllustration name="visual-data" width={64} height={64} className="text-white opacity-80" />
           </div>

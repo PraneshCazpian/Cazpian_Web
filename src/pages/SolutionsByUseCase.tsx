@@ -764,7 +764,7 @@ const SolutionsByUseCase: React.FC = () => {
         <div className="absolute top-20 left-10 w-32 h-32 bg-indigo-200 dark:bg-indigo-800 rounded-full mix-blend-multiply dark:mix-blend-normal opacity-20 animate-float"></div>
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-blue-200 dark:bg-blue-800 rounded-full mix-blend-multiply dark:mix-blend-normal opacity-20 animate-float-delayed"></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 items-center">
             <div className="text-center lg:text-left space-y-8">
               {/* Badge */}
@@ -841,7 +841,7 @@ const SolutionsByUseCase: React.FC = () => {
 
       {/* Search and Filter Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-6">
@@ -858,7 +858,7 @@ const SolutionsByUseCase: React.FC = () => {
           {/* Search and Filters */}
           <div className="mb-12 space-y-6">
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto">
+            <div className="w-full">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
@@ -1095,7 +1095,7 @@ const SolutionsByUseCase: React.FC = () => {
         <div className="absolute top-20 left-20 w-40 h-40 bg-indigo-500 rounded-full mix-blend-multiply opacity-20 animate-float blur-xl"></div>
         <div className="absolute bottom-20 right-20 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply opacity-20 animate-float-delayed blur-xl"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             {/* Icon */}
             <div className="flex justify-center mb-8">
@@ -1106,7 +1106,7 @@ const SolutionsByUseCase: React.FC = () => {
             </div>
             
             {/* Content */}
-            <div className="max-w-4xl mx-auto space-y-8">
+            <div className="w-full space-y-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Ready to Transform Your
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">

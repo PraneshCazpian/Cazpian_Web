@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface CazpianLogoProps {
   className?: string;
@@ -13,14 +14,18 @@ const CazpianLogo: React.FC<CazpianLogoProps> = ({ className = '', size = 'md' }
   };
 
   return (
-    <div className={`${sizeClasses[size]} ${className}`}>
+    <Link 
+      to="/" 
+      className={`${sizeClasses[size]} ${className} block hover:opacity-80 transition-opacity duration-200 focus:outline-none rounded-lg`}
+      aria-label="Go to Cazpian home page"
+    >
       <img 
         src="/cazpian_logo.svg" 
         alt="Cazpian Logo" 
         className="w-full h-full object-contain"
         draggable={false}
       />
-    </div>
+    </Link>
   );
 };
 

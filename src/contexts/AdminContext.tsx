@@ -213,8 +213,8 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     accentColor: '#8B5CF6', // Purple-500 - matches the deeper purple from logo
     backgroundColor: '#F0F9FF', // Sky Blue 50 - updated background
     darkMode: false,
-    heroTitle: 'Transform Data into Decisions Faster with Cazpian AI Lakehouse ',
-    heroSubtitle: 'An enterprise-grade, open data platform engineered for next-gen analytics and AI applications.',
+    heroTitle: 'Open Lakehouse Platform for Analytics, Pipelines & AI Agents',
+    heroSubtitle: 'Launch governed compute, unify your data catalogs, and add AI agents to automate engineering so analytics and pipelines ship faster across cloud and on-prem.',
     ctaPrimary: 'Start Free',
     ctaSecondary: 'Book a Demo',
     footerText: '© 2025 Cazpian. All rights reserved.',
@@ -223,7 +223,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       github: '#',
       twitter: '#'
     },
-    contactEmail: 'hello@cazpian.com',
+    contactEmail: 'info@cazpian.ai',
     phone: '+1 (555) 123-4567',
     address: '123 Data Street, San Francisco, CA 94105'
   });
@@ -532,12 +532,12 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   });
 
   const [trustedLogosContent, setTrustedLogosContent] = useState<TrustedLogosContent>({
-    headerText: 'Trusted by teams using',
+    headerText: 'Built on open standards & cloud-native tech',
     logos: [
       {
         id: '1',
         name: 'Apache Iceberg',
-        imagePath: '/apache-iceberg.svg',
+        imagePath: '/icberg.svg',
         description: 'Open table format for large datasets'
       },
       {
@@ -549,7 +549,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       {
         id: '3',
         name: 'Apache Polaris',
-        imagePath: '/polaris.svg',
+        imagePath: '/Polaris-p.svg',
         description: 'Data lakehouse query engine'
       },
       {
@@ -566,8 +566,26 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       },
       {
         id: '6',
-        name: 'AWS',
-        imagePath: '/aws.svg',
+        name: 'AWS S3',
+        imagePath: '/aws-s3.svg',
+        description: 'Amazon Web Services cloud platform'
+      },
+      {
+        id: '7',
+        name: 'Apache Spark',
+        imagePath: '/apache-spark.svg',
+        description: 'Container orchestration platform'
+      },
+      {
+        id: '8',
+        name: 'Google Cloud Storage',
+        imagePath: '/google_cloud.svg',
+        description: 'Cloud computing platform'
+      },
+      {
+        id: '9',
+        name: 'MMinio',
+        imagePath: '/minio.svg',
         description: 'Amazon Web Services cloud platform'
       }
     ]
@@ -619,7 +637,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const adminUser: AdminUser = {
         id: '1',
         username: 'admin',
-        email: 'admin@cazpian.com',
+        email: 'admin@cazpian.ai',
         role: 'admin'
       };
       setUser(adminUser);

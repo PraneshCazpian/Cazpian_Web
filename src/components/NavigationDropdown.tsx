@@ -170,7 +170,7 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
 
   return (
     <div 
-      className="w-[40rem] xl:w-[44rem] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 py-6 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container"
+      className="w-[85vw] sm:w-[22rem] md:w-[24rem] lg:w-[26rem] xl:w-[28rem] max-w-[calc(100vw-1rem)] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-xl sm:rounded-2xl shadow-2xl shadow-gray-900/10 dark:shadow-black/30 overflow-hidden animate-in fade-in-0 slide-in-from-top-2 duration-200 dropdown-container max-h-[calc(100vh-5rem)]"
       style={{
         transform: 'translateZ(0)', // Force hardware acceleration
         willChange: 'opacity, transform' // Optimize for animations
@@ -180,121 +180,133 @@ const NavigationDropdown: React.FC<NavigationDropdownProps> = ({ title, items })
       <div className={`absolute inset-0 bg-gradient-to-br ${getSectionColor()} opacity-50`}></div>
       
       {/* Content */}
-      <div className="relative z-10">
-        {/* Section Header */}
-        <div className="px-4 xl:px-6 pb-4 border-b border-gray-200/50 dark:border-gray-700/50">
-          <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Section Header - Fixed */}
+        {/* <div className="px-3 sm:px-4 lg:px-5 pb-2 sm:pb-3 border-b border-gray-200/50 dark:border-gray-700/50 flex-shrink-0">
+          <h3 className="text-[10px] sm:text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
             {getSectionTitle(title)}
           </h3>
-        </div>
+        </div> */}
         
-                {/* Menu Items */}
-        <div className="py-4">
-          <div className="grid grid-cols-2 gap-6">
-            {/* Left Column - Main Solutions */}
-            <div className="space-y-0">
-              {items.filter(item => 
-                !item.isSectionHeader && 
-                item.title !== 'By Use Case' && 
-                item.title !== 'By Industry' && 
-                item.title !== 'By User Role'
-              ).map((item, index) => (
-                <Link
-                  key={item.id}
-                  to={item.path}
-                  className="group flex items-start space-x-4 xl:space-x-5 px-6 xl:px-7 py-4 xl:py-5 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated"
-                  style={{ 
-                    animationDelay: `${index * 30}ms`,
-                    transform: 'translateZ(0)' // Force hardware acceleration
-                  }}
-                >
-                  {/* Hover background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 transition-all duration-200"></div>
-                  
-                  {/* Icon */}
-                  <div className="flex-shrink-0 mt-0.5 relative z-10">
-                    <div className="p-2 xl:p-2.5 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+        {/* Scrollable Menu Items */}
+        <div className="flex-1 overflow-y-auto overscroll-contain py-2 sm:py-3 custom-scrollbar">
+          <div className="space-y-0">
+            {/* All Menu Items - Main Items */}
+            {items.filter(item => 
+              !item.isSectionHeader && 
+              item.title !== 'By Use Case' && 
+              item.title !== 'By Industry' && 
+              item.title !== 'By User Role'
+            ).map((item, index) => (
+              <Link
+                key={item.id}
+                to={item.path}
+                className="group flex items-start space-x-2 sm:space-x-3 px-3 sm:px-4 lg:px-5 py-2.5 sm:py-3 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden dropdown-item hardware-accelerated rounded-lg mx-2 sm:mx-3"
+                style={{ 
+                  animationDelay: `${index * 30}ms`,
+                  transform: 'translateZ(0)' // Force hardware acceleration
+                }}
+              >
+                {/* Hover background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:to-indigo-500/10 transition-all duration-200"></div>
+                
+                {/* Icon */}
+                <div className="flex-shrink-0 mt-0.5 relative z-10">
+                  <div className="p-1.5 sm:p-2 rounded-md sm:rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-indigo-400">
                       {getIcon(item.title, item.path)}
                     </div>
                   </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 min-w-0 relative z-10">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                        {item.title}
-                      </h4>
-                      <ArrowRight className="h-3 w-3 xl:h-4 xl:w-4 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100" />
-                    </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
-                      {getDescription(item.title, item.path)}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Right Column - Organized for Clarity Section */}
-            <div className="border-l border-gray-200/50 dark:border-gray-700/50">
-              {items.filter(item => item.isSectionHeader).map((item, index) => (
-                                 <div
-                   key={item.id}
-                   className="px-6 xl:px-7 py-4 xl:py-5"
-                   style={{ 
-                     animationDelay: `${index * 30}ms`,
-                     transform: 'translateZ(0)' // Force hardware acceleration
-                   }}
-                 >
-                   <h4 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200/50 dark:border-gray-700/50 pb-3 mb-5">
-                     {item.title}
-                   </h4>
-                  
-                  {/* Organized for Clarity Menu Items */}
-                  {items.filter(subItem => 
-                    subItem.title === 'By Use Case' || 
-                    subItem.title === 'By Industry' || 
-                    subItem.title === 'By User Role'
-                  ).map((subItem, subIndex) => (
-                    <Link
-                      key={subItem.id}
-                      to={subItem.path}
-                                             className="group flex items-start space-x-4 xl:space-x-5 py-3 xl:py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden rounded-lg px-4"
-                      style={{ 
-                        animationDelay: `${(index + subIndex + 1) * 30}ms`,
-                        transform: 'translateZ(0)' // Force hardware acceleration
-                      }}
-                    >
-                      {/* Icon */}
-                      <div className="flex-shrink-0 mt-0.5 relative z-10">
-                        <div className="p-2 xl:p-2.5 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
-                          {getIcon(subItem.title, subItem.path)}
-                        </div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="flex-1 min-w-0 relative z-10">
-                        <h4 className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                          {subItem.title}
-                        </h4>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
-                          {getDescription(subItem.title, subItem.path)}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
                 </div>
-              ))}
-            </div>
+                
+                {/* Content */}
+                <div className="flex-1 min-w-0 relative z-10">
+                  <div className="flex items-center justify-between gap-1">
+                    <h4 className="text-xs sm:text-sm lg:text-base font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200 truncate">
+                      {item.title}
+                    </h4>
+                    <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 flex-shrink-0" />
+                  </div>
+                  <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-2 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
+                    {getDescription(item.title, item.path)}
+                  </p>
+                </div>
+              </Link>
+            ))}
+
+            {/* Organized for Clarity Section */}
+            {items.filter(item => item.isSectionHeader).length > 0 && (
+              <div className="mx-2 sm:mx-3 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+                {items.filter(item => item.isSectionHeader).map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="mb-3 sm:mb-4"
+                    style={{ 
+                      animationDelay: `${index * 30}ms`,
+                      transform: 'translateZ(0)'
+                    }}
+                  >
+                    <h4 className="text-[10px] sm:text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-200/50 dark:border-gray-700/50 pb-1.5 sm:pb-2 mb-2 sm:mb-3 px-1">
+                      {item.title}
+                    </h4>
+                    
+                    {/* Organized Menu Items */}
+                    <div className="space-y-0">
+                      {items.filter(subItem => 
+                        subItem.title === 'By Use Case' || 
+                        subItem.title === 'By Industry' || 
+                        subItem.title === 'By User Role'
+                      ).map((subItem, subIndex) => (
+                        <Link
+                          key={subItem.id}
+                          to={subItem.path}
+                          className="group flex items-start space-x-2 sm:space-x-3 py-2 sm:py-2.5 hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-200 relative overflow-hidden rounded-md sm:rounded-lg px-2 sm:px-3"
+                          style={{ 
+                            animationDelay: `${(index + subIndex + 1) * 30}ms`,
+                            transform: 'translateZ(0)'
+                          }}
+                        >
+                          {/* Icon */}
+                          <div className="flex-shrink-0 mt-0.5 relative z-10">
+                            <div className="p-1 sm:p-1.5 rounded-md bg-gray-100/50 dark:bg-gray-800/50 group-hover:bg-indigo-100/50 dark:group-hover:bg-indigo-900/20 transition-all duration-200">
+                              <div className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-indigo-400">
+                                {getIcon(subItem.title, subItem.path)}
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="flex-1 min-w-0 relative z-10">
+                            <div className="flex items-center justify-between gap-1">
+                              <h4 className="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200 truncate">
+                                {subItem.title}
+                              </h4>
+                              <ArrowRight className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all duration-200 opacity-0 group-hover:opacity-100 flex-shrink-0" />
+                            </div>
+                            <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5 line-clamp-1 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
+                              {getDescription(subItem.title, subItem.path)}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
         
-        {/* Footer CTA */}
-        <div className="px-4 xl:px-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+        {/* Footer CTA - Fixed */}
+        <div className="px-3 sm:px-4 lg:px-5 pt-3 sm:pt-4 pb-3 sm:pb-4 border-t border-gray-200/50 dark:border-gray-700/50 flex-shrink-0 bg-white/95 dark:bg-gray-900/95">
           <Link
             to="/book-meeting"
-            className="group flex items-center justify-center w-full px-3 xl:px-4 py-2.5 xl:py-3 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hardware-accelerated"
-            style={{ transform: 'translateZ(0)' }} // Force hardware acceleration
+            className="group flex items-center justify-center w-full px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 rounded-lg sm:rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hardware-accelerated"
+            style={{ transform: 'translateZ(0)' }}
           >
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
             <span className="relative z-10">Get Started</span>
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-xl transition-all duration-200"></div>
           </Link>

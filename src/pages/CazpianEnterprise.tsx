@@ -54,7 +54,7 @@ const CazpianEnterprise: React.FC = () => {
     <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               Cazpian Enterprise <span className="text-indigo-600">(Self-Hosted Lakehouse Platform)</span>
@@ -65,7 +65,7 @@ const CazpianEnterprise: React.FC = () => {
 
       {/* Description Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/30 dark:from-gray-800 dark:via-gray-700/50 dark:to-indigo-900/20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
             {/* Left Column - Main Description */}
             <div className="lg:col-span-2 space-y-8">
@@ -154,7 +154,7 @@ const CazpianEnterprise: React.FC = () => {
 
       {/* Key Capabilities Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Key Capabilities
@@ -181,14 +181,14 @@ const CazpianEnterprise: React.FC = () => {
 
       {/* Who Benefits Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Who Benefits from Cazpian Enterprise?
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="w-full">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-start space-x-4 mb-6">
                 <CheckCircle className="h-6 w-6 text-indigo-600 mt-1 flex-shrink-0" />
@@ -203,7 +203,7 @@ const CazpianEnterprise: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Take Control?
           </h2>

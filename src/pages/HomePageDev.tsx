@@ -152,7 +152,7 @@ const Section = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <section id={id} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>
+  <section id={id} className={`w-full px-4 sm:px-6 lg:px-8 ${className}`}>
     {children}
   </section>
 );
