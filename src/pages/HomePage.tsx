@@ -220,7 +220,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div className="bg-white dark:bg-gray-900 w-full max-w-none overflow-x-hidden">
       <SEO
         title="Cazpian - AI-Powered Data Analytics Platform"
         description="Transform your data analytics with Cazpian's modern lakehouse platform. Built on Apache Iceberg with AI-driven performance, enterprise security, and lightning-fast federated queries."
@@ -235,7 +235,7 @@ const HomePage = () => {
         style={{ scaleX: scrollProgressX }}
       />
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[60vh] bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 ">
+      <section ref={heroRef} className="relative min-h-[60vh] w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 ">
         {/* Animated background elements */}
         <div className="absolute inset-0">
           {/* <motion.div style={{ y: blobOneY }} className="absolute top-20 left-10 w-72 h-72 bg-indigo-300 dark:bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" /> */}
@@ -243,7 +243,7 @@ const HomePage = () => {
           {/* <motion.div style={{ y: blobThreeY }} className="absolute -bottom-8 left-20 w-72 h-72 bg-cyan-300 dark:bg-cyan-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" /> */}
         </div>
         
-        <div className="relative w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-8">
+        <div className="relative w-full max-w-none px-4 sm:px-6 lg:px-8 py-8 lg:py-8">
           <motion.div 
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
             initial="hidden"
@@ -382,7 +382,7 @@ const HomePage = () => {
       <TrustedLogos />
 
       {/* Multi-Engine Ready Section */}
-      <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900/20">
+      <section className="py-20 w-full bg-gradient-to-br from-white via-gray-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900/20">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -528,7 +528,7 @@ const HomePage = () => {
       </section>
 
       {/* Compute Targets Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-purple-900/20">
+      <section className="py-20 w-full bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-purple-900/20">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -707,7 +707,7 @@ const HomePage = () => {
       </section>
 
       {/* New 3-Card Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+      <section className="py-20 w-full bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -774,7 +774,7 @@ const HomePage = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900/20">
+      <section className="py-24 w-full bg-gradient-to-br from-gray-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900/20">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-20"
@@ -863,7 +863,7 @@ const HomePage = () => {
       </section>
 
       {/* Product Showcase */}
-      <section className="py-24 bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative ">
+      <section className="py-24 w-full bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative ">
         {/* Background decorative elements */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.1),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.1),transparent_50%)]"></div>
@@ -1116,7 +1116,7 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 via-indigo-900 to-purple-900 text-white relative ">
+      <section className="py-20 w-full bg-gradient-to-r from-gray-900 via-indigo-900 to-purple-900 text-white relative ">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.05&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>

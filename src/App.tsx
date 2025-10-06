@@ -43,7 +43,7 @@ function App() {
             <SkipToContent />
             <Analytics />
             <ScrollToTop />
-            <div className="min-h-screen w-full bg-adaptive transition-colors duration-300">
+            <div className="min-h-screen w-full max-w-none bg-adaptive transition-colors duration-300 overflow-x-hidden">
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   {/* Admin Routes */}
