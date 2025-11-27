@@ -444,25 +444,25 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         id: 'analytics',
         icon: 'BarChart3',
         title: 'Analytics Acceleration',
-        description: 'Turn slow dashboards into instant insights. Cazpian\'s engine reduces query latency while its semantic layer removes complexity. BI teams gain speed without data duplication. Modern analytics, minus the workarounds.'
+        description: 'Turn slow dashboards into instant insights. Cazpian engine reduces query latency while its semantic layer removes complexity. BI teams gain speed without data duplication. Modern analytics, minus the workarounds.'
       },
       {
         id: 'self-service-bi',
         icon: 'Users',
         title: 'Self-Service BI',
-        description: 'Empower every stakeholder with governed access to data. Business users get intuitive tools while IT keeps oversight. Semantic models ensure accuracy across teams. Faster decisions, fewer bottlenecks.'
+        description: 'Empower stakeholders with governed access and intuitive tools while IT retains oversight. Semantic models keep definitions consistent across teams.'
       },
       {
         id: 'data-science',
         icon: 'Brain',
         title: 'Data Science & ML',
-        description: 'Prepare, explore, and train ML-ready datasets at scale. Collaborate across teams with versioned data and notebook integration. Cazpian supports the entire ML lifecycle—from experimentation to production. No more silos between science and data.'
+        description: 'Prepare, explore, and train ML ready datasets at scale. Collaborate with versioned data and notebook integration—from experimentation to production.'
       },
       {
         id: 'real-time',
         icon: 'Zap',
         title: 'Real-Time Operations',
-        description: 'Stream, detect, and respond—all in real-time. Cazpian handles both streaming and batch workloads in a unified platform. Power anomaly detection, alerts, and live metrics with up-to-date data. Act now, not hours later.'
+        description: 'Stream, detect, and respond in real-time. Unify streaming and batch to power anomaly detection, alerts, and live metrics.'
       }
     ],
     industries: [
@@ -470,31 +470,31 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         id: 'financial',
         icon: 'Building2',
         title: 'Financial Services',
-        description: 'Ensure compliance with full auditability and lineage tracking. Analyze real-time transactions for fraud, risk, and exposure. Fine-grained security and high-speed queries support trading, ops, and compliance teams. Secure speed, built for finance.'
+        description: 'Ensure compliance with full auditability and lineage. Analyze real-time transactions for fraud, risk, and exposure with fine-grained security and high-speed queries'
       },
       {
         id: 'healthcare',
         icon: 'Heart',
         title: 'Healthcare',
-        description: 'Integrate EHR, claims, and IoT data for better patient outcomes. Govern PHI with strict access control and audit logs. Accelerate research and predictive care with secure ML pipelines. Healthcare-ready by design.'
+        description: 'Integrate EHR, claims, and IoT data; govern PHI with strict access control and audit logs; accelerate research and predictive care with secure ML pipelines.'
       },
       {
         id: 'manufacturing',
         icon: 'Factory',
         title: 'Manufacturing',
-        description: 'Unify machine data, supply chain events, and sensor logs. Predict failures, optimize yield, and minimize downtime. Cazpian enables smarter factories through streaming and batch analytics. Operational intelligence, built in.'
+        description: 'Unify machine data, supply chain events, and sensor logs to predict failures, optimize yield, and minimize downtime via streaming and batch analytics.'
       },
       {
         id: 'retail',
         icon: 'ShoppingCart',
         title: 'Retail',
-        description: 'Analyze inventory, POS, and customer behavior in real-time. Enable personalized experiences and demand forecasting from a single platform. Cazpian connects and enriches retail data without siloed systems. Boost margin and customer loyalty together.'
+        description: 'Analyze inventory, POS, and customer behavior in real time. Enable personalization and demand forecasting from a single, governed platform.'
       },
       {
         id: 'public-sector',
         icon: 'Shield',
         title: 'Public Sector',
-        description: 'Support transparency, efficiency, and secure data collaboration. Open standards simplify procurement and long-term support. Multi-agency isolation and policy enforcement ensure compliance. Deliver services powered by clean, governed data.'
+        description: 'Support transparency, efficiency, and secure collaboration using open standards. Multi-agency isolation and policy enforcement ensure compliance.'
       }
     ],
     useCases: [
@@ -525,7 +525,7 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     ],
     ctaSection: {
       title: 'Ready to Solve Your Data Challenges?',
-      subtitle: 'Join thousands of teams who\'ve already transformed their data operations with Cazpian.',
+      subtitle: '',
       primaryButton: 'Start Free Trial',
       secondaryButton: 'Schedule Demo'
     }

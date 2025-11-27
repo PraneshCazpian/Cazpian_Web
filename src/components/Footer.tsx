@@ -9,8 +9,8 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 dark:bg-gray-950 text-white">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-4">
@@ -69,10 +69,21 @@ const Footer = () => {
             </ul>
           </div>
 
+        {/* company */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/about" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">About</Link></li>
+              <li><Link to="/changelog" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Changelog</Link></li>
+              <li><Link to="/security" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Security</Link></li>
+              <li><Link to="/contact" className="text-gray-400 dark:text-gray-500 hover:text-white transition-colors">Contact</Link></li>
+            </ul>
+          </div>
+
           {/* Newsletter */}
           <div>
             <h3 className="text-white font-semibold mb-4">Stay Updated</h3>
-            <p className="text-gray-400 dark:text-gray-500 text-sm mb-4">Subscribe to our newsletter for the latest updates and insights.</p>
+            <p className="text-gray-400 dark:text-gray-500 text-sm mb-4">Subscribe for product updates, tutorials, and release notes.</p>
             <div className="flex">
               <input
                 type="email"
@@ -86,6 +97,7 @@ const Footer = () => {
                 <Mail className="h-4 w-4" />
               </button>
             </div>
+            <p className="text-gray-400 dark:text-gray-500 text-sm mt-4">By subscribing, you agree to our Privacy Policy and Terms of Service.</p>
           </div>
         </div>
 

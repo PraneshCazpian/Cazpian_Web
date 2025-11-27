@@ -1,37 +1,39 @@
 import React from 'react';
-import { Settings, TrendingUp, Shield, Globe, Link, Zap, CheckCircle } from 'lucide-react';
+import { Settings, TrendingUp, Shield, Globe, Link as LinkIcon, Zap, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const CazpianCloud = () => {
   const keyCapabilities = [
     {
       icon: <Settings className="h-8 w-8 text-indigo-600" />,
       title: 'End-to-End Managed Infrastructure',
-      description: 'Forget about clusters, provisioning, or patching. Cazpian Cloud automates deployment, scaling, maintenance, and upgrades—so your team stays focused on delivering outcomes, not maintaining infrastructure.'
+      description: 'No cluster wrangling or patching. Cazpian automates deployment, scaling, maintenance, and upgrades so teams focus on outcomes. '
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-indigo-600" />,
       title: 'Intelligent Auto-Scaling & Elastic Compute',
-      description: 'Cazpian dynamically adjusts compute power in real time based on your workload—ensuring optimal performance for everything from BI dashboards to complex AI/ML pipelines, while keeping costs in check.'
+      description: 'Right size compute in real time for BI dashboards, pipelines, and AI/ML workloads—balancing performance and cost. '
     },
     {
       icon: <Shield className="h-8 w-8 text-indigo-600" />,
       title: 'Robust, Built-In Security',
-      description: 'Enterprise-grade protection with encryption at rest and in transit, fine-grained role-based access control, SSO support (Okta, Azure AD), and full audit trails. Cazpian is compliant with major standards including SOC 2, HIPAA, and GDPR.'
+      description: 'Encryption at rest/in transit, fine grained RBAC, SSO (Okta, Azure AD), and full audit trails. Compliance with SOC 2, HIPAA, and GDPR. '
     },
     {
       icon: <Globe className="h-8 w-8 text-indigo-600" />,
       title: 'Multi-Cloud & Hybrid Flexibility',
-      description: 'Run across AWS and Azure with a unified experience. Cazpian connects effortlessly with on-premises and cloud data sources, enabling seamless hybrid architectures and cross-region deployments.'
+      description: 'Run on AWS or Azure with a unified experience. Connect to onprem and cloud sources for hybrid and crossregion deployments. '
     },
     {
-      icon: <Link className="h-8 w-8 text-indigo-600" />,
+      icon: <LinkIcon className="h-8 w-8 text-indigo-600" />,
       title: 'Seamless Integration with Your Stack',
-      description: 'Out-of-the-box compatibility with popular tools like Power BI, Tableau, dbt, Jupyter, and Apache Arrow. Use our open APIs and standard connectors to plug into your existing ecosystem—no rework, no lock-in.'
+      description: 'Out of the box compatibility with Power BI, Tableau, dbt, Jupyter, and Apache Arrow. Open APIs and standard connectors mean no lock in. '
     },
     {
       icon: <Zap className="h-8 w-8 text-indigo-600" />,
       title: 'Accelerated Time-to-Insight',
-      description: 'Get started in minutes, not weeks. Cazpian auto-discovers data, generates metadata, and optimizes performance using intelligent indexing and caching—so you can start querying and analyzing faster than ever.'
+      description: 'Auto discovery of data, metadata generation, and optimizations (indexing, caching) that make queries faster from day one.'
     }
   ];
 
@@ -43,13 +45,72 @@ const CazpianCloud = () => {
   return (
     <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Cazpian Cloud <span className="text-indigo-600">(Managed Lakehouse Platform)</span>
-            </h1>
-          </div>
+      <section className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
+        <div className="container mx-auto px-6 text-center">
+          {/* Eyebrow */}
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-indigo-600 font-semibold mb-3 uppercase tracking-wide"
+          >
+            Cazpian Cloud (Managed Lakehouse Platform)
+          </motion.p>
+
+          {/* H1 */}
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6"
+          >
+            Launch a production-ready <br/> Lakehouse in minutes.
+          </motion.h1>
+
+          {/* Subhead */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10"
+          >
+            Cazpian Cloud simplifies modern data infrastructure—delivering
+            high-performance SQL and ML at scale without infrastructure toil.
+          </motion.p>
+
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Link
+              to="/start-free"
+              className="px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
+              style={{
+                background:
+                  "linear-gradient(135deg, #4f46e5, #818cf8)",
+                boxShadow: "0 10px 25px rgba(79, 70, 229, 0.4)",
+              }}
+            >
+              Start Free Trial
+            </Link>
+
+            <Link
+              to="/schedule-demo"
+              className="px-8 py-4 rounded-xl border-2 border-indigo-600 text-indigo-600 hover:bg-transparent hover:text-indigo-600 transition-all duration-300 font-semibold text-lg transform hover:-translate-y-1"
+            >
+              Schedule Demo
+            </Link>
+
+            <Link
+              to="/tour"
+              className="text-indigo-600 hover:underline font-medium text-lg"
+            >
+              See 2-min Tour →
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -60,11 +121,11 @@ const CazpianCloud = () => {
             {/* Left Column - Main Description */}
             <div className="lg:col-span-2 space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium ml-10 lg:ml-[240px]">
                   <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-                  Managed Lakehouse Platform
+                  Why Cazpian Cloud 
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+                {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
                   Launch a production-ready, fully managed data lakehouse in minutes
                 </h2>
                 <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -72,7 +133,7 @@ const CazpianCloud = () => {
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                   Whether you're processing terabytes or petabytes of structured or semi-structured data, Cazpian Cloud delivers high-performance SQL and machine learning workloads at scale—seamlessly and efficiently.
-                </p>
+                </p> */}
               </div>
               
               {/* Feature Highlights */}
@@ -198,7 +259,7 @@ const CazpianCloud = () => {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Launch your production-ready lakehouse in minutes and start focusing on insights, not infrastructure.
+             Start fast. Scale on demand. Stay secure—without lifting a finger.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
