@@ -43,7 +43,7 @@ function App() {
             <SkipToContent />
             <Analytics />
             <ScrollToTop />
-            <div className="min-h-screen w-full max-w-none bg-adaptive transition-colors duration-300 overflow-x-hidden">
+            <div className="min-h-screen w-full max-w-none bg-adaptive transition-colors duration-300 ">
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   {/* Admin Routes */}
@@ -81,6 +81,7 @@ function App() {
                             <Route path="/contact" element={<Contact />} />
                             <Route path="/book-meeting" element={<BookMeeting />} />
                             <Route path="/agent-studio" element={<AgentStudio />} />
+                            
                           </Routes>
                         </Suspense>
                       </main>

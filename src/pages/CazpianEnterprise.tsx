@@ -8,58 +8,119 @@ import {
   Globe,
   Database
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const CazpianEnterprise: React.FC = () => {
   const keyCapabilities = [
     {
       icon: <Server className="h-8 w-8 text-indigo-600" />,
       title: 'Total Infrastructure Ownership',
-      description: 'Take full command of your deployment stack. Cazpian Enterprise gives you the freedom to customize compute, storage, networking, and data governance to meet your unique operational and regulatory requirements.'
+      description: 'Customize compute, storage, networking, and governance to meet operational and regulatory requirements.'
     },
     {
       icon: <Zap className="h-8 w-8 text-indigo-600" />,
       title: 'Kubernetes-Native Flexibility',
-      description: 'Deploy, scale, and manage Cazpian using Kubernetes for a modern, container-native experience. Ensure consistency across development, staging, and production with automation at every step.'
+      description: 'Deploy, scale, and manage with Kubernetes for consistent automation across dev, staging, and prod.'
     },
     {
       icon: <Shield className="h-8 w-8 text-indigo-600" />,
       title: 'Enterprise Security & Network Customization',
-      description: 'Design your own security perimeter and control how your data flows. Cazpian Enterprise enables granular configuration of access controls, traffic policies, and authentication mechanisms.'
+      description: 'Define your perimeter. Configure access, traffic, and auth with precision.'
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-indigo-600" />,
       title: 'Built for Compliance',
-      description: 'Whether you operate in healthcare, finance, government, or other regulated sectors, Cazpian Enterprise is architected to help meet your compliance mandates with confidence.'
+      description: 'Architected to help meet mandates across healthcare, finance, government, and other regulated sectors.'
     },
     {
       icon: <Database className="h-8 w-8 text-indigo-600" />,
       title: 'Seamless Enterprise Integration',
-      description: 'Cazpian fits easily into your broader data ecosystem, integrating with your BI, AI/ML, and orchestration tools—so teams can work without disruption.'
+      description: 'Integrate with BI, AI/ML, and orchestration tools to minimize disruption and preserve workflows.'
     },
     {
       icon: <Globe className="h-8 w-8 text-indigo-600" />,
       title: 'Multi-Environment Deployment',
-      description: 'Deploy on your choice of infrastructure: bare metal, VMs, private cloud, or hybrid cloud. Control your data lifecycle, encryption standards, and file formats.'
+      description: 'Run on bare metal, VMs, private cloud, or hybrid. Control data lifecycle, encryption, and file formats.'
     }
   ];
 
   const benefits = [
     'Organizations requiring strict data sovereignty and compliance',
     'Enterprises with significant on-prem or private cloud investments',
-    'Teams operating in hybrid or multi-cloud environments',
-    'Businesses that need fine-grained control without compromising on performance or modern data capabilities'
+    'Hybrid/multi cloud teams',
+    'Businesses needing fine grained control without losing modern capabilities'
   ];
+
 
   return (
     <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Cazpian Enterprise <span className="text-indigo-600">(Self-Hosted Lakehouse Platform)</span>
-            </h1>
-          </div>
+      <section className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
+        <div className="container mx-auto px-6 text-center">
+          {/* Eyebrow */}
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="text-indigo-600 font-semibold mb-3 uppercase tracking-wide"
+          >
+            Cazpian Enterprise (Self Hosted Lakehouse Platform)
+          </motion.p>
+
+          {/* H1 */}
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6"
+          >
+            Deploy anywhere. Control everything.
+          </motion.h1>
+
+          {/* Subhead */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10"
+          >
+            Bring modern lakehouse performance to your infrastructure on <br/>
+            prem, private cloud, or hybrid without compromising security, scalability, or integration.
+          </motion.p>
+
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Link
+              to="/start-free"
+              className="px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1"
+              style={{
+                background:
+                  "linear-gradient(135deg, #4f46e5, #818cf8)",
+                boxShadow: "0 10px 25px rgba(79, 70, 229, 0.4)",
+              }}
+            >
+              Schedule Enterprise Demo
+            </Link>
+
+            <Link
+              to="/schedule-demo"
+              className="px-8 py-4 rounded-xl border-2 border-indigo-600 text-indigo-600 hover:bg-transparent hover:text-indigo-600 transition-all duration-300 font-semibold text-lg transform hover:-translate-y-1"
+            >
+              Contact Sales
+            </Link>
+
+            {/* <Link
+              to="/tour"
+              className="text-indigo-600 hover:underline font-medium text-lg"
+            >
+              See 2-min Tour →
+            </Link> */}
+          </motion.div>
         </div>
       </section>
 
@@ -70,11 +131,11 @@ const CazpianEnterprise: React.FC = () => {
             {/* Left Column - Main Description */}
             <div className="lg:col-span-2 space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium ml-10 lg:ml-[240px]">
                   <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-                  Self-Hosted Lakehouse Platform
+                  Why Cazpian Enterprise 
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+                {/* <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
                   Deploy anywhere Control everything Modern lakehouse performanceon your infrastructure
                 </h2>
                 <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -82,7 +143,7 @@ const CazpianEnterprise: React.FC = () => {
                 </p>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                   Ideal for compliance-driven industries and advanced enterprise use cases, Cazpian Enterprise gives you the tools to securely manage, monitor, and optimize your data environment on your terms.
-                </p>
+                </p> */}
               </div>
               
               {/* Feature Highlights */}
@@ -137,7 +198,7 @@ const CazpianEnterprise: React.FC = () => {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Your Control</h3>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
-                      Deploy on your infrastructure with full control over security, compliance, and performance.
+                    Your control — Tune security, compliance, and performance to your standards.
                     </p>
                     <div className="flex justify-center space-x-2 pt-4">
                       <div className="w-3 h-3 bg-indigo-500 rounded-full"></div>
@@ -201,6 +262,7 @@ const CazpianEnterprise: React.FC = () => {
         </div>
       </section>
 
+
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
@@ -208,7 +270,7 @@ const CazpianEnterprise: React.FC = () => {
             Ready to Take Control?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Cazpian Enterprise delivers the freedom to tailor your lakehouse deployment while benefiting from the full performance, openness, and innovation of Cazpian's modern data platform.
+            Tailor your lakehouse while leveraging Cazpian’s openness and performance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React,{ useState }  from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../components/SEO';
@@ -140,6 +140,122 @@ const Contact = () => {
     );
   }
 
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true);
+
+  const faqItems = [
+    {
+      q: 'How quickly can I get started?',
+      a: 'You can deploy Cazpian Cloud in under 5 minutes. For self-hosted deployments, our team can help you get up and running in a day.'
+    },
+    {
+      q: 'Can I migrate from my current platform?',
+      a: 'Yes! We provide migration tools and support for moving from Snowflake, Databricks, BigQuery, and other platforms.'
+    },
+    {
+      q: 'What kind of support do you offer?',
+      a: "Enterprise customers get 24/7 support with dedicated success managers. Community users have access to our documentation and community forums."
+    },
+    {
+      q: 'Is there a free trial available?',
+      a: 'Yes, you can start with our Agent Studio for free, or try Cazpian Cloud with a 14-day free trial.'
+    }
+  ];
+
+  React.useEffect(() => {
+    if (!autoRotate) return;
+    const intervalId = window.setInterval(() => {
+      // pick a random index different from current
+      const total = faqItems.length;
+      const next = Math.floor(Math.random() * total);
+      setOpenFaqIndex(next);
+    }, 10000);
+    return () => window.clearInterval(intervalId);
+  }, [autoRotate]);
+
+  const FAQItem: React.FC<{ index: number; question: string; answer: string }> = ({ index, question, answer }) => {
+    const isOpen = openFaqIndex === index;
+    return (
+      <motion.div
+        initial={false}
+        animate={{ opacity: 1 }}
+        variants={itemVariants}
+        className={`rounded-xl border backdrop-blur-sm shadow-sm overflow-hidden transition-colors ${
+          isOpen
+            ? 'border-indigo-300/70 dark:border-indigo-500/50 bg-indigo-50/60 dark:bg-indigo-900/20'
+            : 'border-gray-200/70 dark:border-gray-700/70 bg-white/80 dark:bg-gray-800/80'
+        }`}
+      >
+        <button
+          type="button"
+          onClick={() => {
+            setAutoRotate(false); // stop random open on manual interaction
+            setOpenFaqIndex(isOpen ? null : index);
+          }}
+          className={`w-full text-left px-4 sm:px-5 py-3 sm:py-4 flex items-start justify-between gap-3 transition-colors ${
+            isOpen
+              ? 'bg-indigo-50/60 dark:bg-indigo-900/20'
+              : 'hover:bg-gray-50/70 dark:hover:bg-gray-700/40'
+          }`}
+          aria-expanded={isOpen}
+        >
+          <span className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{question}</span>
+          <span
+            className={`mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-bold transition-colors ${
+              isOpen ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 border-gray-300/70 dark:border-gray-600/70'
+            }`}
+          >
+            {isOpen ? '–' : '+'}
+          </span>
+        </button>
+        <motion.div
+          initial={false}
+          animate={{ height: isOpen ? 'auto' : 0 }}
+          className="px-4 sm:px-5 overflow-hidden"
+        >
+          <div className="pb-4 sm:pb-5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            {answer}
+          </div>
+        </motion.div>
+      </motion.div>
+    );
+  };  
+    // Animation variants
+    const containerVariants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+          delayChildren: 0.2
+        }
+      }
+    };
+  
+    const itemVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut" as const
+        }
+      }
+    };
+  
+    const scaleIn = {
+      hidden: { opacity: 0, scale: 0.9 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut" as const
+        }
+      }
+    };
+
   return (
     <div className="bg-white dark:bg-gray-900">
       <SEO
@@ -150,7 +266,7 @@ const Contact = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
+      {/* <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
@@ -170,11 +286,11 @@ const Contact = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900/20">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-purple-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900/20">
+        <div className="w-full px-4 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <ScrollAnimation direction="left" delay={0.2}>
@@ -369,7 +485,7 @@ const Contact = () => {
                   <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
                     Our team of data experts is ready to help you transform your analytics. Choose the most convenient way to reach us.
                   </p>
-                  <div className="flex justify-center lg:justify-start mb-10">
+                  {/* <div className="flex justify-center lg:justify-start mb-10">
                     <div className="relative">
                       <img 
                         src="/vector_svg/file-searching-animate.svg" 
@@ -382,11 +498,11 @@ const Contact = () => {
                         </svg>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <StaggerContainer staggerDelay={0.1}>
-                  <div className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-3 max-w-12xl mx-auto">
                     <motion.div 
                       className="group bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-6 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300"
                       whileHover={{ x: 4, y: -2 }}
@@ -533,53 +649,46 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-8 w-full bg-gradient-to-br from-white via-gray-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900/20">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center mb-6"
+          >
+            <motion.div 
+              className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium mb-4"
+              variants={itemVariants}
+            >
+              <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
+              FAQ
+            </motion.div>
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 bg-clip-text"
+              variants={itemVariants}
+            >
               Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Quick answers to common questions
-            </p>
-          </div>
+            </motion.h2>
+            <motion.p className="text-sm text-gray-600 dark:text-gray-400" variants={itemVariants}>
+              Quick answers to help you evaluate Cazpian faster
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                How quickly can I get started?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                You can deploy Cazpian Cloud in under 5 minutes. For self-hosted deployments, our team can help you get up and running in a day.
-              </p>
-            </div>
+          {/* Two-column: Illustration left, Accordion right */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start max-w-6xl mx-auto">
+            {/* Illustration */}
+            <motion.div className="lg:col-span-2 hidden lg:block" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <img src="/vector_svg/file-searching-animate.svg" alt="FAQ Illustration" className="w-full h-auto object-contain max-w-[360px] xl:max-w-[420px] mx-auto" />
+            </motion.div>
 
-            <div className="bg-white dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                What kind of support do you offer?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Enterprise customers get 24/7 support with dedicated success managers. Community users have access to our documentation and community forums.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                Can I migrate from my current platform?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Yes! We provide migration tools and support for moving from Snowflake, Databricks, BigQuery, and other platforms.
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                Is there a free trial available?
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Yes, you can start with our Agent Studio for free, or try Cazpian Cloud with a 14-day free trial.
-              </p>
-            </div>
+            {/* Accordion */}
+            <motion.div className="lg:col-span-3 space-y-2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+              {faqItems.map((item, idx) => (
+                <FAQItem key={idx} index={idx} question={item.q} answer={item.a} />
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>

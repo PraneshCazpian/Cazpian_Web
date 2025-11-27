@@ -23,7 +23,7 @@ const AgentStudio = () => {
     {
       icon: <Workflow className="h-10 w-10 text-indigo-600" />,
       title: "Task-Driven Agent Design",
-      description: "Build agents that perform specific tasks like data transformation, classification, anomaly detection, or triggering workflows based on real-time inputs."
+      description: "Build agents for transformation, classification, anomaly detection, and workflow triggers."
     },
     {
       icon: <Brain className="h-10 w-10 text-indigo-600" />,
@@ -52,22 +52,22 @@ const AgentStudio = () => {
     {
       icon: <FileText className="h-10 w-10 text-indigo-600" />,
       title: "Automated Report Generation",
-      description: "Create agents that analyze new data daily and send automated reports to teams."
+      description: "Analyze new data daily and deliver insights to teams."
     },
     {
       icon: <AlertTriangle className="h-10 w-10 text-indigo-600" />,
       title: "AI-Powered Alerts",
-      description: "Detect anomalies in streaming data and trigger alerts or actions via Slack, email, or API."
+      description: "Detect anomalies in streams and trigger actions via Slack, email, or APIs."
     },
     {
       icon: <Sparkles className="h-10 w-10 text-indigo-600" />,
       title: "Data Enrichment Agents",
-      description: "Automatically enrich records using third-party APIs or internal knowledge graphs."
+      description: "Enrich records via third party APIs or internal graphs."
     },
     {
       icon: <Shield className="h-10 w-10 text-indigo-600" />,
       title: "Compliance & Governance Automation",
-      description: "Monitor data access, log events, and enforce rules—proactively and automatically."
+      description: "Monitor access, log events, and enforce rules proactively."
     }
   ];
 
@@ -75,18 +75,18 @@ const AgentStudio = () => {
   const enterpriseFeatures = [
     {
       icon: <Users className="h-8 w-8 text-indigo-600" />,
-      title: "Role-Based Access Control (RBAC)",
-      description: "Ensure only authorized users can create or modify agents."
+      title: "RBAC",
+      description: "Ensure only authorized users create/modify agents."
     },
     {
       icon: <GitBranch className="h-8 w-8 text-indigo-600" />,
       title: "Versioning and Audit Logs",
-      description: "Track every change made to your agents and roll back as needed."
+      description: "Track changes and roll back with confidence."
     },
     {
       icon: <Building2 className="h-8 w-8 text-indigo-600" />,
       title: "Multi-Tenant Ready",
-      description: "Designed for organizations serving multiple clients or departments with isolated environments."
+      description: "Isolate clients or departments with separate workspaces."
     }
   ];
 
@@ -95,17 +95,17 @@ const AgentStudio = () => {
     {
       icon: <Zap className="h-8 w-8 text-indigo-600" />,
       title: "Faster time to impact",
-      description: "Prebuilt templates and intelligent suggestions accelerate development."
+      description: "Templates and suggestions accelerate development."
     },
     {
       icon: <Database className="h-8 w-8 text-indigo-600" />,
       title: "No data movement required",
-      description: "Agents act where your data lives, maintaining security and performance."
+      description: "Agents run where data lives."
     },
     {
       icon: <Brain className="h-8 w-8 text-indigo-600" />,
       title: "AI + Automation, together",
-      description: "Agents blend logic, machine learning, and orchestration seamlessly."
+      description: "Blend logic, ML, and orchestration."
     }
   ];
 
@@ -120,19 +120,18 @@ const AgentStudio = () => {
               Free Version Available
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Cazpian <span className="text-indigo-600">Agent Studio</span>
+             Design and deploy <span className="text-indigo-600">intelligent agents on your data.</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Design, deploy, and manage intelligent AI agents that operate directly on your data. 
-              No-code/low-code environment for powerful automation.
+            A no code/low code studio for building agents that automate analytics and operations—securely and at scale.
             </p>
-            {/* <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
               <Link
                 to="/contact"
                 className="bg-indigo-600 text-white px-8 py-4 rounded-lg hover:bg-indigo-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center"
               >
-                <Play className="h-5 w-5 mr-2" />
-                Start Building Today
+                {/* <Play className="h-5 w-5 mr-2" /> */}
+                Start Building Your First Agent
               </Link>
               <Link
                 to="/book-meeting"
@@ -141,7 +140,7 @@ const AgentStudio = () => {
                 Schedule Demo
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Link>
-            </div> */}
+            </div>
           </div>
         </div>
       </section>
@@ -154,10 +153,7 @@ const AgentStudio = () => {
               What Is Cazpian Agent Studio?
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-              Cazpian Agent Studio is a powerful, no-code/low-code environment that empowers teams to design, 
-              deploy, and manage intelligent AI agents that operate directly on your data. Whether you're 
-              automating data workflows, enhancing business logic, or enabling real-time decision-making, 
-              Agent Studio gives you the tools to bring intelligent automation to life—securely, scalably, and quickly.
+            Agent Studio lets teams design, deploy, and manage intelligent agents <br/> that operate directly on your governed data accelerating automation and real-time decision making.
             </p>
           </div>
         </div>
@@ -175,7 +171,7 @@ const AgentStudio = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             {keyFeatures.map((feature, index) => (
               <div key={index} className="bg-white dark:bg-gray-700 p-8 rounded-xl border border-gray-200 dark:border-gray-600 hover:border-indigo-200 dark:hover:border-indigo-500 hover:shadow-lg transition-all duration-300 group">
                 <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -290,8 +286,7 @@ const AgentStudio = () => {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Whether you're a data engineer, analyst, or product leader, Cazpian Agent Studio helps you 
-            move from data to action—with speed, control, and intelligence.
+          Move from data to action with speed, control, and intelligence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link

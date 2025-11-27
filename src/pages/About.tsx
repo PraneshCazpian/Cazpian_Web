@@ -1,7 +1,125 @@
-import React from 'react';
+import React,{ useState }  from 'react';
+import { motion} from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Building, Users, Briefcase, Handshake, Newspaper, Phone } from 'lucide-react';
 
 const About = () => {
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true);
+
+  const faqItems = [
+    {
+      q: 'What makes Cazpian different?',
+      a: 'An open, governed foundation that keeps teams fast—without proprietary lock‑in.'
+    },
+    {
+      q: 'Is it cloud or self‑managed?',
+      a: 'Both: choose Cazpian Cloud (managed) or Cazpian Enterprise (self‑managed).'
+    },
+    {
+      q: 'How do we integrate?',
+      a: "Use connectors, SQL, notebooks, and APIs. We'll map to your current tools."
+    },
+    {
+      q: 'Can we start small?',
+      a: 'Yes. Begin with one use case, then expand as value grows.'
+    }
+  ];
+
+  React.useEffect(() => {
+    if (!autoRotate) return;
+    const intervalId = window.setInterval(() => {
+      // pick a random index different from current
+      const total = faqItems.length;
+      const next = Math.floor(Math.random() * total);
+      setOpenFaqIndex(next);
+    }, 10000);
+    return () => window.clearInterval(intervalId);
+  }, [autoRotate]);
+
+  const FAQItem: React.FC<{ index: number; question: string; answer: string }> = ({ index, question, answer }) => {
+    const isOpen = openFaqIndex === index;
+    return (
+      <motion.div
+        initial={false}
+        animate={{ opacity: 1 }}
+        variants={itemVariants}
+        className={`rounded-xl border backdrop-blur-sm shadow-sm overflow-hidden transition-colors ${
+          isOpen
+            ? 'border-indigo-300/70 dark:border-indigo-500/50 bg-indigo-50/60 dark:bg-indigo-900/20'
+            : 'border-gray-200/70 dark:border-gray-700/70 bg-white/80 dark:bg-gray-800/80'
+        }`}
+      >
+        <button
+          type="button"
+          onClick={() => {
+            setAutoRotate(false); // stop random open on manual interaction
+            setOpenFaqIndex(isOpen ? null : index);
+          }}
+          className={`w-full text-left px-4 sm:px-5 py-3 sm:py-4 flex items-start justify-between gap-3 transition-colors ${
+            isOpen
+              ? 'bg-indigo-50/60 dark:bg-indigo-900/20'
+              : 'hover:bg-gray-50/70 dark:hover:bg-gray-700/40'
+          }`}
+          aria-expanded={isOpen}
+        >
+          <span className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{question}</span>
+          <span
+            className={`mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-bold transition-colors ${
+              isOpen ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 border-gray-300/70 dark:border-gray-600/70'
+            }`}
+          >
+            {isOpen ? '–' : '+'}
+          </span>
+        </button>
+        <motion.div
+          initial={false}
+          animate={{ height: isOpen ? 'auto' : 0 }}
+          className="px-4 sm:px-5 overflow-hidden"
+        >
+          <div className="pb-4 sm:pb-5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            {answer}
+          </div>
+        </motion.div>
+      </motion.div>
+    );
+  };  
+    // Animation variants
+    const containerVariants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+          delayChildren: 0.2
+        }
+      }
+    };
+  
+    const itemVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut" as const
+        }
+      }
+    };
+  
+    const scaleIn = {
+      hidden: { opacity: 0, scale: 0.9 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut" as const
+        }
+      }
+    };
+
   const sections = [
     {
       id: 'company',
@@ -49,28 +167,28 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: 'Sarah Chen',
+      // name: 'Sarah Chen',
       role: 'CEO & Co-Founder',
       bio: 'Former VP of Engineering at Databricks, led the development of Delta Lake.',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: '/Ceo.svg'
     },
     {
-      name: 'Marcus Rodriguez',
+      // name: 'Marcus Rodriguez',
       role: 'CTO & Co-Founder',
       bio: 'Ex-Google, architect of BigQuery\'s storage engine and query optimizer.',
-      image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: '/Co.svg'
     },
     {
-      name: 'Dr. Priya Patel',
+      // name: 'Dr. Priya Patel',
       role: 'Head of AI',
       bio: 'Former Principal Scientist at Microsoft Research, expert in ML systems.',
-      image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: '/IT.svg'
     },
     {
-      name: 'James Thompson',
+      // name: 'James Thompson',
       role: 'VP of Engineering',
       bio: 'Previously at Snowflake and Amazon, built large-scale distributed systems.',
-      image: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: '/Vp.svg'
     }
   ];
 
@@ -83,7 +201,58 @@ const About = () => {
     'Customer Success Manager'
   ];
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Cazpian",
+    "url": "https://cazpian.ai/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Cazpian",
+      "url": "https://cazpian.ai",
+      "description":
+        "Cazpian is an AI-powered modern lakehouse platform built on Apache Iceberg, offering governed compute and federated data query capabilities."
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is governed compute?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text":
+            "Governed compute refers to the ability to control and manage compute resources securely and efficiently across data workloads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a data lakehouse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text":
+            "A data lakehouse combines the scalability of data lakes with the performance and structure of data warehouses."
+        }
+      }
+    ]
+  };
+
   return (
+    <>
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Helmet>
+      
     <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20">
@@ -197,6 +366,51 @@ const About = () => {
         </div>
       </section>
 
+            {/* FAQ Section */}
+            <section className="py-8 w-full bg-gradient-to-br from-white via-gray-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900/20">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center mb-6"
+          >
+            <motion.div 
+              className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium mb-4"
+              variants={itemVariants}
+            >
+              <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
+              FAQ
+            </motion.div>
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 bg-clip-text"
+              variants={itemVariants}
+            >
+              Frequently Asked Questions
+            </motion.h2>
+            <motion.p className="text-sm text-gray-600 dark:text-gray-400" variants={itemVariants}>
+              Quick answers to help you evaluate Cazpian faster
+            </motion.p>
+          </motion.div>
+
+          {/* Two-column: Illustration left, Accordion right */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start max-w-6xl mx-auto">
+            {/* Illustration */}
+            <motion.div className="lg:col-span-2 hidden lg:block" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <img src="/vector_svg/file-searching-animate.svg" alt="FAQ Illustration" className="w-full h-auto object-contain max-w-[360px] xl:max-w-[420px] mx-auto" />
+            </motion.div>
+
+            {/* Accordion */}
+            <motion.div className="lg:col-span-3 space-y-2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+              {faqItems.map((item, idx) => (
+                <FAQItem key={idx} index={idx} question={item.q} answer={item.a} />
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
@@ -217,6 +431,7 @@ const About = () => {
         </div>
       </section>
     </div>
+  </>
   );
 };
 

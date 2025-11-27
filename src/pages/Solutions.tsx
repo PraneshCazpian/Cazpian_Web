@@ -1,7 +1,11 @@
-import React from 'react';
+import React,{ useState }  from 'react';
+import { motion} from 'framer-motion';
 import { BarChart3, Users, Brain, Zap, Building2, Heart, Factory, ShoppingCart, Shield, ArrowRight, Sparkles, Workflow, Database, Code, Terminal, Eye, Search, ExternalLink, Play, Settings, Monitor, FileText, GitBranch, Sparkles2, Layers, Network, BarChart, TrendingUp, CheckCircle, Clock, Star } from 'lucide-react';
 import { useAdmin } from '../contexts/AdminContext';
+import { Helmet } from 'react-helmet-async';
 import SVGIllustration from '../components/SVGIllustration';
+import Diagram3 from '../components/Diagram3';
+import Diagram4 from '../components/Diagram4';
 
 const Solutions = () => {
   const { solutionsContent } = useAdmin();
@@ -22,7 +26,188 @@ const Solutions = () => {
     return iconMap[iconName as keyof typeof iconMap] || <BarChart3 className="h-10 w-10 text-indigo-600" />;
   };
 
+  // FAQ section
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [autoRotate, setAutoRotate] = useState<boolean>(true);
+
+  const faqItems = [
+    {
+      q: 'Where should we start?',
+      a: 'Pick one high‑value use case—e.g., Analytics Acceleration or Real‑Time Ops—and define success metrics up front..'
+    },
+    {
+      q: 'Will we be locked in?',
+      a: 'No. Cazpian emphasizes open standards (Iceberg, Arrow, Polaris) and portable architectures..'
+    },
+    {
+      q: 'Can we keep our BI tools?',
+      a: "Yes—use JDBC/ODBC with Tableau, Power BI, Excel, and more through a single governed endpoint."
+    },
+    {
+      q: 'How do we handle regulated data?',
+      a: 'Apply RBAC/ABAC, column‑level controls, lineage, audit, and policy enforcement via the metalake. .'
+    },
+    {
+      q: 'What’s the deployment model?',
+      a: 'Fully managed in AWS & Azure or self‑hosted on Kubernetes; GCP is on the roadmap.',
+    }
+  ];
+
+  React.useEffect(() => {
+    if (!autoRotate) return;
+    const intervalId = window.setInterval(() => {
+      // pick a random index different from current
+      const total = faqItems.length;
+      const next = Math.floor(Math.random() * total);
+      setOpenFaqIndex(next);
+    }, 10000);
+    return () => window.clearInterval(intervalId);
+  }, [autoRotate]);
+
+  const FAQItem: React.FC<{ index: number; question: string; answer: string }> = ({ index, question, answer }) => {
+    const isOpen = openFaqIndex === index;
+    return (
+      <motion.div
+        initial={false}
+        animate={{ opacity: 1 }}
+        variants={itemVariants}
+        className={`rounded-xl border backdrop-blur-sm shadow-sm overflow-hidden transition-colors ${
+          isOpen
+            ? 'border-indigo-300/70 dark:border-indigo-500/50 bg-indigo-50/60 dark:bg-indigo-900/20'
+            : 'border-gray-200/70 dark:border-gray-700/70 bg-white/80 dark:bg-gray-800/80'
+        }`}
+      >
+        <button
+          type="button"
+          onClick={() => {
+            setAutoRotate(false); // stop random open on manual interaction
+            setOpenFaqIndex(isOpen ? null : index);
+          }}
+          className={`w-full text-left px-4 sm:px-5 py-3 sm:py-4 flex items-start justify-between gap-3 transition-colors ${
+            isOpen
+              ? 'bg-indigo-50/60 dark:bg-indigo-900/20'
+              : 'hover:bg-gray-50/70 dark:hover:bg-gray-700/40'
+          }`}
+          aria-expanded={isOpen}
+        >
+          <span className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{question}</span>
+          <span
+            className={`mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full border text-xs font-bold transition-colors ${
+              isOpen ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 border-gray-300/70 dark:border-gray-600/70'
+            }`}
+          >
+            {isOpen ? '–' : '+'}
+          </span>
+        </button>
+        <motion.div
+          initial={false}
+          animate={{ height: isOpen ? 'auto' : 0 }}
+          className="px-4 sm:px-5 overflow-hidden"
+        >
+          <div className="pb-4 sm:pb-5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            {answer}
+          </div>
+        </motion.div>
+      </motion.div>
+    );
+  };  
+    // Animation variants
+    const containerVariants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+          delayChildren: 0.2
+        }
+      }
+    };
+  
+    const itemVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut" as const
+        }
+      }
+    };
+  
+    const scaleIn = {
+      hidden: { opacity: 0, scale: 0.9 },
+      visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut" as const
+        }
+      }
+    };
+
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does Cazpian support governed compute?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Cazpian allows secure, controlled access to data processing across teams and clouds with built-in governance policies and audit trails."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes Cazpian different from traditional data platforms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Unlike traditional platforms, Cazpian is built on Apache Iceberg with AI agents for smarter orchestration and seamless federation across sources."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Cazpian integrate with existing data warehouses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Yes, Cazpian integrates with data warehouses like Snowflake, BigQuery, and Redshift for federated querying without data duplication."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I deploy Cazpian in a multi-cloud environment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Absolutely. Cazpian supports deployment across AWS, GCP, and Azure with built-in connectors and environment-level governance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Cazpian suitable for real-time analytics?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text":
+              "Yes, Cazpian supports streaming and batch workloads, making it ideal for real-time analytics, dashboards, and AI inference."
+          }
+        }
+      ]
+    };
+
   return (
+    <>
+      <Helmet>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      </Helmet>
+
     <div className="bg-white dark:bg-gray-900">
       {/* Enhanced Hero Section with SVG */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 py-20 overflow-hidden">
@@ -100,6 +285,20 @@ const Solutions = () => {
               Three steps to governed analytics on your cloud.
             </p>
           </div>
+            {/* Inline Links Section */}
+            <div className="pb-6  -mt-11 flex flex-wrap justify-center items-center gap-3 text-md text-gray-600 dark:text-gray-400 font-bold">
+              <a href="/architecture" className="text-indigo-600 hover:underline dark:text-indigo-400">
+                Architecture
+              </a>
+              <span>·</span>
+              <a href="/cazpian-cloud" className="text-indigo-600 hover:underline dark:text-indigo-400">
+                Product: Cloud
+              </a>
+              <span>·</span>
+              <a href="/cazpian-enterprise" className="text-indigo-600 hover:underline dark:text-indigo-400">
+                Enterprise
+              </a>
+            </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Step 1 */}
@@ -183,7 +382,7 @@ const Solutions = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {/* Left Column - Features */}
             <div className="space-y-8">
               <div className="group bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 p-6 rounded-xl border border-indigo-200 dark:border-indigo-700 hover:shadow-lg transition-all duration-300">
@@ -545,6 +744,54 @@ const Solutions = () => {
         </div>
       </section>
 
+    <Diagram3 />
+    <Diagram4 />
+
+     {/* FAQ Section */}
+      <section className="py-8 w-full bg-gradient-to-br from-indigo-50 via-gray-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900/20">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="text-center mb-6"
+          >
+            <motion.div 
+              className="inline-flex items-center px-3 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium mb-4"
+              variants={itemVariants}
+            >
+              <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
+              FAQ
+            </motion.div>
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 bg-clip-text"
+              variants={itemVariants}
+            >
+              Frequently Asked Questions
+            </motion.h2>
+            <motion.p className="text-sm text-gray-600 dark:text-gray-400" variants={itemVariants}>
+              Quick answers to help you evaluate Cazpian faster
+            </motion.p>
+          </motion.div>
+
+          {/* Two-column: Illustration left, Accordion right */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start max-w-6xl mx-auto">
+            {/* Illustration */}
+            <motion.div className="lg:col-span-2 hidden lg:block" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <img src="/vector_svg/file-searching-animate.svg" alt="FAQ Illustration" className="w-full h-auto object-contain max-w-[360px] xl:max-w-[420px] mx-auto" />
+            </motion.div>
+
+            {/* Accordion */}
+            <motion.div className="lg:col-span-3 space-y-2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
+              {faqItems.map((item, idx) => (
+                <FAQItem key={idx} index={idx} question={item.q} answer={item.a} />
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Enhanced CTA Section */}
       <section className="relative py-20 bg-gradient-to-r from-gray-900 via-indigo-900 to-gray-900 text-white overflow-hidden">
         {/* Background SVG Pattern */}
@@ -581,6 +828,7 @@ const Solutions = () => {
         </div>
       </section>
     </div>
+  </>
   );
 };
 
