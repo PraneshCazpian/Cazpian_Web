@@ -194,7 +194,7 @@ const Product = () => {
       <div className="bg-white dark:bg-gray-900">
         <section className="relative overflow-hidden bg-[#f8faff] dark:bg-gray-900">
           {/* Subtle grid background */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e9ff_1px,transparent_1px),linear-gradient(to_bottom,#e5e9ff_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e9ff_1px,transparent_1px),linear-gradient(to_bottom,#e5e9ff_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 pointer-events-none dark:hidden"></div>
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
             {/* Left Text Section */}
