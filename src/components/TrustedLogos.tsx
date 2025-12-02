@@ -35,13 +35,13 @@ const TrustedLogos: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
-      {/* Background lines */}
-      <img
-        src="/Bg-tr.svg"
-        alt="Background pattern"
-        className="absolute inset-0 w-full h-full object-cover opacity-100 pointer-events-none"
-      />
+    <section className="relative py-20 bg-gradient-to-br from-white dark:from-indigo-900 dark:via-gray-800 dark:to-black-900 overflow-hidden">
+  {/* Light-mode background (hidden in dark) */}
+  <img
+    src="/Bg-tr.svg"
+    alt="Background pattern (light)"
+    className="absolute inset-0 w-full h-full object-cover opacity-100 pointer-events-none dark:hidden"
+  />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Side — Logos */}
@@ -127,23 +127,23 @@ const TrustedLogos: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="text-center lg:text-right lg:relative lg:right-[2in]"
+          className="text-center lg:text-right lg:relative lg:right pl-10 pr-10"
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-black-700 dark:text-indigo-400 mb-3"
+            className="text-4xl md:text-5xl font-bold text-black-700 dark:text-white mb-3"
           >
             Open standards &
           </motion.h2>
           <motion.h3
             variants={itemVariants}
-            className="text-3xl md:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-4"
+            className="text-3xl md:text-3xl font-bold text-indigo-600 dark:text-white mb-4"
           >
             Cloud-native stack
           </motion.h3>
           <motion.p
             variants={itemVariants}
-            className="text-gray-600 dark:text-gray-300 mt-2"
+            className="text-gray-600 dark:text-blue-400 mt-2"
           >
             Trusted by industry leaders worldwide
           </motion.p>

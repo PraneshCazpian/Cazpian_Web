@@ -1100,7 +1100,7 @@ const SolutionsByUseCase: React.FC = () => {
             {/* Icon */}
             <div className="flex justify-center mb-8">
               <div className="relative">
-                <SVGIllustration name="development" width={80} height={80} className="text-white opacity-90" />
+                {/* <SVGIllustration name="development" width={80} height={80} className="text-white opacity-90" /> */}
                 <div className="absolute -inset-4 bg-white/10 rounded-full blur-xl"></div>
               </div>
             </div>

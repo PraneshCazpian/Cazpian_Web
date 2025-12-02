@@ -278,31 +278,39 @@ const HomePage = () => {
       />
       {/* Hero Section */}
       <section
-        ref={heroRef}
-        className="relative min-h-[80vh] w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 flex items-center"
-      >
-        <div className="container mx-auto px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side — Illustration */}
-          <motion.div
-            className="flex justify-center lg:justify-start order-2 lg:order-1"
-            variants={itemVariants}
-          >
-            <motion.img
-              src="/landing-im.svg"
-              alt="Open Lakehouse Platform"
-              className="w-full max-w-[520px] h-auto drop-shadow-2xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            />
-          </motion.div>
+  ref={heroRef}
+  className="relative w-full overflow-x-hidden
+             bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100
+             dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900
+             flex items-center"
+>
+  <div className="w-full px-6 py-12 lg:py-20">
+    {/* Increase max width so very large monitors can use more space */}
+    <div className="mx-auto w-full max-w-[1400px]">
+      {/* Responsive 2-column grid. Avoid fixed column templates that caused overflow earlier. */}
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6 md:gap-8 lg:gap-12">
+        {/* LEFT: Illustration */}
+        <motion.div
+          className="flex justify-center md:justify-start px-2 lg:px-6"
+          variants={itemVariants}
+          style={{ y: heroImgY }}
+        >
+          <img
+            src="/landing-im.svg"
+            alt="Open Lakehouse Platform"
+            className="w-full max-w-[520px] md:max-w-[520px] lg:max-w-[620px] h-auto object-contain drop-shadow-2xl select-none"
+            loading="eager"
+          />
+        </motion.div>
 
-          {/* Right Side — Text */}
-          <motion.div
-            className="text-center lg:text-right order-1 lg:order-2"
-            variants={containerVariants}
-            style={{ y: heroTextY }}
-          >
+        {/* RIGHT: Text */}
+        <motion.div
+          className="min-w-0 text-center md:text-right flex flex-col items-center md:items-end px-2 lg:px-6"
+          variants={containerVariants}
+          style={{ y: heroTextY }}
+        >
+          {/* Allow text block to expand on very wide screens */}
+          <div className="w-full max-w-[760px] md:ml-auto">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               Open Lakehouse Platform
             </h1>
@@ -311,47 +319,41 @@ const HomePage = () => {
               for Analytics Pipelines & AI Agents
             </h2>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-xl lg:max-w-none leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
               Launch governed compute, unify your data catalogs, and add AI agents to
-              automate engineering so analytics and pipelines ship faster across
-              cloud and on-prem.
+              automate engineering so analytics and pipelines ship faster across cloud and on-prem.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-end">
               <Link
-              to="/book-meeting"
-               className="px-6 py-3 rounded-xl text-white font-semibold bg-indigo-600 hover:bg-indigo-700 shadow-md transition-all">
+                to="/book-meeting"
+                onClick={() => trackCTAClick(siteConfig.ctaPrimary, "hero")}
+                className="px-6 py-3 rounded-xl text-white font-semibold bg-indigo-600 hover:bg-indigo-700 shadow-md transition"
+              >
                 Start Free
               </Link>
+
               <Link
-              to="/book-meeting" 
-              className="px-6 py-3 rounded-xl font-semibold border border-indigo-600 text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900 transition-all">
+                to="/book-meeting"
+                className="px-6 py-3 rounded-xl font-semibold border border-indigo-600 text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900 transition"
+              >
                 Book a Demo
               </Link>
-              <Link 
-              to="/agent-studio" 
-              className="px-6 py-3 flex items-center justify-center gap-2 rounded-xl text-white font-semibold bg-indigo-600 hover:bg-indigo-700 shadow-md transition-all">
+
+              <Link
+                to="/agent-studio"
+                className="px-6 py-3 rounded-xl inline-flex items-center gap-2 text-indigo-600 bg-transparent hover:text-indigo-800 transition"
+              >
                 See 2-min Tour
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6h8m0 0v8m0-8l-8 8"
-                  />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6h8m0 0v8m0-8l-8 8" />
                 </svg>
               </Link>
             </div>
 
             {/* Feature Chips */}
-            <div className="flex flex-wrap gap-2 mt-10 justify-center lg:justify-end">
+            <div className="flex flex-wrap gap-2 mt-6 justify-center md:justify-end">
               {[
                 "Open-standards",
                 "Spark Connect & Submit",
@@ -364,70 +366,72 @@ const HomePage = () => {
               ].map((feature, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-2 rounded-lg bg-transparent dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm shadow-sm transition-all"
+                  className="px-3 py-2 rounded-lg bg-transparent dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-sm shadow-sm"
                 >
                   {feature}
                 </span>
               ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
-
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Trusted Logos Section */}
       <TrustedLogos />
 
       {/* Multi-En animation*/}
-        <Multicards />
+        {/* <Multicards /> */}
       {/* Multi-Engine Ready Section */}
-      {/* <section className="w-full bg-gradient-to-b from-white to-blue-50 py-24">
-  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-8 gap-16"> */}
+      <section className="w-full bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-900 py-24">
+  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-8 gap-16">
     {/* Left side text */}
-    {/* <div className="lg:w-1/2 text-center">
+    <div className="lg:w-1/2 text-center">
       <h2 className="text-5xl font-bold text-indigo-600 mb-6 leading-tight">
-      <span className='text-black'> Multi-</span>Engine <br /> Ready
+      <span className='text-black dark:text-white'> Multi-</span>Engine <br /> Ready
       </h2>
-      <p className="text-lg text-gray-600 max-w-md">
+      <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md">
         Run your preferred analytics <br/> engines seamlessly with Apache Spark, Trino, and Flink.
       </p>
-    </div> */}
+    </div>
 
     {/* Right side cards */}
-    {/* <div className="relative lg:w-1/2 flex flex-col gap-8"> */}
+    <div className="relative lg:w-1/2 flex flex-col gap-8">
       {/* Decorative diagonal background */}
-      {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100 to-transparent rounded-3xl -z-10 transform translate-x-6 translate-y-6"></div> */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-100 to-transparent rounded-3xl -z-10 transform translate-x-6 translate-y-6"></div>
 
       {/* Card 1 */}
-      {/* <div className="flex items-center bg-white rounded-2xl shadow-lg p-6 transition-transform hover:-translate-y-1">
+      <div className="flex items-center bg-white rounded-2xl shadow-lg p-6 transition-transform hover:-translate-y-1 dark:bg-gray-800">
         <img src="/apache_Flink.svg" alt="Apache Flink" className="h-20 w-20 mr-5" />
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-1">Apache Flink</h3>
-          <p className="text-gray-600 text-sm">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">Apache Flink</h3>
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
             Stateful computations over unbounded and bounded data streams with low latency and
             high throughput for real-time analytics.
           </p>
         </div>
-      </div> */}
+      </div>
 
       {/* Card 2 */}
-      {/* <div className="flex items-center bg-white rounded-2xl shadow-lg p-6 transition-transform hover:-translate-y-1">
+      <div className="flex items-center bg-white rounded-2xl shadow-lg p-6 transition-transform hover:-translate-y-1 dark:bg-gray-800">
         <img src="/apache-spark.svg" alt="Apache Spark" className="h-20 w-20 mr-5" />
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-1">Apache Spark</h3>
-          <p className="text-gray-600 text-sm">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">Apache Spark</h3>
+          <p className="text-gray-600 dark:text-gray-400 text-sm">
             High-performance unified analytics engine for large-scale data processing with built-in
             SQL, streaming, and machine learning capabilities.
           </p>
         </div>
-      </div> */}
+      </div>
 
       {/* Card 3 */}
-      {/* <div className="flex items-center bg-white rounded-2xl shadow-lg p-6 transition-transform hover:-translate-y-1">
+      <div className="flex items-center bg-white rounded-2xl shadow-lg p-6 transition-transform hover:-translate-y-1 dark:bg-gray-800">
         <img src="/trino-icon.svg" alt="Trino" className="h-20 w-20 mr-7 ml-5" />
         <div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-1">Trino</h3>
-          <p className="text-gray-600 text-sm">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">Trino</h3>
+          <p className="text-gray-600 text-sm dark:text-gray-400">
             Distributed SQL query engine designed to query large data sets distributed over one or
             more heterogeneous data sources with high performance.
           </p>
@@ -435,7 +439,7 @@ const HomePage = () => {
       </div>
     </div>
   </div>
-</section> */}
+</section>
 
 
       {/* Compute Targets Section */}
@@ -837,102 +841,90 @@ const HomePage = () => {
       </section>
 
       {/* Why choose cazpian*/}
-      <section className="relative w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 pt-24 pb-10 overflow-hidden">
+      <section className="relative w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 pt-24 pb-10 dark:from-gray-800 overflow-hidden">
   {/* Background lines */}
   <img
-    src="/Element.svg" // your curved background pattern
+    src="/Element.svg"
     alt="Background pattern"
     className="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none"
   />
 
   <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
     {/* Top Row — Title on Left, Diagram on Right */}
-    <div className="relative flex flex-col lg:flex-row items-center justify-between mb-20">
+    {/* Use flex (not absolute) so both parts respect each other's space */}
+    <div className="relative flex flex-col lg:flex-row items-center justify-between mb-20 gap-6 lg:gap-12">
       {/* Text Box */}
-      <div className="relative w-fit sm:w-fit bg-white p-6 sm:p-8 rounded-[2rem] shadow-md sm:translate-x-16 translate-x-0 text-center sm:text-left">
-      <h2 className="text-5xl font-bold text-gray-900 mb-5">
-        Why Choose <span className="text-blue-600">Cazpian?</span>
-      </h2>
-      <p className="text-gray-600 text-base leading-relaxed">
-        Transform your data analytics with our modern, federated approach.
-      </p>
-    </div>
+      <div className="relative z-20 w-full lg:w-1/2 bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-[2rem] shadow-md text-center sm:text-left">
+        <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-5">
+          Why Choose <span className="text-blue-600">Cazpian?</span>
+        </h2>
+        <p className="text-gray-900 dark:text-gray-400 text-base leading-relaxed">
+          Transform your data analytics with our modern, federated approach.
+        </p>
+      </div>
 
-
-      {/* Diagram on Right */}
-      <div className="mt-12 lg:-mt-12 lg:absolute lg:right-0 lg:top-0">
+      {/* Diagram on Right (in flow, responsive width; sits behind due to lower z if needed) */}
+      <div className="w-full lg:w-1/2 flex justify-center lg:justify-end items-center pointer-events-none">
         <img
-          src="/Dia.svg" // your dotted line + cube network diagram
+          src="/Dia.svg"
           alt="Cazpian network"
-          className="w-[520px] h-auto opacity-90"
+          className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[560px] xl:w-[540px] h-auto opacity-95 select-none"
         />
       </div>
     </div>
 
     {/* Feature Grid */}
-      <div className="relative grid grid-cols-1 md:grid-cols-3 gap-20 text-left pl-20 pr-20 pb-4 pt-12">
-        {/* Feature 1 */}
-        <div className="flex flex-col items-start space-y-2">
-          <div className="flex items-center space-x-3">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Governed Spark Anywhere.
-            </h3>
-            <img
-              src="/database 2.svg"
-              alt="Spark Icon"
-              className="h-5 w-5 text-yellow-500"
-            />
-          </div>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Long-running Spark Connect workspaces and submit jobs (batch & streaming)
-            on EKS/EC2/EMR and on-prem Kubernetes with policy-aware restarts.
-          </p>
+    <div className="relative grid grid-cols-1 md:grid-cols-3 gap-20 text-left px-4 md:px-8 pb-4 pt-12">
+      {/* Feature 1 */}
+      <div className="flex flex-col items-start space-y-2">
+        <div className="flex items-center space-x-3">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Governed Spark Anywhere.
+          </h3>
+          <img src="/database 2.svg" alt="Spark Icon" className="h-5 w-5 text-yellow-500" />
         </div>
-
-        {/* Feature 2 */}
-        <div className="flex flex-col items-start space-y-2">
-          <div className="flex items-center space-x-3">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Iceberg-First Catalogs.
-            </h3>
-            <img
-              src="/SVG.svg"
-              alt="Iceberg Icon"
-              className="h-5 w-5 text-purple-500"
-            />
-          </div>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Polaris & Gravitino out-of-the-box; Glue/Hive/RDBMS connectors; views &
-            table property enforcement with full auditability.
-          </p>
-        </div>
-
-        {/* Feature 3 */}
-        <div className="flex flex-col items-start space-y-2">
-          <div className="flex items-center space-x-3">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Day-2 Ops Automation.
-            </h3>
-            <img
-              src="/padlock 1.svg"
-              alt="Ops Icon"
-              className="h-5 w-5 text-blue-500"
-            />
-          </div>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            Maintenance schedules (compaction, snapshot expiry, orphan cleanup),
-            right-size hints, cost controls, and safe config/JAR rollouts.
-          </p>
-        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+          Long-running Spark Connect workspaces and submit jobs (batch & streaming)
+          on EKS/EC2/EMR and on-prem Kubernetes with policy-aware restarts.
+        </p>
       </div>
 
+      {/* Feature 2 */}
+      <div className="flex flex-col items-start space-y-2">
+        <div className="flex items-center space-x-3">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Iceberg-First Catalogs.
+          </h3>
+          <img src="/SVG.svg" alt="Iceberg Icon" className="h-5 w-5 text-purple-500" />
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+          Polaris & Gravitino out-of-the-box; Glue/Hive/RDBMS connectors; views &
+          table property enforcement with full auditability.
+        </p>
+      </div>
+
+      {/* Feature 3 */}
+      <div className="flex flex-col items-start space-y-2">
+        <div className="flex items-center space-x-3">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Day-2 Ops Automation.
+          </h3>
+          <img src="/padlock 1.svg" alt="Ops Icon" className="h-5 w-5 text-blue-500" />
+        </div>
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+          Maintenance schedules (compaction, snapshot expiry, orphan cleanup),
+          right-size hints, cost controls, and safe config/JAR rollouts.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
 
 
+
       {/* Why teams choose cazpian */}
-      <section className="relative w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 pt-24 pb-10 overflow-hidden">
+      <section className="relative w-full bg-gradient-to-br from-gray-50 via-white to-blue-50 pt-24 pb-10 dark:from-gray-800 overflow-hidden">
   {/* Background lines */}
   <img
     src="/Element.svg"
@@ -944,21 +936,21 @@ const HomePage = () => {
     {/* Top Row — Diagram on Left, Text on Right */}
     <div className="relative flex flex-col lg:flex-row-reverse items-center justify-between mb-20">
       {/* Text Box (Now on Right) */}
-      <div className="relative w-fit sm:w-fit bg-white p-6 sm:p-8 rounded-[2rem] shadow-md sm:translate-x-16 translate-x-0 text-center sm:text-left">
-        <h2 className="text-5xl font-bold text-gray-900 mb-5">
+      <div className="relative w-fit sm:w-fit bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-[2rem] shadow-md sm:translate-x-16 translate-x-0 text-center sm:text-left">
+        <h2 className="text-5xl font-bold text-gray-900 dark:text-white mb-5">
           Why Teams Choose <span className="text-blue-600">Cazpian?</span>
         </h2>
-        <p className="text-gray-600 text-base leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
         Modern data teams need more than just storage. They need intelligence, speed, and flexibility built in.
         </p>
       </div>
 
       {/* Diagram (Now on Left) */}
-      <div className="mt-12 lg:-mt-12 lg:absolute lg:left-0 lg:top-0">
+      <div className="-full lg:w-1/2 flex justify-center lg:justify-left items-center pointer-events-none">
         <img
           src="/Dia23.svg"
           alt="Cazpian network"
-          className="w-[520px] h-auto opacity-90"
+          className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[560px] xl:w-[540px] h-auto opacity-95 select-none"
         />
       </div>
     </div>
@@ -968,7 +960,7 @@ const HomePage = () => {
       {/* Feature 1 */}
       <div className="flex flex-col items-start space-y-2">
         <div className="flex items-center space-x-3">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             AI-Driven Performance
           </h3>
           {/* <img
@@ -977,7 +969,7 @@ const HomePage = () => {
             className="h-5 w-5 text-yellow-500"
           /> */}
         </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
         Natural language queries, automatic optimization, and intelligent insights powered by AI.
         </p>
       </div>
@@ -985,7 +977,7 @@ const HomePage = () => {
       {/* Feature 2 */}
       <div className="flex flex-col items-start space-y-2">
         <div className="flex items-center space-x-3">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Open Data Architecture
           </h3>
           {/* <img
@@ -994,7 +986,7 @@ const HomePage = () => {
             className="h-5 w-5 text-purple-500"
           /> */}
         </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
          Built on Apache Iceberg, Arrow, and Polaris. No vendor lock-in, complete portability.
         </p>
       </div>
@@ -1002,7 +994,7 @@ const HomePage = () => {
       {/* Feature 3 */}
       <div className="flex flex-col items-start space-y-2">
         <div className="flex items-center space-x-3">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Lightning Fast
           </h3>
           {/* <img
@@ -1011,7 +1003,7 @@ const HomePage = () => {
             className="h-5 w-5 text-blue-500"
           /> */}
         </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
         HyperSQL engine delivers consistent performance at scale with intelligent caching.
         </p>
       </div>
@@ -1019,7 +1011,7 @@ const HomePage = () => {
       {/* Feature 4 */}
       <div className="flex flex-col items-start space-y-2">
         <div className="flex items-center space-x-3">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           Enterprise Security
           </h3>
           {/* <img
@@ -1028,7 +1020,7 @@ const HomePage = () => {
             className="h-5 w-5 text-green-500"
           /> */}
         </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
           Built-in governance, RBAC/ABAC, and full lineage tracking across all data assets.
         </p>
       </div>
@@ -1036,7 +1028,7 @@ const HomePage = () => {
       {/* Feature 5 */}
       <div className="flex flex-col items-start space-y-2">
         <div className="flex items-center space-x-3">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
            Cost Optimization
           </h3>
           {/* <img
@@ -1045,7 +1037,7 @@ const HomePage = () => {
             className="h-5 w-5 text-red-500"
           /> */}
         </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
         Scale compute and storage independently. Pay only for what you use.
         </p>
       </div>
@@ -1053,7 +1045,7 @@ const HomePage = () => {
       {/* Feature 6 */}
       <div className="flex flex-col items-start space-y-2">
         <div className="flex items-center space-x-3">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
           Self-Service Analytics
           </h3>
           {/* <img
@@ -1062,7 +1054,7 @@ const HomePage = () => {
             className="h-5 w-5 text-indigo-500"
           /> */}
         </div>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
         Empower every team member with intuitive, governed access to data insights.
         </p>
       </div>
@@ -1072,18 +1064,18 @@ const HomePage = () => {
 
 
       {/* Dashboard Showcase */}
-      <section className="relative w-full bg-gradient-to-br from-[#F8FAFF] to-indigo-100 py-24 overflow-hidden">
+      <section className="relative w-full bg-gradient-to-br from-[#F8FAFF] to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between px-6 lg:px-12">
         {/* === Left Text Section === */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left mt-10 lg:mt-0">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-200 leading-tight">
             Deploy{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
               Your Way
             </span>
           </h2>
 
-          <p className="mt-6 text-gray-600 text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+          <p className="mt-6 text-gray-600 dark:text-gray-400 text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
             Whether you need fully managed cloud, self-hosted enterprise, or free
             agent studio — Cazpian adapts to your infrastructure needs with zero
             compromise.

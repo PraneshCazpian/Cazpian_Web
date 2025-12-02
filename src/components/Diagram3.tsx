@@ -7,16 +7,16 @@ const DiaboxMinimal: React.FC = () => {
   const svgFallback = "/mnt/data/b5fdae1b-a486-4756-afc4-5ddb69eb287b.png";
 
   return (
-    <section className="w-full bg-gradient-to-br from-[#FBFDFF] via-[#F6F9FF] to-[#EEF6FF] py-20">
+    <section className="w-full bg-gradient-to-br from-[#FBFDFF] via-[#F6F9FF] to-[#EEF6FF] dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
         {/* Header */}
-        <h2 className="text-3xl lg:text-4xl lg:text-left font-bold text-indigo-900 leading-tight">
+        <h2 className="text-3xl lg:text-4xl lg:text-left font-bold text-indigo-900 dark:text-gray-200 leading-tight">
          Stop Paying Cluster Taxes for Tiny ETL {" "}
           <span className="block text-indigo-700">(≤10GB)</span>
         </h2>
 
         {/* Subhead */}
-        <p className="mt-10 text-sm text-gray-500 max-w-2xl mx-auto">
+        <p className="mt-10 text-sm text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
         Small jobs incur cold-starts, over-provisioning, and small-files waste
         </p>
 
@@ -37,10 +37,10 @@ const DiaboxMinimal: React.FC = () => {
 
         {/* Bullets / end text */}
         <div className="mt-3 max-w-4xl mx-auto text-center">
-          <div className="text-xs md:text-sm text-gray-500 mb-4">
+          <div className="text-xs md:text-sm text-gray-500 dark:text-gray-300 mb-4">
           Cost Model: Savings = avoided startup + optimized run - idle
           </div>
-          <div className="text-xs md:text-sm text-gray-500 mb-4">
+          <div className="text-xs md:text-sm text-gray-500 dark:text-gray-300 mb-4">
           Proof: Dashboards for latency, idle%, bytes
           </div>
         </div>
